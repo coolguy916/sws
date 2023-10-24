@@ -23,11 +23,6 @@ Route::controller(espController::class)->group(function () {
     Route::get('/form', 'form')->name('form');
 
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

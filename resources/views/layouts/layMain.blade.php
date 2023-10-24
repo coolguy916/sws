@@ -16,17 +16,19 @@
     <link href="{{ asset('assets/libs/flot/css/float-chart.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset("/css/app.css")}}" rel="stylesheet">
+    <link href="{{ asset('assets/css-inp/style-inp.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css-inp/style-ind.scss') }}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
-
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -69,7 +71,6 @@
     <script src="{{ asset('assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
-    <script src="{{ asset('/js/app.js') }}"></script>
 </body>
 
 </html>
