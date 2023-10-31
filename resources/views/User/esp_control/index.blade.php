@@ -86,11 +86,12 @@
                         <!-- <table class="table table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>no</th>
-                                    <th>location</th>
-                                    <th>time</th>
-                                    <th>status</th>
-                                    <th>action</th>
+                                    <th>No</th>
+                                    <th>Time</th>
+                                    <th>Module Location</th>
+                                    <th>Runtime</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

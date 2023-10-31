@@ -13,7 +13,13 @@ class EspControl extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('esp_control', function (Blueprint $table) {
+            $table->id();
+            $table->time('runtime');
+            $table->boolean('status');
+            $table->time('schedule');
+            $table->timestamps();
+        });
     }
 
     /**

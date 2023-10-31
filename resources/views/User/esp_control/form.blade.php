@@ -36,61 +36,40 @@
                             @csrf
                             <div class="card-body">
                                 <h4 class="card-title">Laporan Info</h4>
-                                <div class="form-group row">
-                                    <label for="text"
-                                        class="col-sm-3 text-end control-label col-form-label">Text</label>
+                                {{-- <div class="form-group row">
+                                    <label for="runtime"
+                                        class="col-sm-3 text-end control-label col-form-label">Runtime</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="text" name="text"
-                                            placeholder="Teks" required>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="number" name="number"
+                                            placeholder="Enter Here" required>
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Minutes</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group row">
-                                    <label for="number"
-                                        class="col-sm-3 text-end control-label col-form-label">number</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="number" name="number"
-                                            placeholder="Number" required>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="time"
-                                        class="col-sm-3 text-end control-label col-form-label">Time</label>
+                                    <label for="schedule"
+                                        class="col-sm-3 text-end control-label col-form-label">Set Schedule</label>
                                     <div class="col-sm-9">
                                         <input type="time" class="form-control" id="time" name="time" required
                                             style="padding: 10px; border: 2px solid #ccc;">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label for="gambar"
-                                        class="col-sm-3 text-end control-label col-form-label">Gambar</label>
+                                    <label for="moduleLocation"
+                                        class="col-sm-3 text-end control-label col-form-label">Module Location</label>
                                     <div class="col-sm-9">
-                                        <input type="file" class="form-control @error('gambar') is-invalid @enderror"
-                                            name="gambar" required>
-                                        {{-- @error('gambar')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror --}}
+                                        <select name="modulelocation" id="modulelocation" style="width:100%; padding: 10px; border: 2px solid #ccc;">
+                                            <option selected disabled>Select Location Module</option>
+                                            <option value="">Module 1</option>
+                                            <option value="">Module 2</option>
+                                            <option value="">Module 3</option>
+                                            <option value="">Module 4</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="content" class="col-sm-3 text-end control-label col-form-label">Text
-                                        Area</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
-                                            placeholder="Text Area" required>{{ old('content') }}</textarea>
-                                        {{-- @error('content')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror --}}
-                                    </div>
-                                </div>
-
-                                {{-- <input type="hidden" name="id_user" value="{{ auth()->user()->id }}"> --}}
-
-                            </div>
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -101,7 +80,6 @@
                 </div>
             </div>
         </div>
-
         <!-- editor -->
         <!-- ============================================================== -->
         <!-- End PAge Content -->
