@@ -9,12 +9,12 @@ class espController extends Controller
     public function index()
     {
         $data = ['title' => 'index']; // Your data to pass to the view
-        return view('esp_control.index', $data); // Path to your Blade component
+        return view('User.esp_control.index', $data); // Path to your Blade component
     }
 
     public function form()
     {
         $data = ['title' => 'form']; // Your data to pass to the view
-        return view('esp_control.form', $data); // Path to your Blade component
+        return view('User.esp_control.form', $data); // Path to your Blade component
     }
 }
