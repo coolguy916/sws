@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('Admin.Home.index');
+});
+
 Route::controller(espController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/form', 'form')->name('form');
