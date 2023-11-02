@@ -11,6 +11,12 @@ class EspControl extends Model
 
     protected $fillable = [
         'schedule',
-
+        'runtime',
+        'status',
+        'id_user',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class,'id');
+    }
 }

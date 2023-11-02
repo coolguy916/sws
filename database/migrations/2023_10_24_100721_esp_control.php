@@ -13,12 +13,15 @@ class EspControl extends Migration
      */
     public function up()
     {
-        Schema::create('esp_control', function (Blueprint $table) {
+        Schema::create('esp_controls', function (Blueprint $table) {
             $table->id();
-            $table->time('runtime');
-            $table->boolean('status');
+            $table->time('runtime')->default('00:00:00');
+            $table->boolean('status')->default('0');
             $table->time('schedule');
+            $table->unsignedBigInteger('id_user')->unsigned();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

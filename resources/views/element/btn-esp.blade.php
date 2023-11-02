@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="">
     <div class="row">
-        
-    
+
+
     <!-- Modul Nyala -->
     <div class="card" style="width: 18rem; margin-right: 10px; ">
     <div class="card-body rounded-auto">
@@ -15,9 +15,9 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Modul mati -->
-    
+
 
     <div class="card" style="width: 18rem; margin-right: 10px;">
     <div class="card-body rounded-auto">
@@ -30,8 +30,8 @@
             </div>
         </div>
     </div>
-        
-        
+
+
         <!-- <div class="col-3">
             <div class="card">
                 <div class="card-body">
@@ -42,5 +42,5 @@
                 </div>
             </div>
         </div> -->
-        
-    
+
+

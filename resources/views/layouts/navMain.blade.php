@@ -348,7 +348,7 @@
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{route('form')}}"
+              href="{{route('add')}}"
               aria-expanded="false"
               ><i class="mdi mdi-chart-bubble"></i
               ><span class="hide-menu">Input</span></a

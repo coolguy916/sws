@@ -29,7 +29,10 @@ Route::get('/add-module', [App\Http\Controllers\ModuleController::class, 'create
 
 Route::controller(espController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/form', 'form')->name('form');
+    Route::get('/add', 'add')->name('add');
+    Route::post('/add', 'store')->name('data.store');
+    Route::get('/edit/{$id}', 'edit')->name('data.edit');
+    Route::get('/delete/{$id}', 'delete')->name('data.delete');
 
 });
 Auth::routes();
