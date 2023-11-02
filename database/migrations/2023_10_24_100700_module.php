@@ -13,7 +13,15 @@ class Module extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('module', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip_address');
+            $table->boolean('status');
+            $table->string('lokasi');
+            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->timestamps();
+        });
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\espController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('Admin.Home.index');
-});
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+
 
 Route::controller(espController::class)->group(function () {
     Route::get('/', 'index')->name('index');

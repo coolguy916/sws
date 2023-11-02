@@ -1,4 +1,4 @@
-@extends('layouts.layMain')
+@extends('layouts.layAdmin')
 @section('content')
     <div class="page-wrapper">
         <!-- ============================================================== -->
@@ -20,9 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @include('element.led-esp')
-            </div>
+            
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -31,9 +29,7 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-            <div class="row">
-                @include('element.btn-esp')
-            </div>
+          
             <div class="row">
                 <div class="card">
                     <div class="card-header">
@@ -61,7 +57,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- <tr>
+                               
                                     <td>lorem</td>
                                     <td>lorem</td>
                                     <td>00.00</td>
@@ -76,7 +72,7 @@
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
-                                </tr> --}}
+                                </tr>
                             </tbody>
                         </table>
                     </div>
