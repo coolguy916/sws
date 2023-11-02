@@ -1,5 +1,19 @@
 @extends('layouts.layAdmin')
 @section('content')
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  </head>
+    <body>
+
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -34,10 +48,10 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">
-                            {{ __('Schedule') }}
+                            {{ __('Module') }}
                         </h2>
                         <div class="card-tools">
-                            <a href="{{ route('form') }}" class="btn btn-outline-dark btn-sm">
+                          <a href="" class="btn btn-outline-dark btn-sm"  data-bs-toggle="modal" data-bs-target="#addModal" >
                                 <i class="fas fa-plus"></i> Input Data
                             </a>
                         </div>
@@ -46,32 +60,7 @@
                         <div class="alert alert-danger text-center">
                             No Data To Be Read
                         </div>
-
-                        <!-- Tabel -->
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                    <th>Location</th>
-                                    <th>User</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <td>1</td>
-                                    <td>lorem</td>
-                                    <td>lorem</td>
-                                    <td>
-                                        <form action="" onsubmit="" method="POST">
-                                            <a href="/" class="btn btn-warning btn-sm">Edit</a>
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
-                                    </td>
-                            </tbody>
-                            </table>
-
-                        <!-- <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>no</th>
@@ -99,7 +88,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table> -->
+                        </table>
                     </div>
                 </div>
             </div>
@@ -112,4 +101,9 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    @include('Admin.add_product_modal')
+
+  @include('Admin.product_js')
+     </body>
+</html>
 @endsection

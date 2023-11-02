@@ -15,8 +15,7 @@ class Module extends Migration
     {
         Schema::create('module', function (Blueprint $table) {
             $table->id();
-            $table->string('ip_address');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->string('lokasi');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 

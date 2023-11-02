@@ -1,4 +1,4 @@
-@extends('layouts.layMain')
+@extends('layouts.layAdmin')
 @section('content')
     <div class="page-wrapper">
         <!-- ============================================================== -->
