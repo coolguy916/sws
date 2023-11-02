@@ -101,9 +101,9 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    @include('Admin.add_product_modal')
+    @include('Admin.add_module_modal')
 
-  @include('Admin.product_js')
+  @include('Admin.module_js')
      </body>
 </html>
 @endsection
