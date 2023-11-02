@@ -12,6 +12,11 @@ class AdminController extends Controller
         return view('Admin.Home.index', $data); // Path to your Blade component
     }
 
+    public function create()
+    {
+        return view('Admin.Home.data_user');
+    }
+
     public function form()
     {
         $data = ['title' => 'form']; // Your data to pass to the view

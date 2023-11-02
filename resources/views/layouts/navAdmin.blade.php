@@ -348,19 +348,19 @@
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{route('form')}}"
+              href="{{route('data_user')}}"
               aria-expanded="false"
               ><i class="mdi mdi-chart-bubble"></i
-              ><span class="hide-menu">Input</span></a
+              ><span class="hide-menu">Data User</span></a
             >
           </li>
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="https://youtu.be/dQw4w9WgXcQ?si=WTATRJ4WRSOxGUrJ"
+              href="#"
               aria-expanded="false"
               ><i class="mdi mdi-border-inside"></i
-              ><span class="hide-menu">(tambahan)</span></a
+              ><span class="hide-menu">Tambahan</span></a
             >
           </li>
           <li class="sidebar-item">

@@ -20,7 +20,12 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/admin.home.user', [App\Http\Controllers\AdminController::class, 'create'])->name('data_user');
+Route::get('/admin_form_user', [App\Http\Controllers\AdminController::class, 'index'])->name('form_user');
 
+Route::get('/datauser', function () {
+    return view('Admin.Home.user')-name('datauser');
+});
 
 
 Route::controller(espController::class)->group(function () {
