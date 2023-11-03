@@ -11,7 +11,7 @@ class Module extends Model
     protected $guarded = [];
     protected $dates = ['created_at'];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
 

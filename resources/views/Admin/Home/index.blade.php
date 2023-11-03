@@ -1,18 +1,5 @@
 @extends('layouts.layAdmin')
 @section('content')
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  </head>
-    <body>
 
     <div class="page-wrapper">
         <!-- ============================================================== -->
@@ -51,7 +38,7 @@
                             {{ __('Module') }}
                         </h2>
                         <div class="card-tools">
-                          <a href="" class="btn btn-outline-dark btn-sm"  data-bs-toggle="modal" data-bs-target="#addModal" >
+                            <a href="{{ route('add.module') }}" class="btn btn-outline-dark btn-sm">
                                 <i class="fas fa-plus"></i> Input Data
                             </a>
                         </div>
@@ -65,21 +52,25 @@
                                 <tr>
                                     <th>no</th>
                                     <th>location</th>
-                                    <th>time</th>
                                     <th>status</th>
                                     <th>action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                             @php
+                                $no = 1;
+                                @endphp
+                                @foreach ($module as $index=>$row )
                                
-                                    <td>lorem</td>
-                                    <td>lorem</td>
-                                    <td>00.00</td>
-                                    <td>
-                                        <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
-                                            ONLINE
-                                        </p>
-                                    </td>
+                                 <th scope="row">{{ $index +$module->firstitem()}}</th>
+                                    <td>{{ $row->lokasi }}</td>
+                                   <td>
+                    @if($row->status === '1')
+                        <span class="badge badge-success">Online</span>
+                    @else
+                        <span class="badge badge-secondary">Offline</span>
+                    @endif
+                </td>
                                     <td>
                                         <form action="" onsubmit="" method="POST">
                                             <a href="/" class="btn btn-warning btn-sm">Edit</a>
@@ -87,6 +78,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -101,9 +93,4 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    @include('Admin.add_module_modal')
-
-  @include('Admin.module_js')
-     </body>
-</html>
 @endsection
