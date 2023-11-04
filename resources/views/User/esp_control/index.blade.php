@@ -21,9 +21,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @include('element.led-esp')
-            </div>
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -66,15 +63,15 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->schedule)->format('g:i A') }}</td>
-                                    <td>-</td>
-                                    <td>{{$data->runtime}}</td>
+                                    <td>{{$data->module->lokasi}}</td>
+                                    <td>{{$data->runtime}} m</td>
                                     <td>
-                                        @if ($data->status == 1)
+                                        @if ($data->module->status == 1)
                                             <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
                                                 ONLINE
                                             </p>
                                         @else
-                                            <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
+                                            <p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">
                                                 OFFLINE
                                             </p>
                                         @endif
@@ -82,7 +79,7 @@
                                     </td>
                                     <td>
                                         <form action="{{route('schedule.destroy', $data->id)}}" onsubmit="return confirm('Are you sure?')" method="POST">
-                                            <a href="{{--{{route('schedule.edit')}}--}}" class="btn btn-warning btn-sm">EDIT</a>
+                                            <a href="{{route('schedule.edit', $data->id)}}" class="btn btn-warning btn-sm">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>

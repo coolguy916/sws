@@ -12,8 +12,8 @@ class EspControl extends Model
     protected $fillable = [
         'schedule',
         'runtime',
-        'status',
         'id_user',
+        'id_module'
     ];
 
     public function user() {

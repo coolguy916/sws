@@ -2,35 +2,26 @@
     <div class="">
     <div class="row">
 
-
-    <!-- Modul Nyala -->
-    <div class="card" style="width: 18rem; margin-right: 10px; ">
-    <div class="card-body rounded-auto">
-    <div class="led-green"></div>
-        <h5 class="card-title">Modul 1</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
-        <p class="card-text">Contoh Led Modul Nyala</p>
-            <div class="form-check form-switch form-switch-xl">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+    @forelse ($datas as $data)
+        <!-- Modul Nyala -->
+        <div class="card" style="width: 18rem; margin-right: 10px; ">
+        <div class="card-body rounded-auto text-center">
+            @if ($data->module->status == 1)
+                <div class="led-green"></div>
+            @else
+                <div class="led-black"></div>
+            @endif
+            <h5 class="card-title mt-4">Modul {{$loop->iteration}}</h5>
+            <h6 class="card-subtitle text-muted">{{$data->module->lokasi}}</h6>
+            <hr class="w-auto border-light">
+                <div class="form-check form-switch form-switch-xl mt-4 mr-3">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                </div>
             </div>
         </div>
-    </div>
+    @empty
 
-    <!-- Modul mati -->
-
-
-    <div class="card" style="width: 18rem; margin-right: 10px;">
-    <div class="card-body rounded-auto">
-    <div class="led-black"></div>
-        <h5 class="card-title">Modul 2</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
-        <p class="card-text">Contoh Led Modul Mati</p>
-            <div class="form-check form-switch form-switch-xl">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            </div>
-        </div>
-    </div>
-
+    @endforelse
 
         <!-- <div class="col-3">
             <div class="card">

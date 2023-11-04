@@ -32,9 +32,10 @@ Route::get('/delete-module/{id}', [App\Http\Controllers\ModuleController::class,
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->group(function () {
     Route::get('/schedule', 'index')->name('schedule.index');
-    Route::get('/schedule/add', 'add')->name('schedule.create');
+    Route::get('/schedule/create', 'create')->name('schedule.create');
     Route::post('/schedule/store', 'store')->name('schedule.store');
     Route::get('/schedule/edit/{id}', 'edit')->name('schedule.edit');
+    Route::put('/schedule/{id}', 'update')->name('schedule.update');
     Route::delete('/schedule/{id}', 'destroy')->name('schedule.destroy');
 });
 Auth::routes();

@@ -16,4 +16,8 @@ class Module extends Model
         return $this->belongsTo(User::class,'user_id','id');
 
     }
+
+    public function esp_control(){
+        return $this->hasMany(EspControl::class);
+    }
 }
