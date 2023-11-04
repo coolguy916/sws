@@ -15,9 +15,21 @@ class ModuleController extends Controller
     }
 
   public function create(Request $request) {
-    $user = user::all();
-    $module = Module::all();
-    return view('Admin.Home.form' ,compact('user','module'));
+    $request->validate([
+        'lokasi' => 'required',
+    ], [
+        'lokasi.required' => 'Lokasi is required',
+    ]);
+
+    $module = new Module();
+    $module->lokasi = $request->lokasi;
+    $module->user_id = auth()->user()->id;
+    $module->status = 0;
+    $module->save();
+
+    return response()->json([
+        'status' => 'success',
+    ]);
 }
 
 public function store(Request $request) {
@@ -37,16 +49,15 @@ public function store(Request $request) {
    return redirect()->route('admin')->with('success', 'Module Berhasil Ditambahkan');
 }
 public function update(Request $request) {
-    Module::query()->update(['lokasi' => $request->lokasi, 
-]);
+   
 return redirect()->back()->with('success','Data berhasil di edit');
 }
 
-public function deleted($id)
+public function deleted(Request $request)
 {
-    $module = Module::find($id);
-    $module->delete();
-    return redirect()->back()->with('success', 'Barang berhasil dihapus');
-
+    Module::find($request->module_id)->delete();
+        return response()->json([
+            'status'=>'success',
+        ]);
 }
 }

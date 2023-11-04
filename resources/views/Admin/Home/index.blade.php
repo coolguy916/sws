@@ -1,6 +1,5 @@
 @extends('layouts.layAdmin')
 @section('content')
-
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -38,9 +37,10 @@
                             {{ __('Module') }}
                         </h2>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addlocation">
+                            <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">
                                 <i class="fas fa-plus"></i> Input Data
                             </a>
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -65,20 +65,26 @@
                                  <th scope="row">{{ $index +$module->firstitem()}}</th>
                                     <td>{{ $row->lokasi }}</td>
                                    <td>
-                    @if($row->status == '1')
-                        <span class="badge badge-success">Online</span>
-                    @else
-                        <span class="badge badge-secondary">Offline</span>
-                    @endif
+                       @if ($row->status == 1)
+                                            <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
+                                                ONLINE
+                                            </p>
+                                        @else
+                                            <p class="border border-dark d-inline-flex p-1 text-white bg-dark rounded">
+                                                OFFLINE
+                                            </p>
+                                        @endif
                 </td>
                                     <td>
                                             <a href="/" class="btn btn-warning btn-sm">Edit</a>
-<a href="#" class="btn btn-danger delete mr-2 " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+<a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
                                     </td>
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                         {!!$module->links()!!}
                     </div>
                 </div>
             </div>
