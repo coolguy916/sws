@@ -1,5 +1,6 @@
 @extends('layouts.layMain')
 @section('content')
+@include('User.esp_control.schedulemodal')
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -46,50 +47,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="modal fade" id="addSchedule" tabindex="-1" aria-labelledby="addScheduleLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Schedule</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="form-horizontal" method="POST" action="{{route('data.store')}}" enctype="multipart/form-data">
-                            @csrf
-                                <div class="form-group row">
-                                    <label for="schedule"
-                                        class="col-sm-3 text-end control-label col-form-label">Set Schedule</label>
-                                    <div class="col-sm-9">
-                                        <input type="time" class="form-control" id="schedule" name="schedule"
-                                            style="padding: 10px; border: 2px solid #ccc;">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="moduleLocation"
-                                        class="col-sm-3 text-end control-label col-form-label">Module Location</label>
-                                    <div class="col-sm-9">
-                                        <select name="modulelocation" id="modulelocation" style="width:100%; padding: 10px; border: 2px solid #ccc;">
-                                            <option selected disabled>Select Location Module</option>
-                                            <option value="">Module 1</option>
-                                            <option value="">Module 2</option>
-                                            <option value="">Module 3</option>
-                                            <option value="">Module 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="alert alert-danger text-center">
-                            No Data To Be Read
-                        </div>
 
                         <!-- Tabel -->
 
@@ -106,10 +63,11 @@
                             </thead>
                             <tbody>
                                 @forelse ($datas as $data)
+                                <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->schedule)->format('g:i A') }}</td>
                                     <td>-</td>
-                                    <td>-</td>
+                                    <td>{{$data->runtime}}</td>
                                     <td>
                                         @if ($data->status == 1)
                                             <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
@@ -123,32 +81,20 @@
 
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm">EDIT</a>
-                                        <form action="{{route('data.delete', $data->id)}}" onsubmit="return confirm('Are you sure?')" method="POST">
+                                        <form action="{{route('schedule.destroy', $data->id)}}" onsubmit="return confirm('Are you sure?')" method="POST">
+                                            <a href="{{--{{route('schedule.edit')}}--}}" class="btn btn-warning btn-sm">EDIT</a>
                                             @csrf
-                                            {{ method_field('delete') }}
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
+                                </tr>
                                 @empty
-
+                                <div class="card-body">
+                                    <div class="alert alert-danger text-center">
+                                        No Data To Be Read
+                                </div>
                                 @endforelse
-                                {{-- <tr>
-                                    <td>lorem</td>
-                                    <td>lorem</td>
-                                    <td>00.00</td>
-                                    <td>
-                                        <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
-                                            ONLINE
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <form action="" onsubmit="" method="POST">
-                                            <a href="/" class="btn btn-warning btn-sm">Edit</a>
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
-                                    </td>
-                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

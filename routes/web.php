@@ -26,14 +26,13 @@ Route::get('/add-module', [App\Http\Controllers\ModuleController::class, 'create
 
 
 
-
+// Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/add', 'add')->name('add');
-    Route::post('/add', 'store')->name('data.store');
-    Route::get('/edit/{$id}', 'edit')->name('data.edit');
-    Route::get('/delete/{$id}', 'delete')->name('data.delete');
-
+    Route::get('/schedule', 'index')->name('schedule.index');
+    Route::get('/schedule/add', 'add')->name('schedule.create');
+    Route::post('/schedule/store', 'store')->name('schedule.store');
+    Route::get('/schedule/edit/{id}', 'edit')->name('schedule.edit');
+    Route::delete('/schedule/{id}', 'destroy')->name('schedule.destroy');
 });
 Auth::routes();
 

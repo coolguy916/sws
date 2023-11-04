@@ -10,11 +10,11 @@ class espController extends Controller
 {
     public function index()
     {
-        $datas = EspControl::latest()->paginate(5);
+        $datas = EspControl::all();
         return view('User.esp_control.index', compact('datas'));
     }
 
-    public function add()
+    public function create()
     {
         return view('User.esp_control.form'); // Path to your Blade component
     }
@@ -42,7 +42,10 @@ class espController extends Controller
 
     }
 
-    public function delete($id){
+    public function destroy($id){
+        $data = EspControl::findOrFail($id);
+        $data->delete();
 
+        return redirect()->back();
     }
 }

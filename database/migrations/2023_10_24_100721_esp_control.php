@@ -19,8 +19,10 @@ class EspControl extends Migration
             $table->boolean('status')->default('0');
             $table->time('schedule');
             $table->unsignedBigInteger('id_user')->unsigned();
+            // $table->unsignedBigInteger('id_module')->unsigned();
             $table->timestamps();
 
+            // $table->foreign('id_module')->references('id')->on('modules')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
