@@ -36,4 +36,17 @@ public function store(Request $request) {
     
    return redirect()->route('admin')->with('success', 'Module Berhasil Ditambahkan');
 }
+public function update(Request $request) {
+    Module::query()->update(['lokasi' => $request->lokasi, 
+]);
+return redirect()->back()->with('success','Data berhasil di edit');
+}
+
+public function deleted($id)
+{
+    $module = Module::find($id);
+    $module->delete();
+    return redirect()->back()->with('success', 'Barang berhasil dihapus');
+
+}
 }
