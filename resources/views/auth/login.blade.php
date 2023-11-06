@@ -20,7 +20,7 @@
                         <div class="row mb-3 justify-content-center">
                            
                             <div class="col-md-10">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" autofocus placeholder="Username">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" autofocus placeholder="Email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

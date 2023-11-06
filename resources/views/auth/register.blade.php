@@ -73,7 +73,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-2 text-center mr-8 ">
+                        <div class="row mb-2 text-center mr-8">
                             <div class="col-md-5">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
