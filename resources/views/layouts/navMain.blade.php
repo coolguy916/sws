@@ -351,7 +351,7 @@
               href="{{route('schedule.create')}}"
               aria-expanded="false"
               ><i class="mdi mdi-chart-bubble"></i
-              ><span class="hide-menu">Input</span></a
+              ><span class="hide-menu">Add Schedule</span></a
             >
           </li>
           <li class="sidebar-item">

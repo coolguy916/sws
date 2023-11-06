@@ -32,15 +32,16 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <div class="card">
-                        <form class="form-horizontal" method="POST" action="{{route('schedule.store')}}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{route('schedule.update', $data->id)}}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
-                                <h4 class="card-title">Add Schedule</h4>
+                                <h4 class="card-title">Edit Schedule</h4>
                                 <div class="form-group row">
                                     <label for="schedule"
                                         class="col-sm-3 text-end control-label col-form-label">Set Schedule</label>
                                     <div class="col-sm-9">
-                                        <input type="time" class="form-control @error('schedule') is-invalid @enderror" value="{{old('schedule')}}" id="schedule" name="schedule"
+                                        <input type="time" class="form-control @error('schedule') is-invalid @enderror" value="{{old('schedule', $data->schedule)}}" id="schedule" name="schedule"
                                             style="padding: 10px; border: 2px solid #ccc;">
 
                                         @error('schedule')
@@ -55,11 +56,11 @@
                                         class="col-sm-3 text-end control-label col-form-label">Runtime</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
-                                            <input type="number" class="form-control @error('runtime') is-invalid @enderror" value="{{old('runtime')}}" max="99" id="runtime" name="runtime"
+                                            <input type="number" class="form-control @error('runtime') is-invalid @enderror" value="{{old('runtime', $data->runtime)}}" id="runtime" name="runtime"
                                             placeholder="Enter Here"
                                             style="padding: 10px; border: 2px solid #ccc;">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">Minutes</div>
+                                                <div class="input-group-text">Seconds</div>
                                             </div>
                                         </div>
                                         @error('runtime')
@@ -76,7 +77,7 @@
                                         <select name="id_module" id="id_module" style="width:100%; padding: 10px; border: 2px solid #ccc;">
                                             <option selected disabled>Select Location Module</option>
                                             @foreach ($modules as $module)
-                                                <option value="{{$module->id}}">{{$module->lokasi}}</option>
+                                                <option value="{{$module->id}}" {{$module->id == $data->id_module ? 'selected' : ''}}>{{$module->lokasi}}</option>
                                             @endforeach
                                         </select>
                                     </div>

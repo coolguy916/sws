@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EspControl extends Migration
+class CreateEspControlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,13 @@ class EspControl extends Migration
     {
         Schema::create('esp_controls', function (Blueprint $table) {
             $table->id();
-            $table->time('runtime')->default('00:00:00');
-            $table->boolean('status')->default('0');
+            $table->integer('runtime');
             $table->time('schedule');
-            $table->unsignedBigInteger('id_user')->unsigned();
-            // $table->unsignedBigInteger('id_module')->unsigned();
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_module');
             $table->timestamps();
 
-            // $table->foreign('id_module')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('id_module')->references('id')->on('modules')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -34,6 +33,6 @@ class EspControl extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('esp_controls');
     }
 }
