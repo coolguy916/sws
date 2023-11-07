@@ -44,15 +44,14 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-danger text-center">
-                        No Data To Be Read
-                    </div>
+               
                     <table class="table table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>no</th>
-                                <th>location</th>
-                                <th>status</th>
+                                <th>No</th>
+                                <th>Location</th>
+                                <th>Username</th>
+                                <th>Status</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -64,6 +63,7 @@
 
                             <th scope="row">{{ $index +$module->firstitem()}}</th>
                             <td>{{ $row->lokasi }}</td>
+                            <td>{{ $row->user->name}}</td>
                             <td>
                                 @if ($row->status == 1)
                                 <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
@@ -86,6 +86,7 @@
                             @endforeach
                         </tbody>
                     </table>
+
                     {!!$module->links()!!}
                 </div>
             </div>
