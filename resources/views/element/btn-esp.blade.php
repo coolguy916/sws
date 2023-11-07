@@ -15,7 +15,10 @@
             <h6 class="card-subtitle text-muted">{{$data->module->lokasi}}</h6>
             <hr class="w-auto border-light">
                 <div class="form-check form-switch form-switch-xl mt-4 mr-3">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                    @if ($data->module->status == 1)
+                        checked
+                    @endif>
                 </div>
             </div>
         </div>
