@@ -71,5 +71,9 @@ class espController extends Controller
         return redirect()->route('schedule.index')->with(['success' => 'Data Barang Berhasil Dihapus!']);
     }
 
+    public function manual(String $id){
+        $modules = Module::findOrFail($id);
+        return response()->json($modules);
+    }
 
 }
