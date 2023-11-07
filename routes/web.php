@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\espController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/admin.home.user', [App\Http\Controllers\AdminController::class, 'cr
 Route::get('/admin_form_user', [App\Http\Controllers\AdminController::class, 'index'])->name('form_user');
 Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
 Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
-Route::put('/update-module/{id}', [App\Http\Controllers\ModuleController::class, 'update'])->name('update.module');
+Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
 
 
