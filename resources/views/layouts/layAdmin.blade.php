@@ -163,11 +163,9 @@
         //show update value update form
         $(document).on('click','.update_product_form', function(){
             let id  = $(this).data('id');
-            let name  = $(this).data('name');
-            let price  = $(this).data('price');
+            let lokasi  = $(this).data('lokasi');
             $('#up_id').val(id);
-            $('#up_name').val(name);
-            $('#up_price').val(price);
+            $('#up_lokasi').val(lokasi);
 
         });
 
@@ -175,18 +173,38 @@
           $(document).on('click','.update_product',function(e){
             e.preventDefault();
             let up_id = $('#up_id').val();
-            let up_name = $('#up_name').val();
-            let up_price = $('#up_price').val();
+            let up_lokasi = $('#up_lokasi').val();
+            let user_id = $('#user_id').val(); 
+
             //console.log(name+price); untuk mengecek agar data yang dimasukkan berhasil
             $.ajax({
-                url:"{{ route('add.module') }}",
+                url:"{{ route('update.module') }}",
                 method:'POST',
-                data:{up_id:up_id,up_name:up_name,up_price:up_price},
+                data:{up_id:up_id,up_lokasi:up_lokasi,user_id:user_id},
                 success:function(res){
                     if(res.status=='success'){
                         $('#updateModal').modal('hide');
                         $('#updateproductform')[0].reset();
                         $('.table').load(location.href+' .table');
+                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
+
+                            toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
                     }
                 },error:function(err){
                     let error = err.responseJSON;

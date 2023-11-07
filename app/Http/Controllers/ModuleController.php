@@ -48,9 +48,29 @@ public function store(Request $request) {
     
    return redirect()->route('admin')->with('success', 'Module Berhasil Ditambahkan');
 }
-public function update(Request $request) {
+
+
+public function update(Request $request){
+    $request->validate (
+        [
+            'up_lokasi'=>'required|unique:modules,lokasi,'.$request->up_id,
+
+        ],
+        [
+            'up_lokasi.required'=>'Lokasi is required',
+           
+
+        ]
+    );
+        Module::where('id',$request->up_id)->update([
+            'lokasi'=>$request->up_lokasi,
+            'user_id' => auth()->user()->id,
+        ]);
    
-return redirect()->back()->with('success','Data berhasil di edit');
+    return response()->json([
+        'status'=>'success',
+    ]);
+
 }
 
 public function deleted(Request $request)
