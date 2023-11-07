@@ -37,6 +37,8 @@ Route::controller(espController::class)->group(function () {
     Route::post('/schedule/store', 'store')->name('schedule.store');
     Route::get('/schedule/edit/{id}', 'edit')->name('schedule.edit');
     Route::put('/schedule/{id}', 'update')->name('schedule.update');
+    Route::get('/api/valve/manual/{id}', 'manual');
+    Route::get('/api/valve/auto/{id}', 'auto');
     Route::delete('/schedule/{id}', 'destroy')->name('schedule.destroy');
 });
 Auth::routes();
