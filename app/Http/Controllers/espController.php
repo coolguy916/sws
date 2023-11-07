@@ -11,9 +11,10 @@ class espController extends Controller
 {
     public function index()
     {
-        $datas = EspControl::with('module')->join('modules', 'esp_controls.id_module', '=', 'modules.id')
+        $datas = EspControl::with('module')
+        ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
         ->join('users', 'esp_controls.id_user', '=', 'users.id')
-        ->select('esp_controls.id', 'esp_controls.runtime','esp_controls.schedule', 'users.id', 'esp_controls.created_at', 'modules.id')
+        ->select('esp_controls.id', 'esp_controls.runtime','esp_controls.schedule','modules.status','modules.lokasi', 'esp_controls.created_at')
             ->paginate(10);
         $modules = Module::all();
         return view('User.esp_control.index', compact('datas','modules'));

@@ -63,10 +63,10 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->schedule)->format('g:i A') }}</td>
-                                    <td>{{$data->module->lokasi}}</td>
-                                    <td>{{$data->runtime}} m</td>
+                                    <td>{{$data->lokasi}}</td>
+                                    <td>{{$data->runtime}} Menit</td>
                                     <td>
-                                        @if ($data->module->status == 1)
+                                        @if ($data->status == 1)
                                             <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
                                                 ONLINE
                                             </p>

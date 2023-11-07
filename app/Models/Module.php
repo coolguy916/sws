@@ -17,7 +17,8 @@ class Module extends Model
 
     }
 
-    public function esp_control(){
+    public function EspControl()
+    {
         return $this->hasMany(EspControl::class);
     }
 }
