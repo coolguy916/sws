@@ -48,7 +48,7 @@
                     <table class="table table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>No</th>
+                                <th>ID Module</th>
                                 <th>Location</th>
                                 <th>Username</th>
                                 <th>Status</th>
@@ -56,12 +56,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $no = 1;
-                            @endphp
+                           
                             @foreach ($module as $index=>$row )
 
-                            <th scope="row">{{ $index +$module->firstitem()}}</th>
+                            <th scope="row">{{$row->id}}</th>
                             <td>{{ $row->lokasi }}</td>
                             <td>{{ $row->user->name}}</td>
                             <td>

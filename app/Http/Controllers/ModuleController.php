@@ -11,19 +11,23 @@ class ModuleController extends Controller
     public function index(Request $request) {
         $module = Module::with(('user'))
         -> paginate(10);
-    return view('Admin.Home.index', compact('module')); // Path to your Blade component    }
+        $users = User::all(); 
+
+    return view('Admin.Home.index', compact('module','users')); // Path to your Blade component    }
     }
 
   public function create(Request $request) {
     $request->validate([
         'lokasi' => 'required',
+        'user_id' => 'required',
+
     ], [
         'lokasi.required' => 'Lokasi is required',
     ]);
 
     $module = new Module();
     $module->lokasi = $request->lokasi;
-    $module->user_id = auth()->user()->id;
+    $module->user_id = $request->user_id;
     $module->status = 0;
     $module->save();
 
@@ -35,17 +39,17 @@ class ModuleController extends Controller
 public function store(Request $request) {
     $validatedData = $request->validate([
         'lokasi' => 'required|unique:modules',
-       
+        'user_id' => 'required',
+
 
     ]);
    
    //create post
    $Module = Module::create([
        'lokasi'     => $request->lokasi,
-       'user_id' => auth()->user()->id,
+       'user_id' => $request->user_id,
    ]);    
    $Module->save();
-    
    return redirect()->route('admin')->with('success', 'Module Berhasil Ditambahkan');
 }
 
@@ -53,18 +57,16 @@ public function store(Request $request) {
 public function update(Request $request){
     $request->validate (
         [
-            'up_lokasi'=>'required|unique:modules,lokasi,'.$request->up_id,
-
+            'up_lokasi'=>'required|lokasi'.$request->up_id,
         ],
         [
-            'up_lokasi.required'=>'Lokasi is required',
            
 
         ]
     );
         Module::where('id',$request->up_id)->update([
             'lokasi'=>$request->up_lokasi,
-            'user_id' => auth()->user()->id,
+            'user_id' => $request->up_user_id,
         ]);
    
     return response()->json([
