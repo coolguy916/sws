@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EspControl extends Model
 {
     use HasFactory;
-
+    protected $table = 'esp_controls';
     protected $fillable = [
         'schedule',
         'runtime',

@@ -2,7 +2,7 @@
     <div class="">
     <div class="row">
 
-    @forelse ($datas as $data)
+    @forelse ($modules as $data)
         <!-- Modul Nyala -->
         <div class="card" style="width: 18rem; margin-right: 10px; ">
         <div class="card-body rounded-auto text-center">
