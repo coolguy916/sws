@@ -1,6 +1,5 @@
 @extends('layouts.layMain')
 @section('content')
-@include('User.esp_control.schedulemodal')
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -39,71 +38,80 @@
                             {{ __('Schedule') }}
                         </h2>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addSchedule">
+                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#AddScheduleModal">
                                 <i class="fas fa-plus"></i> Input Data
-                            </a>
+                                </a>
                         </div>
                     </div>
 
-                        <!-- Tabel -->
+                    <!-- Tabel -->
 
-                        <table class="table table-striped table-hover">
-                            <thead class="thead-dark">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>No</th>
+                                <th>Schedule</th>
+                                <th>Module Location</th>
+                                <th>Runtime</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="pagination-container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer text-center mt-4">
+            All Rights Reserved by Matrix-admin. Designed and Developed by
+            <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+    </div>
+
+    {{-- @forelse ($datas as $data)
                                 <tr>
-                                    <th>No</th>
-                                    <th>Schedule</th>
-                                    <th>Module Location</th>
-                                    <th>Runtime</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($datas as $data)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($data->schedule)->format('g:i A') }}</td>
-                                    <td>{{$data->lokasi}}</td>
-                                    <td>{{$data->runtime}} Menit</td>
+                                    <td>{{ $data->lokasi }}</td>
+                                    <td>{{ $data->runtime }} Menit</td>
                                     <td>
                                         @if ($data->status == 1)
-                                            <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
+                                            <p
+                                                class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
                                                 ONLINE
                                             </p>
                                         @else
-                                            <p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">
+                                            <p
+                                                class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">
                                                 OFFLINE
                                             </p>
                                         @endif
 
                                     </td>
                                     <td>
-                                        <form action="{{route('schedule.destroy', $data->id)}}" onsubmit="return confirm('Are you sure?')" method="POST">
-                                            <a href="{{route('schedule.edit', $data->id)}}" class="btn btn-warning btn-sm">EDIT</a>
+                                        <form action="{{ route('schedule.destroy', $data->id) }}"
+                                            onsubmit="return confirm('Are you sure?')" method="POST">
+                                            <a href="{{ route('schedule.edit', $data->id) }}"
+                                                class="btn btn-warning btn-sm">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <div class="card-body">
                                     <div class="alert alert-danger text-center">
                                         No Data To Be Read
-                                </div>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <footer class="footer text-center mt-4">
-                All Rights Reserved by Matrix-admin. Designed and Developed by
-                <a href="https://www.wrappixel.com">WrapPixel</a>.
-            </footer>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-    </div>
+                                    </div>
+                            @endforelse --}}
 @endsection

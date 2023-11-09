@@ -32,14 +32,15 @@ Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'de
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->group(function () {
-    Route::get('/schedule', 'index')->name('schedule.index');
-    Route::get('/schedule/create', 'create')->name('schedule.create');
-    Route::post('/schedule/store', 'store')->name('schedule.store');
-    Route::get('/schedule/edit/{id}', 'edit')->name('schedule.edit');
-    Route::put('/schedule/{id}', 'update')->name('schedule.update');
+    Route::get('schedules', 'index')->name('schedule.index');
+    Route::post('schedules', 'store')->name('schedule.store');
+    Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
+    // Route::get('/schedule/create', 'create')->name('schedule.create');
+    Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');
+    Route::put('update-schedule/{id}', 'update')->name('schedule.update');
+    Route::delete('delete-schedule/{id}', 'destroy')->name('schedule.destroy');
     Route::get('/api/valve/manual/{id}', 'manual');
     Route::get('/api/valve/auto/{id}', 'auto');
-    Route::delete('/schedule/{id}/delete', 'destroy')->name('schedule.destroy');
 });
 Auth::routes();
 
