@@ -57,11 +57,11 @@
                         </thead>
                         <tbody>
                            
-                            @foreach ($module as $index=>$row )
+                            @foreach ($module as $row )
 
-                            <th scope="row">{{$row->id}}</th>
+                            <td>{{$row->id}}</td>
                             <td>{{ $row->lokasi }}</td>
-                            <td>{{ $row->user->name}}</td>
+                            <td>{{ $row->name}}</td>
                             <td>
                                 @if ($row->status == 1)
                                 <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
@@ -112,9 +112,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                            </div>
+                            </div> --}}
 
                     </div>
                     <div class="modal-footer">

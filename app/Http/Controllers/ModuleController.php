@@ -10,7 +10,9 @@ class ModuleController extends Controller
 {
     public function index(Request $request) {
         $module = Module::with(('user'))
-        -> paginate(10);
+        ->join('users', 'modules.user_id', '=', 'users.id')
+        ->select('modules.id', 'modules.lokasi','modules.status','users.name', 'modules.created_at')
+        ->paginate(10);
         $users = User::all(); 
 
     return view('Admin.Home.index', compact('module','users')); // Path to your Blade component    }
@@ -57,13 +59,10 @@ public function store(Request $request) {
 public function update(Request $request){
     $request->validate (
         [
-            'up_lokasi'=>'required|lokasi'.$request->up_id,
-        ],
-        [
-           
+            'up_lokasi'=>'required',
+        ]);
 
-        ]
-    );
+        $module= Module::find($request->up_id);
         Module::where('id',$request->up_id)->update([
             'lokasi'=>$request->up_lokasi,
             'user_id' => $request->up_user_id,

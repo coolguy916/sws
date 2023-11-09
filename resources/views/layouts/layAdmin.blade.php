@@ -164,8 +164,10 @@
         $(document).on('click','.update_product_form', function(){
             let id  = $(this).data('id');
             let lokasi  = $(this).data('lokasi');
+            let user_id  = $(this).data('user_id');
             $('#up_id').val(id);
             $('#up_lokasi').val(lokasi);
+            $('#up_user_id').val(user_id);
 
         });
 
@@ -174,13 +176,12 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_lokasi = $('#up_lokasi').val();
-            let user_id = $('#user_id').val(); 
-
-            //console.log(name+price); untuk mengecek agar data yang dimasukkan berhasil
+            let up_user_id = $('#up_user_id').val(); 
+            console.log(up_id+up_lokasi+up_user_id); 
             $.ajax({
                 url:"{{ route('update.module') }}",
                 method:'POST',
-                data:{up_id:up_id,up_lokasi:up_lokasi,user_id:user_id},
+                data:{up_id:up_id,up_lokasi:up_lokasi,up_user_id:up_user_id},
                 success:function(res){
                     if(res.status=='success'){
                         $('#updateModal').modal('hide');
