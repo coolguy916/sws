@@ -39,7 +39,8 @@
 
                     <div class="mb-3">
                     @foreach ($module as $row )
-                         <input type="hidden" id="up_id" name="up_id" value="{{ $row->id}}">
+                                                <input type="hidden" id="up_id" name="up_id" value="{{ $row->id}}">
+
                     @endforeach
                     </div>
 
