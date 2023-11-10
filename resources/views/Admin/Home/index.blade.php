@@ -1,5 +1,7 @@
 @extends('layouts.layAdmin')
 @section('content')
+@include('Admin.Home.add_product_modal')
+    @include('Admin.Home.update_product_modal')
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->

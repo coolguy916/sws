@@ -44,8 +44,7 @@
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
         @include('layouts.navAdmin')
- @include('Admin.Home.add_product_modal')
-    @include('Admin.Home.update_product_modal')
+ 
         @yield('content')
 
     </div>
