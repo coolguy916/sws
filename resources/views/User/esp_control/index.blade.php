@@ -34,11 +34,18 @@
             <div class="row">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">
+                        
+                        <div class="card-title">
+                            <h2>
                             {{ __('Schedule') }}
-                        </h2>
+                            </h2>
+                            <div class="time">
+                            </div>
+                            
+                        </div>
+
                         <div class="card-tools">
-                            <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+                            <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md" data-bs-toggle="modal"
                                 data-bs-target="#AddScheduleModal">
                                 <i class="fas fa-plus"></i> Input Data
                                 </a>

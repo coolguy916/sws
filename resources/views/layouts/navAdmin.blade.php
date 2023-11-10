@@ -345,15 +345,7 @@
                     <span class="hide-menu">Dashboard</span>
                 </a>
             </li>
-             <li class="sidebar-item">
-            <a
-              class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{route('add.module')}}"
-              aria-expanded="false"
-              ><i class="mdi mdi-border-inside"></i
-              ><span class="hide-menu">Form input</span></a
-            >
-          </li>
+           
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -363,24 +355,7 @@
               ><span class="hide-menu">Data User</span></a
             >
           </li>
-          <li class="sidebar-item">
-            <a
-              class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="#"
-              aria-expanded="false"
-              ><i class="mdi mdi-border-inside"></i
-              ><span class="hide-menu">Tambahan</span></a
-            >
-          </li>
-          <li class="sidebar-item">
-            <a
-              class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="https://youtu.be/dQw4w9WgXcQ?si=WTATRJ4WRSOxGUrJ"
-              aria-expanded="false"
-              ><i class="mdi mdi-blur-linear"></i
-              ><span class="hide-menu">(tamabahan)</span></a
-            >
-          </li>
+         
         </ul>
       </nav>
       <!-- End Sidebar navigation -->

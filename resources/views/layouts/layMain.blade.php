@@ -14,6 +14,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Custom CSS -->
+    <link href="{{ asset('css/date.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/flot/css/float-chart.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet" />
@@ -74,6 +75,7 @@
     <script src="{{ asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script>
     <!--Wave Effects -->
+    <script src="{{ asset('js/jam.js') }}"></script>
     <script src="{{ asset('dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
     <script src="{{ asset('dist/js/sidebarmenu.js') }}"></script>
