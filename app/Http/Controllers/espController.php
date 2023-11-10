@@ -128,7 +128,6 @@ class EspController extends Controller
         ]);
 
         $userId = Auth::id();
-        $mili = 60000;
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -137,7 +136,7 @@ class EspController extends Controller
         } else {
             $espControl = new EspControl;
             $espControl->schedule = $request->input('schedule');
-            $espControl->runtime = $request->input('runtime')*$mili;
+            $espControl->runtime = $request->input('runtime');
             $espControl->id_module = $request->id_module;
             $espControl->id_user = $userId;
             $espControl->save();

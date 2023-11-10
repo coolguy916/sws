@@ -31,12 +31,11 @@
                             <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button>\
                             </td>';
 
-                    var minutes = item.runtime / 60000;
                     $('tbody').append('<tr>\
                         <td>' + (key + 1) + '</td>\
                         <td>' + formattedTime + '</td>\
                         <td>' + item.lokasi + '</td>\
-                        <td>' + minutes + '</td>\
+                        <td>' + item.runtime + '</td>\
                         <td>' + statusBadge + '</td>' + actionButtons + '\
                 </tr>');
                 });
@@ -73,11 +72,13 @@
     $(document).ready(function() {
 
         fetchschedule();
+        // let fetchcount = 0;
 
         // Automatic refresh every 1 minute
         setInterval(function() {
+            // console.log(fetchcount++);
             fetchschedule();
-        }, 60000); // 60,000 milliseconds = 1 minute
+        }, 30000); // 60,000 milliseconds = 1 minute
 
         // CREATE FUNCTION
         $(document).on('click', '.add_schedule', function(e) {
