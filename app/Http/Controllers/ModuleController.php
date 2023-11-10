@@ -12,7 +12,7 @@ class ModuleController extends Controller
         $module = Module::with(('user'))
         ->join('users', 'modules.user_id', '=', 'users.id')
         ->select('modules.id', 'modules.lokasi','modules.status','users.name', 'modules.created_at')
-        ->paginate(10);
+        ->paginate(5);
         $users = User::all(); 
 
     return view('Admin.Home.index', compact('module','users')); // Path to your Blade component    }

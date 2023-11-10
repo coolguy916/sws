@@ -85,8 +85,10 @@
                         </tbody>
                     </table>
 
-                    {!!$module->links()!!}
-                </div>
+<div class="pagination justify-content-center">
+                                       {!! $module->links() !!}
+            
+</div>                </div>
             </div>
         </div>
 
