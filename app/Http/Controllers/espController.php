@@ -103,7 +103,7 @@ class EspController extends Controller
         ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
         ->join('users', 'esp_controls.id_user', '=', 'users.id')
         ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
-        ->paginate();
+        ->paginate(2);
 
     return response()->json([
         'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
@@ -128,15 +128,16 @@ class EspController extends Controller
         ]);
 
         $userId = Auth::id();
+        $mili = 60000;
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => $validator->getMessageBag(),
+                'errors' => $validator->messages(),
             ]);
         } else {
             $espControl = new EspControl;
             $espControl->schedule = $request->input('schedule');
-            $espControl->runtime = $request->input('runtime');
+            $espControl->runtime = $request->input('runtime')*$mili;
             $espControl->id_module = $request->id_module;
             $espControl->id_user = $userId;
             $espControl->save();
@@ -177,7 +178,7 @@ class EspController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => $validator->messages(),
+                'errors' => $validator->message(),
             ]);
         } else {
             $espControl = EspControl::find($id);

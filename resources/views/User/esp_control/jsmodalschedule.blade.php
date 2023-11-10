@@ -31,29 +31,41 @@
                             <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button>\
                             </td>';
 
+                    var minutes = item.runtime / 60000;
                     $('tbody').append('<tr>\
                         <td>' + (key + 1) + '</td>\
                         <td>' + formattedTime + '</td>\
                         <td>' + item.lokasi + '</td>\
-                        <td>' + item.runtime + '</td>\
+                        <td>' + minutes + '</td>\
                         <td>' + statusBadge + '</td>' + actionButtons + '\
                 </tr>');
                 });
 
                 // Add pagination links
                 if (response.pagination) {
-                    var paginationHtml = '<ul class="pagination">';
+                    var paginationHtml = '<nav aria-label="Page navigation"><ul class="pagination">';
+
+                    // Previous Page Link
+                    paginationHtml += '<li class="page-item' + (response.pagination.current_page === 1 ? ' disabled' : '') + '">';
+                    paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="fetchschedule(' + (response.pagination.current_page - 1) + ')">';
+                    paginationHtml += '<span aria-hidden="true">&laquo;</span></a></li>';
+
+                    // Page Links
                     for (var i = 1; i <= response.pagination.last_page; i++) {
-                        paginationHtml += '<li class="page-item ' + (i == response.pagination
-                                .current_page ? 'active' : '') +
-                            '"><a class="page-link" href="#" data-page="' + i +
-                            '" onclick="fetchschedule(' + i +
-                            ')">' + i + '</a></li>';
+                        paginationHtml += '<li class="page-item' + (i === response.pagination.current_page ? ' active' : '') + '">';
+                        paginationHtml += '<a class="page-link" href="#" onclick="fetchschedule(' + i + ')">' + i + '</a></li>';
                     }
-                    paginationHtml += '</ul>';
+
+                    // Next Page Link
+                    paginationHtml += '<li class="page-item' + (response.pagination.current_page === response.pagination.last_page ? ' disabled' : '') + '">';
+                    paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="fetchschedule(' + (response.pagination.current_page + 1) + ')">';
+                    paginationHtml += '<span aria-hidden="true">&raquo;</span></a></li>';
+
+                    paginationHtml += '</ul></nav>';
 
                     $('.pagination-container').html(paginationHtml);
                 }
+
             }
         });
     }
