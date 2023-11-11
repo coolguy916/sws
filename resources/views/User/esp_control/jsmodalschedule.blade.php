@@ -1,5 +1,71 @@
 <script>
-    // REFRESH FUNCTUIN
+    function fetchusermodule() {
+        $.ajax({
+            type: "GET",
+            url: "/fetch-usermodules",
+            dataType: "json",
+            success: function (response) {
+                $('#modules-container').html('');
+
+                // Check if response.modules is defined
+                if (response.modules) {
+                    // Display Modules
+                    $.each(response.modules, function (index, module) {
+                        var statusClass = module.status == 1 ? 'led-green' : 'led-black';
+
+                    var moduleHtml =
+                        '<div class="card" style="width: 18rem; margin-right: 10px;">' +
+                        '<div class="card-body rounded-auto text-center">' +
+                        '<div class="' + statusClass + '"></div>' +
+                        '<h5 class="card-title mt-4">Modul ' + (index + 1) + '</h5>' +
+                        '<h6 class="card-subtitle text-muted">' + module.lokasi + '</h6>' +
+                        '<hr class="w-auto border-light">' +
+                        '<div class="form-check form-switch form-switch-xl" style="margin-left: 4.6rem">' +
+                        '<input data-id="' + module.id + '" class="form-check-input togglemodule-class" ' +
+                        'data-onstyle="success" data-offstyle="danger" data-toggle="toggle" ' +
+                        'data-on="Active" data-off="Inactive" type="checkbox" ' +
+                            (module.status ? 'checked' : '') +
+                            '>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        $('#modules-container').append(moduleHtml);
+                    });
+                }
+
+                // Add event delegation for the checkbox changes
+                $('#modules-container').off('change', '.togglemodule-class').on('change', '.togglemodule-class', function() {
+                    var status_module = $(this).prop('checked') == true ? 1 : 0;
+                    var module_id = $(this).data('id');
+
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: "/switch-statusmodule",
+                        data: {'status' : status_module, 'module_id' : module_id},
+                        success: function(data){
+                            if (data.status == 1) {
+                                toastr.success('Module is now ON');
+                            } else if (data.status == 0) {
+                                toastr.success('Module is now OFF');
+                            } else {
+                                toastr.warning('Unknown status');
+                            }
+                            fetchschedule();
+                        },
+                    });
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching user modules:', status);
+            }
+        });
+    }
+
+
+
+    // REFRESH SCHEDULE
     function fetchschedule(page = 1) {
         $.ajax({
             type: "GET",
@@ -65,20 +131,25 @@
                     $('.pagination-container').html(paginationHtml);
                 }
 
-            }
+            },
+            error: function (xhr, status, error) {
+            console.error('Error fetching schedule : ', status);
+        }
         });
     }
 
     $(document).ready(function() {
 
         fetchschedule();
+        fetchusermodule();
         // let fetchcount = 0;
 
         // Automatic refresh every 1 minute
         setInterval(function() {
             // console.log(fetchcount++);
             fetchschedule();
-        }, 30000); // 60,000 milliseconds = 1 minute
+            fetchusermodule();
+        }, 15000); // 60,000 milliseconds = 1 minute
 
         // CREATE FUNCTION
         $(document).on('click', '.add_schedule', function(e) {
@@ -121,6 +192,7 @@
                         $('.add_schedule').text('Save');
                         $('#AddScheduleModal').modal('hide');
                         fetchschedule();
+                        fetchusermodule();
                         toastr.success('Schedule added successfully');
                     }
                 },
@@ -199,6 +271,7 @@
                         $('.update_schedule').text('Update');
                         $('#EditScheduleModal').modal('hide');
                         fetchschedule();
+                        fetchusermodule();
                         toastr.success('Schedule updated successfully');
                     }
                 },
@@ -245,6 +318,7 @@
                         $('.delete_schedule').text('Yes Delete');
                         $('#DeleteModal').modal('hide');
                         fetchschedule();
+                        fetchusermodule();
                     }
                 },
                 error: function(xhr, status, error) {
@@ -252,6 +326,5 @@
                 }
             });
         });
-
     });
 </script>

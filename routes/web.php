@@ -27,13 +27,13 @@ Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'creat
 Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
 Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
-
-
+Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->group(function () {
     Route::get('schedules', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
+    Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
     // Route::get('/schedule/create', 'create')->name('schedule.create');
     Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');

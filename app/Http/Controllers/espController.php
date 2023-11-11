@@ -98,25 +98,30 @@ class EspController extends Controller
     }
 
     public function fetchschedule()
-{
-    $espControls = EspControl::with('module')
-        ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
-        ->join('users', 'esp_controls.id_user', '=', 'users.id')
-        ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
-        ->paginate(2);
+    {
+        $espControls = EspControl::with('module')
+            ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
+            ->join('users', 'esp_controls.id_user', '=', 'users.id')
+            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
+            ->paginate(2);
 
-    return response()->json([
-        'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
-        'pagination' => [
-            'total' => $espControls->total(),
-            'per_page' => $espControls->perPage(),
-            'current_page' => $espControls->currentPage(),
-            'last_page' => $espControls->lastPage(),
-            'from' => $espControls->firstItem(),
-            'to' => $espControls->lastItem(),
-        ],
-    ]);
-}
+        return response()->json([
+            'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
+            'pagination' => [
+                'total' => $espControls->total(),
+                'per_page' => $espControls->perPage(),
+                'current_page' => $espControls->currentPage(),
+                'last_page' => $espControls->lastPage(),
+                'from' => $espControls->firstItem(),
+                'to' => $espControls->lastItem(),
+            ],
+        ]);
+    }
+
+    public function fetchusermodule(){
+        $modules = Module::all();
+        return response()->json(['modules' => $modules]);
+    }
 
     public function store(Request $request)
     {
@@ -220,5 +225,4 @@ class EspController extends Controller
             ]);
         }
     }
-
 }
