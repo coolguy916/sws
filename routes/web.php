@@ -19,6 +19,7 @@ use App\Http\Controllers\ModuleController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth', 'HakAkses:admin'])->group(function () {
 
 Route::get('/admin', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
 Route::get('/admin.home.user', [App\Http\Controllers\AdminController::class, 'create'])->name('data_user');
@@ -28,9 +29,10 @@ Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'stor
 Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
 Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
+});
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
-Route::controller(espController::class)->group(function () {
+Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('schedules', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');

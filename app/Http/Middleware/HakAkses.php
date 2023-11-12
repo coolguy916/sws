@@ -14,8 +14,13 @@ class HakAkses
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $userType)
     {
-        return $next($request);
+        if(auth()->user()->role == $userType){
+            return $next($request);
+        }
+          
+        return redirect()->route('schedule.index')->with('error', 'You do not have admin access!');
+        /* return response()->view('errors.check-permission'); */
     }
 }
