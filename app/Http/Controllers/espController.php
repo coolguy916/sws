@@ -119,7 +119,7 @@ class EspController extends Controller
     }
 
     public function fetchusermodule(){
-        $modules = Module::all();
+        $modules = Module::where('user_id', Auth::id())->get();
         return response()->json(['modules' => $modules]);
     }
 
