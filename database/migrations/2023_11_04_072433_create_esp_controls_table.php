@@ -17,6 +17,7 @@ class CreateEspControlsTable extends Migration
             $table->id();
             $table->integer('runtime');
             $table->time('schedule');
+            $table->boolean('status')->default(0);
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_module');
             $table->timestamps();

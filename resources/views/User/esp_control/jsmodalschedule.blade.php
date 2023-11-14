@@ -52,7 +52,6 @@
                             } else {
                                 toastr.warning('Unknown status');
                             }
-                            fetchschedule();
                         },
                     });
                 });
@@ -149,7 +148,7 @@
             // console.log(fetchcount++);
             fetchschedule();
             fetchusermodule();
-        }, 15000); // 60,000 milliseconds = 1 minute
+        }, 6000); // 60,000 milliseconds = 1 minute
 
         // CREATE FUNCTION
         $(document).on('click', '.add_schedule', function(e) {

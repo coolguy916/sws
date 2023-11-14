@@ -34,14 +34,14 @@
             <div class="row">
                 <div class="card">
                     <div class="card-header">
-                        
+
                         <div class="card-title">
                             <h2>
                             {{ __('Schedule') }}
                             </h2>
                             <div class="time">
                             </div>
-                            
+
                         </div>
 
                         <div class="card-tools">
