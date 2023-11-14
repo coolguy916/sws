@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4 mt-20">
+        <div class="col-md-4 col-sm-8 col-lg-4">
             <div class="card shadow">
                 <div class="card-header text-center">{{ __('Register') }}</div>
 
@@ -16,7 +16,7 @@
 
                         <div class="row mb-3 justify-content-center">
 
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus placeholder="Name">
 
                                 @error('name')
@@ -29,7 +29,7 @@
 
                         <div class="row mb-3 justify-content-center text-center">
                             
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Email">
 
                                 @error('email')
@@ -42,7 +42,7 @@
 
                         <div class="row mb-3 justify-content-center">
                             
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="Phone">
 
                                 @error('phone')
@@ -55,7 +55,7 @@
 
                         <div class="row mb-3 justify-content-center">
                             
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
 
                                 @error('password')
@@ -68,13 +68,13 @@
 
                         <div class="row mb-3 justify-content-center">
                             
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
                             </div>
                         </div>
 
                         <div class="row mb-2 text-center mr-8">
-                            <div class="col-md-5">
+                            <div class="col-md">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>

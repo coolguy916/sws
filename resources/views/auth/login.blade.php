@@ -5,10 +5,10 @@
 @section('content')
 <body style="background-color: #D0E7D2;">
     
-<div class="container" >
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card border-1 ">
+        <div class="col-md-4 col-sm-8 col-lg-4">
+            <div class="card border-1">
                 <div class="card-header text-center">{{ __('Login') }}</div>
 
                 
@@ -19,7 +19,7 @@
 
                         <div class="row mb-3 justify-content-center">
                            
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" autofocus placeholder="Email">
 
                                 @error('email')
@@ -32,7 +32,7 @@
 
                         <div class="row mb-3 justify-content-center">
                         
-                            <div class="col-md-10">
+                            <div class="col-md">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
 
                                 @error('password')
@@ -46,7 +46,7 @@
 
                         <div class="row mb-2 justify-content-center">
                         <div class="row mb-3 ">
-                            <div class="col-md-6 md-6">
+                            <div class="col-md">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="col-md-10 md-4 d-flex">
+                            <div class="col-md d-flex">
                                 <button type="submit" class="btn btn-primary col-md-4">
                                     {{ __('Login') }}
                                 </button>

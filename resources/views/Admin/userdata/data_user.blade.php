@@ -37,9 +37,9 @@
                             {{ __('Schedule') }}
                         </h2>
                         <div class="card-tools">
-                            <a href="{{ route('form_user') }}" class="btn btn-outline-dark btn-sm">
+                            <!-- <a href="#" class="btn btn-outline-dark btn-sm">
                                 <i class="fas fa-plus"></i> Input Data User
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -52,28 +52,29 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th>No</th>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Modul</td>
+                                    <th>Phone</th>
                                     <th>Role</th>
-
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                            @foreach($users as $user)
                             <tbody>
-                                    <td>1</td>
-                                    <td>Adji</td>
-                                    <td>Siapa aja</td>
-                                    <td>3</td>
-                                    <td>Admin</td>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->role}}</td>
                                     <td>
                                         <form action="" onsubmit="" method="POST">
-                                            <a href="/" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{ route('datauser.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                             </tbody>
+                            @endforeach()
                             </table>    
                     </div>
                 </div>
@@ -88,3 +89,4 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+
