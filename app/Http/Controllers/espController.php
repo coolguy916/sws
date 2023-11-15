@@ -105,18 +105,23 @@ class EspController extends Controller
         ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
         ->paginate(2);
 
-    return response()->json([
-        'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
-        'pagination' => [
-            'total' => $espControls->total(),
-            'per_page' => $espControls->perPage(),
-            'current_page' => $espControls->currentPage(),
-            'last_page' => $espControls->lastPage(),
-            'from' => $espControls->firstItem(),
-            'to' => $espControls->lastItem(),
-        ],
-    ]);
-}
+        return response()->json([
+            'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
+            'pagination' => [
+                'total' => $espControls->total(),
+                'per_page' => $espControls->perPage(),
+                'current_page' => $espControls->currentPage(),
+                'last_page' => $espControls->lastPage(),
+                'from' => $espControls->firstItem(),
+                'to' => $espControls->lastItem(),
+            ],
+        ]);
+    }
+
+    public function fetchusermodule(){
+        $modules = Module::where('user_id', Auth::id())->get();
+        return response()->json(['modules' => $modules]);
+    }
 
     public function store(Request $request)
     {
