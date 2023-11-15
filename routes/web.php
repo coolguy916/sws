@@ -41,8 +41,10 @@ Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->
     Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');
     Route::put('update-schedule/{id}', 'update')->name('schedule.update');
     Route::delete('delete-schedule/{id}', 'destroy')->name('schedule.destroy');
+});
+Route::controller(espController::class)->group(function(){
     Route::get('/api/valve/manual/{id}', 'manual');
-    Route::get('/api/valve/auto/{id}', 'auto');
+    Route::get('/api/valve/auto', 'auto');
 });
 Auth::routes();
 
