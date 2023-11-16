@@ -19,17 +19,18 @@ use App\Http\Controllers\ModuleController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['auth', 'HakAkses:admin'])->group(function () {
-
-Route::get('/admin', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
-Route::get('/admin.home.user', [App\Http\Controllers\AdminController::class, 'create'])->name('data_user');
-Route::get('/admin_form_user', [App\Http\Controllers\AdminController::class, 'index'])->name('form_user');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], function() {
+Route::get('/index', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
+Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('data.user');
+Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
+Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');
 Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
 Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
 Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
 Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
 });
+
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {

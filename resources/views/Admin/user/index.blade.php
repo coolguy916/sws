@@ -1,5 +1,7 @@
 @extends('layouts.layAdmin')
 @section('content')
+@include('Admin.user.update_user_modal')
+
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
@@ -43,12 +45,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-danger text-center">
-                            No Data To Be Read
-                        </div>
-
                         <!-- Tabel -->
-
                         <table class="table">
                             <thead>
                                 <tr>
@@ -68,10 +65,11 @@
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->role}}</td>
                                     <td>
-                                        <form action="" onsubmit="" method="POST">
-                                            <a href="{{ route('datauser.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
+                                        <a href="" class="btn btn-warning btn-sm update_user_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $user->id }}" data-role="{{ $user->role }}"   >
+                                Edit
+                                </a>
+                                                                <a href="" class="btn btn-danger btn-sm delete_user" data-id="{{ $user->id }}" data-role="{{ $user->role }}">Hapus</a>
+
                                     </td>
                             </tbody>
                             @endforeach()

@@ -176,7 +176,7 @@
             let up_id = $('#up_id').val();
             let up_lokasi = $('#up_lokasi').val();
             let up_user_id = $('#up_user_id').val(); 
-            console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id); 
             $.ajax({
                 url:"{{ route('update.module') }}",
                 method:'POST',
@@ -279,6 +279,63 @@
   });
 </script>
 
+<script>
+  $(document).on('click', '.delete_user', function (e) {
+    e.preventDefault();
+    let user_id = $(this).data('id');
+
+    // Use SweetAlert for confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this User!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User clicked 'Yes', proceed with the deletion
+        $.ajax({
+          url: "{{ route('delete.user') }}",
+          method: 'POST',
+          data: { user_id: user_id },
+          dataType: 'json',
+          success: function (res) {
+            if (res.status === 'success') {
+              // Refresh the table after successful deletion
+              $('.table').load(location.href + ' .table');
+
+              // Show a success message using SweetAlert
+              Swal.fire({
+                title: 'Deleted!',
+                text: ' User has been deleted.',
+                icon: 'success',
+                timer: 2000,
+                timerProgressBar: true,
+              });
+            }
+          },
+          error: function (xhr, status, error) {
+            // Handle the error response from the server
+            console.error(error);
+
+            // Show an error message using SweetAlert
+            Swal.fire({
+              title: 'Error!',
+              text: 'Failed to delete the User.',
+              icon: 'error',
+              timer: 2000,
+              timerProgressBar: true,
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+
     <script>
    $(document).ready(function() {
     $('.burger').click(function() {
@@ -301,6 +358,113 @@
     @endif
 
 </script>
+
+  <script>
+    $(document).ready(function(){
+        $(document).on('click','.add_product',function(e){
+            e.preventDefault();
+            let lokasi = $('#lokasi').val();
+            let user_id = $('#user_id').val(); 
+            let status = 0; 
+            //console.log(lokasi+user_id+status);
+            $.ajax({
+                url:"",
+                method:'POST',
+                data:{lokasi:lokasi,user_id:user_id,status: status},
+                success:function(res){
+                    if(res.status=='success'){
+                        $('#addModal').modal('hide');
+                        $('#addproductform')[0].reset();
+                        $('.table').load(location.href+' .table');
+                    Command: toastr["success"]("Module Telah berhasil", "Success")
+
+                            toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                    }
+                },error:function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors,function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    });
+
+                }
+            });
+        })
+        
+        //show update value update form
+        $(document).on('click','.update_user_form', function(){
+             let id  = $(this).data('id');
+            let role  = $(this).data('role');
+            $('#up_id').val(id);
+            $('#up_role').val(role);
+
+        });
+
+        //update proses system
+          $(document).on('click','.update_user',function(e){
+            e.preventDefault();
+            let up_id = $('#up_id').val();
+            let up_role = $('#up_role').val();
+            //console.log(up_id+up_lokasi+up_user_id); 
+            $.ajax({
+                url:"{{ route('update.user') }}",
+                method:'POST',
+                data:{up_id:up_id,up_role:up_role},
+                success:function(res){
+                    if(res.status=='success'){
+                        $('#updateModal').modal('hide');
+                        $('#updateproductform')[0].reset();
+                        $('.table').load(location.href+' .table');
+                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
+
+                            toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                    }
+                },error:function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors,function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    });
+
+                }
+            });
+        })
+           
+    
+        
+        
+    });
+    </script>
 </body>
 
 </html>
