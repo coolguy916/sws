@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EspController extends Controller
 {
@@ -231,4 +232,22 @@ class EspController extends Controller
         return response()->json($schedule);
     }
 
+    public function updatestatus(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+
+        try {
+            $espControl = EspControl::find($id);
+            if ($espControl) {
+                $espControl->status = $status;
+                $espControl->save();
+                return response()->json(['success' => true, 'message' => 'Status updated successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Record not found']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Error updating status: ' . $e->getMessage()]);
+        }
+    }
 }

@@ -78,3 +78,17 @@
         <!-- ============================================================== -->
     </div>
 @endsection
+ var timeParts = item.schedule.split(':');
+                    var formattedTime = '';
+                    if (timeParts.length === 3) {
+                        var hours = parseInt(timeParts[0]);
+                        var minutes = parseInt(timeParts[1]);
+                        formattedTime = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
+                            '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+                    }
+
+                    var hours = now.getHours();
+var minutes = now.getMinutes();
+var ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12 || 12;
+var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;

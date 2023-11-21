@@ -28,7 +28,6 @@ Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'creat
 Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
 Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
-Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
 });
 
 
@@ -36,8 +35,8 @@ Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class,
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('schedules', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
-    Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
-    Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
+     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
+     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
     // Route::get('/schedule/create', 'create')->name('schedule.create');
     Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');
     Route::put('update-schedule/{id}', 'update')->name('schedule.update');
@@ -46,6 +45,9 @@ Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->
 Route::controller(espController::class)->group(function(){
     Route::get('/api/valve/manual/{id}', 'manual');
     Route::get('/api/valve/auto', 'auto');
+    Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
+    Route::POST('/update_status', 'updatestatus');
+
 });
 Auth::routes();
 
