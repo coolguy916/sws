@@ -76,13 +76,6 @@ class EspController extends Controller
 
     //     return redirect()->route('schedule.index')->with(['success' => 'Data Barang Berhasil Dihapus!']);
     // }
-
-    public function manual(String $id)
-    {
-        $module = Module::findOrFail($id);
-        return response()->json($module);
-    }
-
     // AJAX
 
     public function index()
@@ -102,7 +95,7 @@ class EspController extends Controller
     $espControls = EspControl::with('module')
         ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
         ->join('users', 'esp_controls.id_user', '=', 'users.id')
-        ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
+        ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'esp_controls.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
         ->paginate(2);
 
         return response()->json([
@@ -226,9 +219,19 @@ class EspController extends Controller
         }
     }
 
-    public function auto(){
-        $schedule = EspControl::all();
+    public function auto(String $id){
+        $schedule = EspControl::where('id_module', $id)->all();
         return response()->json($schedule);
     }
 
+    public function manual(String $id)
+    {
+        $module = Module::findOrFail($id);
+        return response()->json($module);
+    }
+    public function autoDone(String $id, string $status){
+        $schedule = EspController::findOrFail($id);
+        $schedule->update(['status' => $status]);
+
+    }
 }

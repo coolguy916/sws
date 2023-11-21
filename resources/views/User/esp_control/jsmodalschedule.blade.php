@@ -148,7 +148,7 @@
             // console.log(fetchcount++);
             fetchschedule();
             fetchusermodule();
-        }, 6000); // 60,000 milliseconds = 1 minute
+        }, 2500); // 60,000 milliseconds = 1 minute
 
         // CREATE FUNCTION
         $(document).on('click', '.add_schedule', function(e) {

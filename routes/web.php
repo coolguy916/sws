@@ -28,7 +28,6 @@ Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'creat
 Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
 Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
 Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
-Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
 });
 
 
@@ -44,8 +43,10 @@ Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->
     Route::delete('delete-schedule/{id}', 'destroy')->name('schedule.destroy');
 });
 Route::controller(espController::class)->group(function(){
+    Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::get('/api/valve/manual/{id}', 'manual');
-    Route::get('/api/valve/auto', 'auto');
+    Route::get('/api/valve/auto/{id}', 'auto');
+    Route::post('/api/valve/autoDone/{id}/{status}', 'autoDone');
 });
 Auth::routes();
 
