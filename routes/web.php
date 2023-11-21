@@ -35,8 +35,8 @@ Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'de
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('schedules', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
-    Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
-    Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
+     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
+     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
     // Route::get('/schedule/create', 'create')->name('schedule.create');
     Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');
     Route::put('update-schedule/{id}', 'update')->name('schedule.update');
@@ -47,6 +47,9 @@ Route::controller(espController::class)->group(function(){
     Route::get('/api/valve/manual/{id}', 'manual');
     Route::get('/api/valve/auto/{id}', 'auto');
     Route::post('/api/valve/autoDone/{id}/{status}', 'autoDone');
+    Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
+    Route::POST('/update_status', 'updatestatus');
+
 });
 Auth::routes();
 

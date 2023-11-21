@@ -81,11 +81,37 @@
                     var timeParts = item.schedule.split(':');
                     var formattedTime = '';
                     if (timeParts.length === 3) {
-                        var hours = parseInt(timeParts[0]);
+                         var hours = parseInt(timeParts[0]);
                         var minutes = parseInt(timeParts[1]);
                         formattedTime = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
                             '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+                        var now = new Date();
+
+                        var hours = now.getHours();
+                        var minutes = now.getMinutes();
+                        var ampm = hours >= 12 ? 'PM' : 'AM';
+                        hours = hours % 12 || 12;
+                        var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
                     }
+                    if (formattedTime === formattedTimenow) {
+    $.ajax({
+        url: '/update_status', 
+        method: 'POST', 
+        data: {
+           
+            id: item.id, 
+            status: 1 
+        },
+        success: function(response) {
+            console.log('Status updated successfully:', response);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error updating status:', error);
+        }
+    });
+} else {
+    console.log('Requirements not met to update status.');
+}
 
                     var statusBadge = item.status == 1 ?
                         '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
