@@ -28,8 +28,10 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-            <div class="row">
-                @include('element.btn-esp')
+            <div class="d-flex flex-row">
+                <div class="row">
+                    @include('element.btn-esp')
+                </div>
             </div>
             <div class="row">
                 <div class="card">
@@ -37,7 +39,7 @@
 
                         <div class="card-title">
                             <h2>
-                            {{ __('Schedule') }}
+                                {{ __('Schedule') }}
                             </h2>
                             <div class="time">
                             </div>
@@ -45,8 +47,8 @@
                         </div>
 
                         <div class="card-tools">
-                            <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md" data-bs-toggle="modal"
-                                data-bs-target="#AddScheduleModal">
+                            <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md"
+                                data-bs-toggle="modal" data-bs-target="#AddScheduleModal">
                                 <i class="fas fa-plus"></i> Input Data
                                 </a>
                         </div>

@@ -95,12 +95,12 @@
                     }
                     if (formattedTime === formattedTimenow) {
     $.ajax({
-        url: '/update_status', 
-        method: 'POST', 
+        url: '/update_status',
+        method: 'POST',
         data: {
-           
-            id: item.id, 
-            status: 1 
+
+            id: item.id,
+            status: 1
         },
         success: function(response) {
             console.log('Status updated successfully:', response);

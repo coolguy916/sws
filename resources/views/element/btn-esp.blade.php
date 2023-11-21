@@ -1,12 +1,10 @@
-<div class="container-fluid">
-    <div class="">
-        <div class="row">
-            <div id="modules-container"></div>
+<div class="row">
+    <div class="col">
+        <!-- This class is usually used inside a 'row' for Bootstrap grid system -->
+        <div id="modules-container" class="d-flex">
         </div>
     </div>
 </div>
-
-
 
     {{-- @forelse ($modules as $data)
         <!-- Modul Nyala -->
@@ -31,5 +29,3 @@
     @empty
 
     @endforelse --}}
-
-
