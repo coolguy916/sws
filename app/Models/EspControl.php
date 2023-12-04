@@ -13,7 +13,8 @@ class EspControl extends Model
         'schedule',
         'runtime',
         'id_user',
-        'id_module'
+        'id_module',
+        'status'
     ];
 
     public function user() {

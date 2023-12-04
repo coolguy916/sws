@@ -46,7 +46,8 @@ Route::controller(espController::class)->group(function(){
     Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::get('/api/valve/manual/{id}', 'manual');
     Route::get('/api/valve/auto/{id}', 'auto');
-    Route::post('/api/valve/autoDone/{id}/{status}', 'autoDone');
+    Route::get('/api/valve/time', 'timeSched');
+    Route::get('/api/valve/autoDone/{id}/{status}', 'autoDone');
     Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::POST('/update_status', 'updatestatus');
 

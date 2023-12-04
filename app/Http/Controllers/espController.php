@@ -84,20 +84,20 @@ class EspController extends Controller
         $espControls = EspControl::with('module')
             ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
             ->join('users', 'esp_controls.id_user', '=', 'users.id')
-            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at');
-            // ->paginate(10);
+            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi', 'esp_controls.id_module', 'esp_controls.created_at');
+        // ->paginate(10);
         $modules = Module::where('user_id', Auth::id())->get();
         $users = User::all();
         return view('User.esp_control.index', compact('espControls', 'modules', 'users'));
     }
 
     public function fetchschedule()
-{
-    $espControls = EspControl::with('module')
-        ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
-        ->join('users', 'esp_controls.id_user', '=', 'users.id')
-        ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'esp_controls.status', 'modules.lokasi','esp_controls.id_module', 'esp_controls.created_at')
-        ->paginate(2);
+    {
+        $espControls = EspControl::with('module')
+            ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
+            ->join('users', 'esp_controls.id_user', '=', 'users.id')
+            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'esp_controls.status', 'modules.lokasi', 'esp_controls.id_module', 'esp_controls.created_at')
+            ->paginate(2);
 
         return response()->json([
             'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
@@ -112,7 +112,8 @@ class EspController extends Controller
         ]);
     }
 
-    public function fetchusermodule(){
+    public function fetchusermodule()
+    {
         $modules = Module::where('user_id', Auth::id())->get();
         return response()->json(['modules' => $modules]);
     }
@@ -220,9 +221,10 @@ class EspController extends Controller
         }
     }
 
-    public function auto(String $id){
-        $schedule = EspControl::where('id_module', $id)->all();
-        return response()->json($schedule);
+    public function auto(Request $request, string $id)
+    {
+        $espControls = EspControl::where('id_module', $id)->get();
+        return response()->json($espControls);
     }
 
     public function updatestatus(Request $request)
@@ -243,14 +245,26 @@ class EspController extends Controller
             return response()->json(['success' => false, 'message' => 'Error updating status: ' . $e->getMessage()]);
         }
     }
-    public function manual(String $id)
+    public function manual(string $id)
     {
         $module = Module::findOrFail($id);
         return response()->json($module);
     }
-    public function autoDone(String $id, string $status){
-        $schedule = EspController::findOrFail($id);
-        $schedule->update(['status' => $status]);
+    public function autoDone($id)
+    {
+        $status = request()->status;
+        EspControl::where('id', $id)->update(['status' => $status]);
+        return response()->json("post test");
+        // $status = $request->input('status');
+        // $schedule = EspController::findOrFail($id);
+        // $schedule->update(['status' => $status]);
+    }
+    public function timeSched()
+    {
+        $currentTime = array();
+        $currentTime['H'] = date("H"); // Use "H" for 24-hour format
+        $currentTime['M'] = date("i"); // Use "i" for minutes
 
+        return response()->json($currentTime)->header('Content-Type', 'application/json');
     }
 }
