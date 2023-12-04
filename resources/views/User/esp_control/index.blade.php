@@ -37,14 +37,12 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <div class="card-title">
                             <h2>
                                 {{ __('Schedule') }}
                             </h2>
                             <div class="time">
                             </div>
 
-                        </div>
 
                         <div class="card-tools">
                             <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md"
