@@ -131,30 +131,30 @@
                 </tr>');
                 });
 
-                // Add pagination links
-                if (response.pagination) {
-                    var paginationHtml = '<nav aria-label="Page navigation"><ul class="pagination">';
+                // // Add pagination links
+                // if (response.pagination) {
+                //     var paginationHtml = '<nav aria-label="Page navigation"><ul class="pagination">';
 
-                    // Previous Page Link
-                    paginationHtml += '<li class="page-item' + (response.pagination.current_page === 1 ? ' disabled' : '') + '">';
-                    paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="fetchschedule(' + (response.pagination.current_page - 1) + ')">';
-                    paginationHtml += '<span aria-hidden="true">&laquo;</span></a></li>';
+                //     // Previous Page Link
+                //     paginationHtml += '<li class="page-item' + (response.pagination.current_page === 1 ? ' disabled' : '') + '">';
+                //     paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="fetchschedule(' + (response.pagination.current_page - 1) + ')">';
+                //     paginationHtml += '<span aria-hidden="true">&laquo;</span></a></li>';
 
-                    // Page Links
-                    for (var i = 1; i <= response.pagination.last_page; i++) {
-                        paginationHtml += '<li class="page-item' + (i === response.pagination.current_page ? ' active' : '') + '">';
-                        paginationHtml += '<a class="page-link" href="#" onclick="fetchschedule(' + i + ')">' + i + '</a></li>';
-                    }
+                //     // Page Links
+                //     for (var i = 1; i <= response.pagination.last_page; i++) {
+                //         paginationHtml += '<li class="page-item' + (i === response.pagination.current_page ? ' active' : '') + '">';
+                //         paginationHtml += '<a class="page-link" href="#" onclick="fetchschedule(' + i + ')">' + i + '</a></li>';
+                //     }
 
-                    // Next Page Link
-                    paginationHtml += '<li class="page-item' + (response.pagination.current_page === response.pagination.last_page ? ' disabled' : '') + '">';
-                    paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="fetchschedule(' + (response.pagination.current_page + 1) + ')">';
-                    paginationHtml += '<span aria-hidden="true">&raquo;</span></a></li>';
+                //     // Next Page Link
+                //     paginationHtml += '<li class="page-item' + (response.pagination.current_page === response.pagination.last_page ? ' disabled' : '') + '">';
+                //     paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="fetchschedule(' + (response.pagination.current_page + 1) + ')">';
+                //     paginationHtml += '<span aria-hidden="true">&raquo;</span></a></li>';
 
-                    paginationHtml += '</ul></nav>';
+                //     paginationHtml += '</ul></nav>';
 
-                    $('.pagination-container').html(paginationHtml);
-                }
+                //     $('.pagination-container').html(paginationHtml);
+                // }
 
             },
             error: function (xhr, status, error) {

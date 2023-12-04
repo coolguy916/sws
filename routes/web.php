@@ -16,24 +16,21 @@ use App\Http\Controllers\ModuleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], function() {
-Route::get('/index', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
-Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('data.user');
-Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
-Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');
-Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
-Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
-Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
-Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
+    Route::get('/', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
+    Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('data.user');
+    Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
+    Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');
+    Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
+    Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
+    Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
+    Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
 });
 
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
-    Route::get('schedules', 'index')->name('schedule.index');
+    Route::get('/', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
      Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
      Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
@@ -54,4 +51,4 @@ Route::controller(espController::class)->group(function(){
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

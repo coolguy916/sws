@@ -19,8 +19,8 @@ class HakAkses
         if(auth()->user()->role == $userType){
             return $next($request);
         }
-          
-        return redirect()->route('schedule.index')->with('error', 'You do not have admin access!');
+
+        return redirect()->back()->with('error', 'You do not have admin access!');
         /* return response()->view('errors.check-permission'); */
     }
 }
