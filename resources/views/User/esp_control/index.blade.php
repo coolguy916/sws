@@ -37,12 +37,16 @@
                 <div class="card">
                     <div class="card-header">
 
+                            <h2>
+                                {{ __('Schedule') }}
+                            </h2>
+                            <div class="time">
+                            </div>
                         <h2>
                             {{ __('Schedule') }}
                         </h2>
                         <div class="time">
 
-                        </div>
 
                         <div class="card-tools">
                             <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md"
