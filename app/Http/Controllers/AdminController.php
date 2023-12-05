@@ -8,8 +8,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::where('role', 'admin')
-        ->paginate(10);        
+        $users = User::where('role', 'user')
+        ->paginate(10);
         return view('Admin.user.index', compact('users')); // Path to your Blade component
     }
 
@@ -18,16 +18,16 @@ class AdminController extends Controller
             [
                 'up_role'=>'required',
             ]);
-    
+
             $users= User::find($request->up_id);
             User::where('id',$request->up_id)->update([
                 'role'=>$request->up_role,
             ]);
-    
+
         return response()->json([
             'status'=>'success',
         ]);
-    
+
     }
 
     public function create()

@@ -97,7 +97,7 @@ class EspController extends Controller
             ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
             ->join('users', 'esp_controls.id_user', '=', 'users.id')
             ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'esp_controls.status', 'modules.lokasi', 'esp_controls.id_module', 'esp_controls.created_at')
-            ->paginate(2);
+            ->paginate(120);
 
         return response()->json([
             'esp_controls' => $espControls->items(), // Only the items, excluding pagination data
@@ -262,9 +262,10 @@ class EspController extends Controller
     public function timeSched()
     {
         $currentTime = array();
-        $currentTime['H'] = date("H"); // Use "H" for 24-hour format
-        $currentTime['M'] = date("i"); // Use "i" for minutes
+        $currentTime = date("Y-m-d H:i:s"); // Use "H" for 24-hour format
 
         return response()->json($currentTime)->header('Content-Type', 'application/json');
+
     }
+
 }

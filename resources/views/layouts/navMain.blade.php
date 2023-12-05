@@ -4,7 +4,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="/schedules">
+            <a class="navbar-brand" href="/">
                 <!-- Logo icon -->
                 <b class="logo-icon ps-2">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -13,7 +13,7 @@
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
-                
+
                 <!-- Logo icon -->
                 <!-- <b class="logo-icon"> -->
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
