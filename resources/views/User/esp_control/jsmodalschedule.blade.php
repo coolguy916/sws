@@ -24,7 +24,7 @@
                         '<input data-id="' + module.id + '" class="form-check-input togglemodule-class" ' +
                         'data-onstyle="success" data-offstyle="danger" data-toggle="toggle" ' +
                         'data-on="Active" data-off="Inactive" type="checkbox" ' +
-                            (module.status ? 'checked' : '') +
+                            (module.status == 1 ? 'checked' : '') +
                             '>' +
                             '</div>' +
                             '</div>' +
