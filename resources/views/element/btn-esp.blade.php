@@ -1,13 +1,14 @@
 <div class="row">
-    <div class="col">
+    <div class="col overflow-auto">
         <!-- This class is usually used inside a 'row' for Bootstrap grid system -->
-        <div id="modules-container" class="d-flex">
+        <div id="modules-container" class="d-flex" >
         </div>
     </div>
 </div>
 
     {{-- @forelse ($modules as $data)
         <!-- Modul Nyala -->
+        
         <div class="card" style="width: 18rem; margin-right: 10px; ">
         <div class="card-body rounded-auto text-center">
             @if ($data->status == 1)

@@ -28,14 +28,14 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row overflow-auto">
                 <div class="row">
                     @include('element.btn-esp')
                 </div>
             </div>
             <div class="row">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header overflow-auto">
 
                             <h2>
                                 {{ __('Schedule') }}
@@ -59,7 +59,7 @@
                     <!-- Tabel -->
 
                     <table class="table table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead-dark ">
                             <tr>
                                 <th>No</th>
                                 <th>Schedule</th>
