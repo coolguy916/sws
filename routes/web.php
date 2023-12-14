@@ -51,4 +51,8 @@ Route::controller(espController::class)->group(function(){
 });
 Auth::routes();
 
+Route::get('/', function () {
+    return view('landing-page.index');
+});
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
