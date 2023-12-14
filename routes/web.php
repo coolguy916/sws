@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
-    Route::get('/', 'index')->name('schedule.index');
+    Route::get('/schedule', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
      Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
      Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
