@@ -47,9 +47,9 @@ body {
 
 /*header section*/
 .hero_area {
-  height: calc(100vh - 30px);
-  background: -webkit-gradient(linear, left top, right top, color-stop(55%, #1a2e35), color-stop(55%, #D0E7D2));
-  background: linear-gradient(to right, #1a2e35 55%, #D0E7D2 55%);
+  height: calc(70vh - 30px);
+  /* background: -webkit-gradient(linear, left top, right top, color-stop(55%, #1a2e35), color-stop(55%, #D0E7D2)); */
+  background-color: #1a2e35; 
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,11 +58,13 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  margin-bottom: 0%;
 }
 
 .sub_page .hero_area {
   height: auto;
   background: none;
+  
   background-color: #1a2e35;
 }
 

@@ -27,12 +27,12 @@
               </li>
             </ul>
             <div class="user_option">
-              <a class="mx-1" href="/login">
+              <a class="nav-link" href="/login">
                 <span>
                   Login
                 </span>
               </a>
-              <a class="mx-1" href="/register">
+              <a class="nav-link" href="/register">
                 <span>
                   Register
                 </span>
