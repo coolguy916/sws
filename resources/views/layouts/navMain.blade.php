@@ -6,7 +6,7 @@
             </a>
             <a class="navbar-brand justify-content-center align-content-center" href="/" style="margin-left: 2px;">
                 <b class="logo-icon">
-                    <img src="{{ asset('assets/images/swis-logo.png') }}" alt="homepage" class="light-logo">
+                    <img src="{{ asset('assets/images/swis-logonew.png') }}" alt="homepage" class="light-logo">
                 </b>
                 <!-- Logo text -->
                         <span class="logo-text">

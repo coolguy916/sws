@@ -23,7 +23,7 @@
     </div>
     <div class="container-fluid">
         <div class="card p-3"><canvas class="mx-full" id="myChart"></canvas></div>
-        
+
     </div>
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
@@ -45,18 +45,16 @@
                         {{ __('Schedule') }}
                     </h2>
                     <div class="time">
-
-
-                        <div class="card-tools">
-                            <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md" data-bs-toggle="modal" data-bs-target="#AddScheduleModal">
-                                <i class="fas fa-plus"></i> Input Data
-                                </a>
-                        </div>
+                    </div>
+                    <div class="card-tools">
+                        <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md" data-bs-toggle="modal" data-bs-target="#AddScheduleModal">
+                            <i class="fas fa-plus"></i> Input Data
+                        </button>
                     </div>
 
                     <!-- Tabel -->
 
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover overflow-auto">
                         <thead class="thead-dark ">
                             <tr>
                                 <th>No</th>
