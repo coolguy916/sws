@@ -16,21 +16,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-sm-block d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-sm-block d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-sm-block d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
                     </div>

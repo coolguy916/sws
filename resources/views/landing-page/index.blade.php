@@ -24,7 +24,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset ('landing/css/bootstrap.css') }}" />
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-  
+
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{{ asset ('landing/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset ('landing/css/kara.css') }}">
@@ -133,13 +133,64 @@
   <section class="info_section ">
     <div class="info_container layout_padding-top">
       <div class="container">
+
         <div class="info_top">
           <div class="info_logo">
             <img src="{{ asset ('landing/images/lg-swis.png') }}" alt="" />
           </div>
+
+          <div class="d-flex">
+
+            <div class="mx-5">
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+            </div>
+
+            <div class="mx-5">
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+            </div>
+
+            <div class="mx-5">
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+              <a href="#">
+                <p class="text-white">lorem</p>
+              </a>
+            </div>
+
+          </div>
+
           <div class="social_box">
             <a href="#">
-            <img src="{{ asset ('landing/images/mail.png') }}" alt="">
+              <img src="{{ asset ('landing/images/mail.png') }}" alt="">
             </a>
             <a href="#">
               <img src="{{ asset ('landing/images/instagram.png') }}" alt="">
@@ -152,6 +203,7 @@
 
         <div class="info_main">
           <div class="row">
+            <h8 class="text-center">SWIS SMKN 8 MALANG</h8>
           </div>
         </div>
 
