@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\espController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\StatisticModuleController;
+use App\Models\StatisticModule;
 use App\Http\Controllers\DeskripsiController;
 use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\KontakController;
@@ -73,6 +75,15 @@ Route::controller(espController::class)->group(function(){
     Route::POST('/update_status', 'updatestatus');
 
 });
+
+Route::controller(StatisticModuleController::class)->middleware(['auth', 'HakAkses:user'])->group(function(){
+    Route::get('/module-statistic', 'index')->name('statistic.index');
+});
+
+Route::controller(StatisticModuleController::class)->group(function(){
+    Route::get('/api/getDynamicChartData', 'getDynamicChartData')->name('statisticdata');
+});
+
 Auth::routes();
 
 Route::get('/', function () {

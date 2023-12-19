@@ -1,5 +1,7 @@
 @extends('layouts.layMain')
 @section('content')
+@include('User.esp_control.schedulemodal')
+
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -7,7 +9,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Dashboard</h4>
+                <h2 class="page-title">Manual Control</h4>
                 <div class="ms-auto text-end">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -20,10 +22,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="card p-3"><canvas class="mx-full" id="myChart"></canvas></div>
-
     </div>
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
@@ -82,33 +80,6 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
-
-<!-- scrpit chart -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Orange1', 'Orange2'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1, 19, 3, 5, 2, 3, 10, 20],
-                borderWidth: 1
-            }]
-            },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            }
-            }
-        });
-    </script>
-
 
     {{-- @forelse ($datas as $data)
         <tr>

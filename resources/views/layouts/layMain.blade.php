@@ -52,7 +52,7 @@
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
         @include('layouts.navMain')
-        @include('User.esp_control.schedulemodal')
+        {{-- @include('User.esp_control.schedulemodal') --}}
 
         @yield('content')
 
@@ -97,6 +97,8 @@
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
 
     @include('User.esp_control.jsmodalschedule')
+    @include('User.esp_control.jsstatisticmmodule')
+
     <script>
         //message with toastr
         @if (session()->has('success'))

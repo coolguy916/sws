@@ -21,4 +21,8 @@ class Module extends Model
     {
         return $this->hasMany(EspControl::class);
     }
+
+    public function statistic() {
+        return $this->hasOne(StatisticModule::class, 'id_module', 'id');
+    }
 }

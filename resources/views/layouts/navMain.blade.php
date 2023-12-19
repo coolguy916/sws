@@ -69,8 +69,15 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('schedule.index') }}"
                         aria-expanded="false">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span class="hide-menu">Dashboard</span>
+                        <i class="mdi mdi-timetable"></i>
+                        <span class="hide-menu">Schedule & Manual Control</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('statistic.index') }}"
+                        aria-expanded="false">
+                        <i class="mdi mdi-chart-bar"></i>
+                        <span class="hide-menu">Statistic</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">
