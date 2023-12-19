@@ -346,6 +346,62 @@
             >
           </li>
          
+           <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.deskripsi') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-pencil"></i
+              ><span class="hide-menu">Deskripsi</span></a
+            >
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.slider') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-image"></i
+              ><span class="hide-menu">Image slider</span></a
+            >
+          </li>
+           <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.fitur') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-deskphone"></i
+              ><span class="hide-menu">Fitur-fitur</span></a
+            >
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.keunggulan') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-transcribe"></i
+              ><span class="hide-menu">Keunggulan</span></a
+            >
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.dokumentasi') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-table-edit"></i
+              ><span class="hide-menu">Dokumentasi</span></a
+            >
+          </li>
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.kontak') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-contact-mail"></i
+              ><span class="hide-menu">Kontak Kita</span></a
+            >
+          </li>
+         
+
         </ul>
       </nav>
       <!-- End Sidebar navigation -->

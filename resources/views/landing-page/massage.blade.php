@@ -1,4 +1,36 @@
-<div class="containeru" id="contact">
+ <section class="experience_section layout_padding">
+    <div class="container" id="contact">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="img-box">
+            <img src="{{ asset ('landing/images/freelance-img.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Kontak Kami:
+              </h2>
+            </div>
+            <p>
+          Kami siap membantu! Silakan hubungi kami jika Anda memiliki pertanyaan atau butuh bantuan dengan layanan kami.
+            </p>
+            <div class="btn-box">
+              <a href="" class="btn-1">
+               Chat Kami
+              </a>
+             
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+{{-- <div class="containeru" id="contact">
     <img src="img/shape.png" class="square" alt="" />
     <div class="form">
       <div class="contact-info">
@@ -56,4 +88,4 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> --}}

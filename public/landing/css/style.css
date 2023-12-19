@@ -400,7 +400,7 @@ a:focus {
 .experience_section .detail-box .btn-box .btn-1 {
   display: inline-block;
   padding: 10px 0;
-  background-color: #ff4f5a;
+  background-color: #779C7E;
   color: #ffffff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -410,8 +410,8 @@ a:focus {
 
 .experience_section .detail-box .btn-box .btn-1:hover {
   background-color: transparent;
-  border-color: #ff4f5a;
-  color: #ff4f5a;
+  border-color: #D0E7D2;
+  color: #D0E7D2;
 }
 
 .experience_section .detail-box .btn-box .btn-2 {
