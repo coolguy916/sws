@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
     Route::post('/add-testimoni', [TestimonialController::class, 'create'])->name('add.testimoni');
     Route::post('/update-testimoni', [TestimonialController::class, 'update'])->name('update.testimoni');
      Route::get('/footer', [FooterController::class, 'index'])->name('data.footer');
-    Route::post('/add-footer', [FooterController::class, 'create'])->name('add.footer');
+     Route::post('/add-footer', [FooterController::class, 'create'])->name('add.footer');
     Route::post('/update-footer', [FooterController::class, 'update'])->name('update.footer');
     Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
     Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');

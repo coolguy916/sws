@@ -410,6 +410,16 @@
               ><span class="hide-menu">Testimonial</span></a
             >
           </li>
+
+           <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.footer') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-page-layout-footer"></i
+              ><span class="hide-menu">Footer</span></a
+            >
+          </li>
          
 
         </ul>

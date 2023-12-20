@@ -1176,6 +1176,132 @@
     });
     </script>
 
+    <script>
+    $(document).ready(function(){
+        $(document).on('click','.add_footer',function(e){
+            e.preventDefault();
+            let judul = $('#judul').val();
+            let deskripsi = $('#deskripsi').val();
+            let alamat = $('#alamat').val();
+            let email = $('#email').val();
+            let phone = $('#phone').val();
+            let instagram = $('#instagram').val();
+            let youtube = $('#youtube').val();
+            let status = $('#status').val();
+            let image = $('#image')[0].files[0];
+
+             let formData = new FormData(); 
+        formData.append('judul', judul);
+        formData.append('deskripsi', deskripsi);
+                formData.append('alamat', alamat);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        formData.append('instagram', instagram);
+        formData.append('youtube', youtube);
+        formData.append('status', status);
+        formData.append('image', image);
+            //console.log(lokasi+user_id+status);
+            $.ajax({
+                url:"{{ route('add.footer') }}",
+                method:'POST',
+                 data: formData,
+            contentType: false,
+            processData: false,
+                success:function(res){
+                    if(res.status=='success'){
+                        $('#addfoot').modal('hide');
+                        $('#addfooter')[0].reset();
+                        $('.table').load(location.href+' .table');
+                    Command: toastr["success"]("Dokumentasi Website Telah berhasil", "Success")
+
+                            toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                    }
+                },error:function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors,function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    });
+
+                }
+            });
+        })
+        
+        //show update value update form
+        $(document).on('click','.update_user_form', function(){
+             let id  = $(this).data('id');
+            let role  = $(this).data('role');
+            $('#up_id').val(id);
+            $('#up_role').val(role);
+
+        });
+
+        //update proses system
+          $(document).on('click','.update_user',function(e){
+            e.preventDefault();
+            let up_id = $('#up_id').val();
+            let up_role = $('#up_role').val();
+            //console.log(up_id+up_lokasi+up_user_id); 
+            $.ajax({
+                url:"{{ route('update.user') }}",
+                method:'POST',
+                data:{up_id:up_id,up_role:up_role},
+                success:function(res){
+                    if(res.status=='success'){
+                        $('#updateModal').modal('hide');
+                        $('#updateproductform')[0].reset();
+                        $('.table').load(location.href+' .table');
+                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
+
+                            toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                            }
+                    }
+                },error:function(err){
+                    let error = err.responseJSON;
+                    $.each(error.errors,function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    });
+
+                }
+            });
+        })
+           
+    
+        
+        
+    });
+    </script>
+
 
 </body>
 

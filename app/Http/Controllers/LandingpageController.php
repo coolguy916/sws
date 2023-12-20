@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Deskripsi;
 use App\Models\Fitur;
+use App\Models\Footer;
 use App\Models\Keunggulan;
 use App\Models\Kontak;
 use App\Models\slider;
@@ -17,7 +18,8 @@ class LandingpageController extends Controller
     $fitur = Fitur::where('status', 1)->get();
     $keunggulan = Keunggulan::where('status', 1)->get();
     $kontak = Kontak::where('status', 1)->get();
+    $footer = Footer::where('status', 1)->get();
 
-    return view('landing-page.index', compact('slider','deskripsi','fitur','keunggulan','kontak'));
+    return view('landing-page.index', compact('slider','deskripsi','fitur','keunggulan','kontak','footer'));
     }
 }

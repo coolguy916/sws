@@ -139,34 +139,31 @@
 
         <div class="info_top">
           <div class="info_logo">
-            <img src="{{ asset ('landing/images/lg-swis.png') }}" alt="" />
+          @foreach ($footer as $row )
+                        <img src="{{ asset('storage/logo/'.$row->image) }}" alt="" />
+
           </div>
            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">FOOTER CONTENT</h5>
+                         <h5 class="text-uppercase">{{ $row->judul }}</h5>
+
 
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Molestiae modi cum ipsam ad, illo possimus laborum ut
-              reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
-              Reiciendis assumenda iusto sapiente inventore animi?
+            {{ $row->deskripsi }}
             </p>
           </div>
            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-            <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
-            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+            <h6 class="text-uppercase mb-4 font-weight-bold">Kontak Kami:</h6>
+            <p>              <img src="{{ asset ('landing/images/ahome.png') }}" alt=""> {{ $row->alamat }}</p>
+            <p>  <img src="{{ asset ('landing/images/amail.png') }}" alt=""> {{ $row->email }}</p>
+            <p>  <img src="{{ asset ('landing/images/aphone.png') }}" alt="">  {{ $row->phone }}</p>
           </div>
 
           <div class="social_box">
-            <a href="#">
-              <img src="{{ asset ('landing/images/mail.png') }}" alt="">
-            </a>
-            <a href="#">
+          
+            <a href="{{ $row->instagram }}">
               <img src="{{ asset ('landing/images/instagram.png') }}" alt="">
             </a>
-            <a href="#">
+            <a href="{{ $row->youtube }}">
               <img src="{{ asset ('landing/images/youtube.png') }}" alt="">
             </a>
           </div>
@@ -177,6 +174,7 @@
             <h8 class="text-center">SWIS SMKN 8 MALANG</h8>
           </div>
         </div>
+          @endforeach
 
       </div>
     </div>
