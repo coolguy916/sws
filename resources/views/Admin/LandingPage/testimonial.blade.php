@@ -1,7 +1,7 @@
 @extends('layouts.layAdmin')
 @section('content')
-@include('Admin.landingpage.imageslider.add_image_modal')
-@include('Admin.landingpage.imageslider.update_image_modal')
+@include('Admin.landingpage.testimonial.add_testimonial_modal')
+@include('Admin.landingpage.testimonial.update_testimonial_modal')
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -36,10 +36,10 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title mb-2">
-                        {{ __('Image Slider ') }}
+                        {{ __('Testimonial') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addimages">
+                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addtesti">
                             <i class="fas fa-plus"></i> Input Data
                         </a>
 
@@ -51,10 +51,9 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>No</th>
-                                <th>Gambar</th>
-                                <th>Keterangan</th>
-                                                                <th>sub</th>
-                                <th>Status</th>
+                                <th>Nama</th>
+                                <th>Tanggapan Alat</th>
+                               
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -62,22 +61,10 @@
                             @php
                                     $no = 1;
                                     @endphp
-                            @foreach ($slider as $row )
+                            @foreach ($testimonial as $row )
                             <td>{{ $row->id }}</td>
-                            <td> <img src="{{ asset('storage/imageslider/'.$row->image) }}" class="rounded" style="width: 150px"></td>
-                            <td>{{ $row->body}}</td>
-                                                        <td>{{ $row->sub}}</td>
-                            <td>
-                                @if ($row->status == 1)
-                                <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
-                                    ONLINE
-                                </p>
-                                @else
-                                <p class="border border-dark d-inline-flex p-1 text-white bg-dark rounded">
-                                    OFFLINE
-                                </p>
-                                @endif
-                            </td>
+                             <td>{{ $row->judul}}</td>
+                            <td>{{ $row->teks}}</td>
                             <td>
                                 <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
                                 Edit
@@ -91,7 +78,7 @@
                     </table>
 
 <div class="pagination justify-content-center">
-                                       {!! $slider->links() !!}
+                                       {!! $testimonial->links() !!}
             
 </div>                </div>
             </div>

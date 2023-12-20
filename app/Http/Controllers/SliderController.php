@@ -16,10 +16,12 @@ class SliderController extends Controller
     public function create(Request $request) {
         $request->validate([
             'body' => 'required',
+            'sub' => 'required',
             'status' => 'required',
             'image' => 'required|image', 
         ], [
             'body.required' => 'Keterangan Image harus di isi',
+            'sub.required' => 'Keterangan judul harus di isi',
             'image.required' => 'Gambar harus diunggah',
             'image.image' => 'File harus berupa gambar',
         ]);
@@ -31,6 +33,7 @@ class SliderController extends Controller
         $slider = new Slider();
         $slider->image = $imageName;
         $slider->body = $request->body;
+        $slider->sub = $request->sub;
         $slider->status = $request->status;
         $slider->save();  
     

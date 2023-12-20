@@ -400,6 +400,16 @@
               ><span class="hide-menu">Kontak Kita</span></a
             >
           </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.testimoni') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-comment-check"></i
+              ><span class="hide-menu">Testimonial</span></a
+            >
+          </li>
          
 
         </ul>

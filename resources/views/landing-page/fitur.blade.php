@@ -6,36 +6,20 @@
         </h2>
       </div>
       <div class="category_container">
+      @foreach ($fitur as $row )
+        
         <div class="box">
           <div class="img-box">
-            <img src="{{ asset ('landing/images/long.png') }}" alt="">
+            <img src="{{ asset('storage/fitur/'.$row->image) }}" alt="">
           </div>
           <div class="detail-box">
             <h5>
-              Long Distance System
+            {{ $row->teks }}
             </h5>
           </div>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="{{ asset ('landing/images/c2.png') }}" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Web Development
-            </h5>
-          </div>
-        </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="{{ asset ('landing/images/lp.png') }}" alt="">
-          </div>
-          <div class="detail-box">
-            <h5>
-              Flexibility Controll
-            </h5>
-          </div>
-        </div>
+       @endforeach
+
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.layAdmin')
 @section('content')
-@include('Admin.landingpage.imageslider.add_image_modal')
-@include('Admin.landingpage.imageslider.update_image_modal')
+@include('Admin.landingpage.kontak.add_kontak_modal')
+@include('Admin.landingpage.kontak.update_kontak_modal')
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -36,10 +36,10 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title mb-2">
-                        {{ __('Image Slider ') }}
+                        {{ __('Kontak ') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addimages">
+                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addkons">
                             <i class="fas fa-plus"></i> Input Data
                         </a>
 
@@ -52,9 +52,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Gambar</th>
-                                <th>Keterangan</th>
-                                                                <th>sub</th>
+                                <th>Deskripsi</th>
                                 <th>Status</th>
+                                <th>Link</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -62,11 +62,10 @@
                             @php
                                     $no = 1;
                                     @endphp
-                            @foreach ($slider as $row )
+                            @foreach ($kontak as $row )
                             <td>{{ $row->id }}</td>
-                            <td> <img src="{{ asset('storage/imageslider/'.$row->image) }}" class="rounded" style="width: 150px"></td>
-                            <td>{{ $row->body}}</td>
-                                                        <td>{{ $row->sub}}</td>
+                              <td> <img src="{{ asset('storage/kontak/'.$row->image) }}" class="rounded" style="width: 150px"></td>
+                            <td>{{ $row->teks}}</td>
                             <td>
                                 @if ($row->status == 1)
                                 <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
@@ -78,6 +77,7 @@
                                 </p>
                                 @endif
                             </td>
+                            <td>{{ $row->link}}</td>
                             <td>
                                 <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
                                 Edit
@@ -91,7 +91,7 @@
                     </table>
 
 <div class="pagination justify-content-center">
-                                       {!! $slider->links() !!}
+                                       {!! $kontak->links() !!}
             
 </div>                </div>
             </div>

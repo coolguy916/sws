@@ -65,7 +65,7 @@
                                     @endphp
                             @foreach ($keunggulan as $row )
                             <td>{{ $row->id }}</td>
-                              <td> <img src="{{ asset('storage/keunggulan/'.$row->icon) }}" class="rounded" style="width: 150px"></td>
+                              <td> <img src="{{ asset('storage/icon/'.$row->icon) }}" class="rounded" style="width: 150px"></td>
                             <td>{{ $row->judul}}</td>
                             <td>{{ $row->teks}}</td>
                             <td>

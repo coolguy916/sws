@@ -1,11 +1,11 @@
 <!-- Modal -->
-<div class="modal fade" id="addimages" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.slider') }}" method="POST" id="addslider">
+<div class="modal fade" id="addkons" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form action="{{ route('add.kontak') }}" method="POST" id="addkontak">
         @csrf
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Image Slider</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Keunggulan Website</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -13,22 +13,29 @@
                     <div class="">
 
                     </div>
- <div class="form-group row">
-        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul Singkat:</label>
+                     <div class="form-group row">
+        <label for="text" class="col-sm-3 text-right control-label col-form-label">link:</label>
         <div class="col-sm-9">
-            <textarea name="body" id="body" class="form-control"></textarea>
+            <input type="text" class="form-control @error('link') is-invalid @enderror" id="link" name="link" placeholder="Tuliskan Link Button " required>
+            <!-- error message untuk title -->
+            @error('link')
+                <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+ <div class="form-group row">
+        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Deskripsi:</label>
+        <div class="col-sm-9">
+            <textarea name="teks" id="teks" class="form-control"></textarea>
         </div>
     </div>
 
-    <div class="form-group row">
-        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul Singkat:</label>
-        <div class="col-sm-9">
-            <textarea name="sub" id="sub" class="form-control"></textarea>
-        </div>
-    </div>
+   
 
      <div class="form-group row">
-      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Image Slider:</label>
+      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Image:</label>
         <div class="col-sm-9">
      <input type="file" name="image" id="image" class="form-control @error('image')
                                     is-invalid
@@ -57,7 +64,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_image">Save Image Slider</button>
+                        <button type="button" class="btn btn-primary add_kontak">Save Kontak Website</button>
                     </div>
                 </div>
             </div>

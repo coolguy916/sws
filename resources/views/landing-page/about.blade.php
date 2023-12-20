@@ -8,12 +8,16 @@
         </div>
       </div>
       <div class="detail-box">
+  @foreach ($deskripsi as $row )
+    
         <h2>
-          Apa Itu swis?
+            {{ $row->Judul }}
         </h2>
         <h6>
-          SWIS (Smart Watering Innovation System) yang berfokus pada penyiraman tanaman otomatis dengan teknologi kontrol web server. SWIS dapat dikontrol melalui smartphone dengan 2 metode, yakni otomatis dan manual. Otomatis ini dilakukan melakui setting penjadwalan dan manual dilakukan dengan tombol on off sesuai kebutuhan. Produk SWIS ini merupakan hasil karya inovasi siswa SMKN 8 Malang dibidang IoT (Internet of Things) untuk digunakan oleh masyarakat umum baik secara mandiri maupun perkebunan budidaya tanaman.
+        {{ $row->Deskripsi }}
         </h6>
+          @endforeach
+
         <!-- <a href="">
           Read More
         </a> -->

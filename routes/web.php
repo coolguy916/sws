@@ -12,6 +12,9 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\FiturController;
 use App\Http\Controllers\KeunggulanController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\FooterController;
+use App\Http\Controllers\LandingpageController;
 use App\Models\Deskripsi;
 
 /*
@@ -43,8 +46,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
     Route::post('/add-dokumentasi', [DokumentasiController::class, 'create'])->name('add.dokumentasi');
     Route::post('/update-dokumentasi', [DokumentasiController::class, 'update'])->name('update.dokumentasi');
     Route::get('/kontak', [KontakController::class, 'index'])->name('data.kontak');
-    // Route::post('/add-dokumentasi', [KontakController::class, 'create'])->name('add.kontak');
-    // Route::post('/update-dokumentasi', [KontakController::class, 'update'])->name('update.kontak');
+    Route::post('/add-kontak', [KontakController::class, 'create'])->name('add.kontak');
+    Route::post('/update-kontak', [KontakController::class, 'update'])->name('update.kontak');
+    Route::get('/testimoni', [TestimonialController::class, 'index'])->name('data.testimoni');
+    Route::post('/add-testimoni', [TestimonialController::class, 'create'])->name('add.testimoni');
+    Route::post('/update-testimoni', [TestimonialController::class, 'update'])->name('update.testimoni');
+     Route::get('/footer', [FooterController::class, 'index'])->name('data.footer');
+    Route::post('/add-footer', [FooterController::class, 'create'])->name('add.footer');
+    Route::post('/update-footer', [FooterController::class, 'update'])->name('update.footer');
     Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
     Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');
     Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
@@ -86,8 +95,7 @@ Route::controller(StatisticModuleController::class)->group(function(){
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('landing-page.index');
-});
+Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

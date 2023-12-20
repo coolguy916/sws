@@ -34,7 +34,7 @@ class KeunggulanController extends Controller
 
         $icon = $request->file('icon');
         $iconimage = $image->hashName();
-        $icon->storeAs('public/keunggulan', $iconimage);
+        $icon->storeAs('public/icon', $iconimage);
 
         $slider = new Keunggulan();
         $slider->image = $imageName;

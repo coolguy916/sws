@@ -141,54 +141,22 @@
           <div class="info_logo">
             <img src="{{ asset ('landing/images/lg-swis.png') }}" alt="" />
           </div>
+           <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">FOOTER CONTENT</h5>
 
-          <div class="d-flex">
-
-            <div class="mx-5">
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-            </div>
-
-            <div class="mx-5">
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-            </div>
-
-            <div class="mx-5">
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-              <a href="#">
-                <p class="text-white">lorem</p>
-              </a>
-            </div>
-
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Molestiae modi cum ipsam ad, illo possimus laborum ut
+              reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+              Reiciendis assumenda iusto sapiente inventore animi?
+            </p>
+          </div>
+           <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
           </div>
 
           <div class="social_box">

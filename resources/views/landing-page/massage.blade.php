@@ -3,7 +3,9 @@
       <div class="row">
         <div class="col-md-5">
           <div class="img-box">
-            <img src="{{ asset ('landing/images/freelance-img.jpg') }}" alt="">
+          @foreach ($kontak as$row )
+                        <img src="{{ asset('storage/kontak/'.$row->image) }}" alt="">
+          @endforeach
           </div>
         </div>
         <div class="col-md-7">
@@ -13,16 +15,12 @@
                 Kontak Kami:
               </h2>
             </div>
-            <p>
-          Kami siap membantu! Silakan hubungi kami jika Anda memiliki pertanyaan atau butuh bantuan dengan layanan kami.
-            </p>
-            <div class="btn-box">
-              <a href="" class="btn-1">
-               Chat Kami
-              </a>
-             
-            </div>
-          </div>
+            @foreach($kontak as $contact)
+      <p>{{ $contact->teks }}</p>
+      <div class="btn-box">
+        <a href="{{ $contact->link }}" class="btn-1">Chat dengan {{ $contact->name }}</a>
+      </div>
+    @endforeach
         </div>
 
       </div>
