@@ -1,67 +1,58 @@
-<div style="background-color: #779C7E; padding: 20px; padding-bottom: 30px;">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{asset ('landing/slider/fonts/icomoon/style.css') }}">
+
+<link rel="stylesheet" href="{{ asset ('landing/slider/owl.carousel.min.css') }}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{ asset ('landing/slider/bootstrap.min.css') }}">
+
+<link rel="stylesheet" href="{{asset ('landing/slider/slider.css') }}">
+
+<div style="background-color: #779C7E; padding: 20px;">
     <div class="doct">
 
-        <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="owl-carousel slide-one-item">
 
-            <div class="">
-                <h3 class="text-center text-white">Dokumentasi</h3>
-            </div>
+            <div class="d-md-flex testimony-29101 align-items-stretch" style="align-items: center;">
+                <div class="gambar"><img src="{{ asset ('landing/images/yazid.jpg') }}" class="image image d-flex" style="max-width: 500px; width: 100%; height: auto;"></div>
+                <div class="text">
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, at! Atque totam obcaecati veniam eius vero, similique quibusdam! Sunt sequi, nemo. Quam consequuntur ipsum suscipit repellat molestiae laboriosam, incidunt!&rdquo;</p>
 
+                        <div class="author">&mdash; Craig Stephen</div>
+                    </blockquote>
+                </div>
+            </div> <!-- .item -->
 
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-sm-block d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
+            <div class="d-md-flex testimony-29101 align-items-stretch">
+                <div class="gambar"><img src="{{ asset ('landing/images/alat 1.jpg') }}" class="image" style="max-width: 500px; width: 100%; height: auto;"></div>
+                <div class="text">
+                    <blockquote>
+                        <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, at! Atque totam obcaecati veniam eius vero, similique quibusdam! Sunt sequi, nemo. Quam consequuntur ipsum suscipit repellat molestiae laboriosam, incidunt!&rdquo;</p>
+
+                        <div class="author">&mdash; Craig Stephen</div>
+                    </blockquote>
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-sm-block d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset ('landing/images/yazid.jpg') }}" class="d-block mx-auto w-100" style="max-width: 800px; max-height: 800px;">
-                    <div class="carousel-caption d-sm-block d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            </div> <!-- .item -->
+
         </div>
 
         <style>
-            .doct {
-                width: 80%;
-                margin: 0 auto;
-                /* Center the container */
-                position: relative;
-            }
-            .carousel-item img {
-                border-radius: 10px;
-            }
-
-            #carouselExampleCaptions {
-                max-width: 100%;
-                /* Ensure the carousel doesn't exceed 100% width */
+            .gambar {
+               display: flex;
+               align-items: center;
             }
         </style>
 
+        <script src="{{ asset ('landing/slider/js/jquery-3.3.1.min.js')}}"></script>
+        <script src="{{ asset ('landing/slider/js/popper.min.js')}}"></script>
+        <script src="{{ asset ('landing/slider/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset ('landing/slider/js/owl.carousel.min.js')}}"></script>
+        <script src="{{ asset ('landing/slider/js/main.js')}}"></script>
     </div>
 </div>
