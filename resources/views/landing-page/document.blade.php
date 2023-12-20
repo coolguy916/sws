@@ -12,47 +12,39 @@
 <link rel="stylesheet" href="{{ asset ('landing/slider/bootstrap.min.css') }}">
 
 <link rel="stylesheet" href="{{asset ('landing/slider/slider.css') }}">
+ 
+ 
+    <div class="container">
 
-<div style="background-color: #779C7E; padding: 20px;">
-    <div class="doct">
+ <div style="text-align: center; margin-bottom: 20px;">
+  <h2>Dokumentasi</h2>
+</div>
+      <div class="owl-carousel slide-one-item">
+      @foreach($dokumentasi as $row)
 
-        <div class="owl-carousel slide-one-item">
+        <div class="d-md-flex testimony-29101 align-items-stretch">
+          <div class="image" style="background-image: url('{{ asset('storage/dokumentasi/'.$row->image) }}');"></div>
+          <div class="text">
+            <blockquote>
+            <h6 style="color: white;">{{ $row->teks }}</h6>
 
-            <div class="d-md-flex testimony-29101 align-items-stretch" style="align-items: center;">
-                <div class="gambar"><img src="{{ asset ('landing/images/yazid.jpg') }}" class="image image d-flex" style="max-width: 500px; width: 100%; height: auto;"></div>
-                <div class="text">
-                    <blockquote>
-                        <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, at! Atque totam obcaecati veniam eius vero, similique quibusdam! Sunt sequi, nemo. Quam consequuntur ipsum suscipit repellat molestiae laboriosam, incidunt!&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>  <!-- .item -->
+              @endforeach
 
-                        <div class="author">&mdash; Craig Stephen</div>
-                    </blockquote>
-                </div>
-            </div> <!-- .item -->
+          
 
-            <div class="d-md-flex testimony-29101 align-items-stretch">
-                <div class="gambar"><img src="{{ asset ('landing/images/alat 1.jpg') }}" class="image" style="max-width: 500px; width: 100%; height: auto;"></div>
-                <div class="text">
-                    <blockquote>
-                        <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, at! Atque totam obcaecati veniam eius vero, similique quibusdam! Sunt sequi, nemo. Quam consequuntur ipsum suscipit repellat molestiae laboriosam, incidunt!&rdquo;</p>
+      </div>
 
-                        <div class="author">&mdash; Craig Stephen</div>
-                    </blockquote>
-                </div>
-            </div> <!-- .item -->
 
-        </div>
+    </div>
+</div>
 
-        <style>
-            .gambar {
-               display: flex;
-               align-items: center;
-            }
-        </style>
 
         <script src="{{ asset ('landing/slider/js/jquery-3.3.1.min.js')}}"></script>
         <script src="{{ asset ('landing/slider/js/popper.min.js')}}"></script>
         <script src="{{ asset ('landing/slider/js/bootstrap.min.js')}}"></script>
         <script src="{{ asset ('landing/slider/js/owl.carousel.min.js')}}"></script>
         <script src="{{ asset ('landing/slider/js/main.js')}}"></script>
-    </div>
-</div>
+   

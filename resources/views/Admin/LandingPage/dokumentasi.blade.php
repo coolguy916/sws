@@ -1,7 +1,7 @@
 @extends('layouts.layAdmin')
 @section('content')
-{{-- @include('Admin.landingpage.dokumentasi.add_dokumentasi_modal')
-@include('Admin.landingpage.dokumentasi.update_dokumentasi_modal') --}}
+@include('Admin.landingpage.dokumentasi.add_dokumentasi_modal')
+@include('Admin.landingpage.dokumentasi.update_dokumentasi_modal')
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
