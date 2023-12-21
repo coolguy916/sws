@@ -37,4 +37,22 @@ public function create(Request $request) {
     ]);
 }
 
+public function update(Request $request){
+    $request->validate (
+        [
+            'up_lokasi'=>'required',
+        ]);
+
+        $module= Testimonial::find($request->up_id);
+        Testimonial::where('id',$request->up_id)->update([
+            'judul'=>$request->judul,
+            'teks' => $request->teks,
+        ]);
+
+    return response()->json([
+        'status'=>'success',
+    ]);
+
+}
+
 }

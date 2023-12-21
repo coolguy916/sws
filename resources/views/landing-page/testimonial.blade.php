@@ -9,39 +9,22 @@
           </div>
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+                        @foreach($testimoni as $key => $testimonial)
+
+              <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}">
                 <div class="detail-box">
                   <h4>
-                    John Hissona
+                    {{ $testimonial->judul }}
                   </h4>
                   <p>
-                    passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
+                    {{ $testimonial->teks }}
                   </p>
-                  <img src="images/quote.png" alt="">
+                  <img src="landing/images/quote.png" alt="">
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="detail-box">
-                  <h4>
-                    John Hissona
-                  </h4>
-                  <p>
-                    passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
-                  </p>
-                  <img src="images/quote.png" alt="">
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="detail-box">
-                  <h4>
-                    John Hissona
-                  </h4>
-                  <p>
-                    passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If youThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in s
-                  </p>
-                  <img src="images/quote.png" alt="">
-                </div>
-              </div>
+             
+            @endforeach
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="sr-only">Previous</span>
