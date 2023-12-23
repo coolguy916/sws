@@ -25,11 +25,19 @@ h2 {
 /* Carousel 4*/
 .testimony-29101 .image {
   width: 40%;
-  background-size: cover;
-  background-position: center center; }
-  @media (max-width: 991.98px) {
-    .testimony-29101 .image {
-      height: 300px; } }
+  height: 480px; 
+  object-fit: cover; 
+  border-radius: 8px;
+  margin-bottom: 1rem; 
+}
+
+@media (max-width: 991.98px) {
+  .testimony-29101 .image {
+    width: 100%;
+    height: 300px; /* Fixed height for smaller screens */
+  }
+}
+
 
 .testimony-29101 .text {
   width: 60%;
