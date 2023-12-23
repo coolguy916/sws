@@ -63,6 +63,8 @@
 
   .slider_section .detail-box {
     margin-bottom: 75px;
+    justify-content: center;
+    align-items: center;
   }
 
   .slider_section .detail-box .btn-box {

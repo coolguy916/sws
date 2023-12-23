@@ -1119,26 +1119,29 @@
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
-            let role  = $(this).data('role');
-            $('#up_id').val(id);
-            $('#up_role').val(role);
+            let judul  = $(this).data('judul');
+                        let teks  = $(this).data('teks');
 
+            $('#up_id').val(id);
+            $('#judul').val(judul);
+            $('#teks').val(teks);
         });
 
         //update proses system
-          $(document).on('click','.update_user',function(e){
+          $(document).on('click','.update_testi',function(e){
             e.preventDefault();
             let up_id = $('#up_id').val();
-            let up_role = $('#up_role').val();
+            let judul = $('#judul').val();
+                        let teks = $('#teks').val();
             //console.log(up_id+up_lokasi+up_user_id); 
             $.ajax({
-                url:"{{ route('update.user') }}",
+                url:"{{ route('update.testimoni') }}",
                 method:'POST',
-                data:{up_id:up_id,up_role:up_role},
+                data:{up_id:up_id,judul:judul,teks:teks},
                 success:function(res){
                     if(res.status=='success'){
-                        $('#updateModal').modal('hide');
-                        $('#updateproductform')[0].reset();
+                        $('#updatetesti').modal('hide');
+                        $('#updatetestimoni')[0].reset();
                         $('.table').load(location.href+' .table');
                           Command: toastr["success"]("Module Telah berhasil di Update", "Success")
 

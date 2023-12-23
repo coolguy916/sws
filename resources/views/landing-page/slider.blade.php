@@ -22,7 +22,7 @@
         <div class="container-fluid">
         <div class="overlay" style="background-color: black; opacity: 0.2; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
           <div class="row">
-            <div class="col-md-5 offset-md-1" style="align-items: center; position: relative; z-index: 1;">
+            <div class="col-lg-5 offset-md-1" style="align-items: center; position: relative; z-index: 1;">
               <div class="detail-box">
                 <h1>
                   {{ $row->body }} 
@@ -30,9 +30,7 @@
                 <p>
                   {{ $row->sub }}
                 </p>
-                <div class="btn-box">
-                  <a href="/login" class="btn-1">Jelajahi Lebih Lanjut</a>
-                </div>
+                
               </div>
             </div>
           </div>

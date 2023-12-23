@@ -243,6 +243,8 @@ a:focus {
 .slider_section .detail-box p {
   color: #ffffff;
   margin-top: 15px;
+  justify-content: center;
+    align-items: center;
 }
 
 .slider_section .detail-box .btn-box {

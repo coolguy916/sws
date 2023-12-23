@@ -66,7 +66,7 @@
                              <td>{{ $row->judul}}</td>
                             <td>{{ $row->teks}}</td>
                             <td>
-                                <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
+                                <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updatetesti" data-id="{{ $row->id }}" data-judul="{{ $row->judul }}"  data-teks="{{ $row->teks }}" >
                                 Edit
                                 </a>
                                 <a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>

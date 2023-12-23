@@ -17,7 +17,7 @@
     <div class="container">
 
  <div style="text-align: center; margin-bottom: 20px;">
-  <h2>Dokumentasi</h2>
+  <h1>Dokumentasi</h1>
 </div>
       <div class="owl-carousel slide-one-item">
       @foreach($dokumentasi as $row)
