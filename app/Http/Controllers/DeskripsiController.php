@@ -17,6 +17,7 @@ class DeskripsiController extends Controller
       {
         $deskripsi = Deskripsi::firstOrCreate([]);
         $deskripsi->judul = $request->judul;
+        $deskripsi->link = $request->link;
         $deskripsi->deskripsi = $request->deskripsi;
         $deskripsi->save();
              

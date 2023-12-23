@@ -470,6 +470,7 @@
         $('#submitButton').click(function(e) {
             e.preventDefault();
             let judul = $('#judul').val();
+            let link = $('#link').val();
             let deskripsi = $('#deskripsi').val();
 
             $.ajax({
@@ -477,11 +478,12 @@
                 type: 'POST',
                 data: {
                     judul: judul,
+                      link: link,
                     deskripsi: deskripsi,
                 },
                 success: function(response) {
-                   
-                    console.log(response);
+                                   toastr.success('Image Slider Telah berhasil', 'Success');
+
                 },
                 error: function(xhr, status, error) {
                     console.error(error);

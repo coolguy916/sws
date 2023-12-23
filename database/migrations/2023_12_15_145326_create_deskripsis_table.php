@@ -16,6 +16,7 @@ class CreateDeskripsisTable extends Migration
         Schema::create('deskripsis', function (Blueprint $table) {
             $table->id();
             $table->text('Judul')->nullable();
+            $table->text('link')->nullable();
             $table->text('Deskripsi')->nullable();
             $table->timestamps();
         });

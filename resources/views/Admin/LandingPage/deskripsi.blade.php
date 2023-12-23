@@ -56,6 +56,20 @@
             @enderror
         </div>
     </div>
+    <div class="card-body">
+    <div class="form-group row">
+        <label for="text" class="col-sm-3 text-right control-label col-form-label">Link:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control @error('link') is-invalid @enderror" value="{{ old('link', $deskripsi->link) }}" id="link" name="link" placeholder="Tuliskan Link Youtube" required>
+            <!-- error message untuk title -->
+            @error('link')
+                <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
     <div class="form-group row">
         <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Deskripsi Singkat:</label>
         <div class="col-sm-9">
