@@ -1,90 +1,74 @@
 @extends('layouts.app')
 
 @section('content')
-<body style="background-color: #D0E7D2;">
-    
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4 col-sm-8 col-lg-4">
-            <div class="card shadow">
-                <div class="card-header text-center">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3 justify-content-center">
-
-                            <div class="col-md">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus placeholder="Name">
-
+    <div class="d-lg-flex half">
+        <div class="bg order-1 order-md-2" style="background-image: url('{{ asset('assets/authentication/malika.jpg') }}')">
+        </div>
+        <div class="contents order-2 order-md-1">
+            <div class="container bg-white">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <div class="mb-5 mx-auto text-center">
+                            <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="300">
+                        </div>
+                        <form method="POST" action="{{ route('register') }}" autocomplete="off">
+                            @csrf
+                            <div class="form-group first">
+                                <label for="name">Name</label>
+                                <input type="text" name="name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    placeholder="Username" id="name" />
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <span>{{ $message }}</span>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3 justify-content-center text-center">
-                            
-                            <div class="col-md">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Email">
-
+                            <div class="form-group first">
+                                <label for="email">Email</label>
+                                <input type="email" name="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    placeholder="your-email@gmail.com" id="email" />
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <span>{{ $message }}</span>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3 justify-content-center">
-                            
-                            <div class="col-md">
-                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="Phone">
-
+                            <div class="form-group last">
+                                <label for="phone">Phone</label>
+                                <input type="number" name="phone"
+                                    class="form-control @error('phone') is-invalid @enderror" placeholder="************"
+                                    id="phone" />
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <span>{{ $message }}</span>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3 justify-content-center">
-                            
-                            <div class="col-md">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
-
+                            <div class="form-group last">
+                                <label for="password">Password</label>
+                                <input type="password" name="password"
+                                    class="form-control @error('password') is-invalid @enderror" placeholder="Your Password"
+                                    id="password" />
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <span>{{ $message }}</span>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3 justify-content-center">
-                            
-                            <div class="col-md">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
+                            <div class="form-group last">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control @error('password') is-invalid @enderror" placeholder="Your Confirm Password"
+                                    id="password_confirmation" />
                             </div>
-                        </div>
 
-                        <div class="row mb-2 text-center mr-8">
-                            <div class="col-md">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                            <input type="submit" value="Register" class="btn btn-block btn-primary" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
-</body>
