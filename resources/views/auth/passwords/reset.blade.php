@@ -1,59 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
+<div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('{{ asset('assets/authentication/malika.jpg') }}')">
+    </div>
+    <div class="contents order-2 order-md-1">
+        <div class="container bg-white">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-8">
+                    <div class="mb-5 mx-auto text-center">
+                        <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="300">
+                    </div>
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
-
                         <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="row mb-3">
-                            
-                            <div class="col-md-10">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}"  autofocus placeholder="Email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group first">
+                            <label for="email">Email</label>
+                            <input type="email" name="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                placeholder="your-email@gmail.com" id="email" required />
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <span>{{ $message }}</span>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group first">
+                            <label for="password">Password</label>
+                            <input type="password" name="password"
+                                class="form-control" required
+                                placeholder="***********" id="password" />
+                        </div>
+                        <div class="form-group first">
+                            <label for="password-confirmation">Konfirmasi Password</label>
+                            <input type="password" name="password_confirmation"
+                                class="form-control" required
+                                placeholder="***********" id="password-confirmation" />
                         </div>
 
-                        <div class="row mb-3">
-                        
-                            <div class="col-md-10">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required  placeholder="Password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
+                        <input type="submit" value="Perbarui" class="btn btn-block btn-primary" />
                     </form>
                 </div>
             </div>
