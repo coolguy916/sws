@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EspControl;
 use App\Models\Module;
 use App\Models\User;
+use App\Models\kwh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -266,6 +267,21 @@ class EspController extends Controller
 
         return response()->json($currentTime)->header('Content-Type', 'application/json');
 
+    }
+    public function dailyPzem($kwh, $power, $arus, $id_module)
+    {
+
+        $alat = Module::find($id_module);
+
+        kwh::create([
+            'kwh' => $kwh,
+            'power' => $power,
+            'arus' => $arus,
+            'id_user' => $alat->user_id,
+            'id_module' => $id_module
+        ]);
+
+        return response()->json(['message' => 'success'], 200);
     }
 
 }

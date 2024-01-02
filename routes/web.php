@@ -82,6 +82,7 @@ Route::controller(espController::class)->group(function(){
     Route::get('/api/valve/autoDone/{id}/{status}', 'autoDone');
     Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::POST('/update_status', 'updatestatus');
+    Route::get('/api/counter/kwh/{kwh}/{power}/{arus}/{id_module}', 'dailyPZem');
 
 });
 
