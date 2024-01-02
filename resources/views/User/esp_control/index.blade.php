@@ -21,9 +21,6 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="card p-3"><canvas class="mx-full" id="myChart"></canvas></div>
-    </div>
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -81,34 +78,6 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 </div>
-
-<!-- scrpit chart -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Orange1', 'Orange2'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1, 19, 3, 5, 2, 3, 10, 20],
-                borderWidth: 1
-            }]
-            },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            }
-            }
-        });
-    </script>
-
-
     {{-- @forelse ($datas as $data)
         <tr>
         <td>{{ $loop->iteration }}</td>

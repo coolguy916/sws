@@ -15,11 +15,11 @@ class CreateStatisticModulesTable extends Migration
     {
         Schema::create('statistic_modules', function (Blueprint $table) {
             $table->id();
-            // $table->float('watt')->default(0);
-            // $table->float('volt')->default(0);
+            $table->float('watt')->default(0);
+            $table->float('ampe')->default(0);
             $table->float('kwh')->default(0);
-            $table->unsignedBigInteger('id_module');
             $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_module');
 
             $table->timestamps();
 

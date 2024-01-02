@@ -21,6 +21,9 @@ class Kwh extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_module');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_module')->references('id')->on('modules')->onDelete('cascade');
         });
     }
 

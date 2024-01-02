@@ -26,7 +26,7 @@
                 </div>
             </div> --}}
 
-            <div id="dynamicChartsContainer"></div>
+            <div id="dynamicChartsContainer" class="container mt-4"></div>
         </div>
     </div>
 @endsection

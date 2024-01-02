@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\StatisticModule;
+use App\Models\kwh;
 use Carbon\Carbon;
 
 class StatisticModuleController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('User.esp_control.statisticmodule');
     }
 
@@ -18,39 +19,39 @@ class StatisticModuleController extends Controller
     $data = [];
 
     foreach ($modules as $module) {
-        // Retrieve the statisticModules for each module
-        $statisticModules = StatisticModule::where('id_module', $module->id)
-            ->where('id_user', $module->user_id)
-            ->get();
+        $statisticModules = kwh::where('id_module', $module->id)->get();
 
         if ($statisticModules->isNotEmpty()) {
-            $kwhValues = $statisticModules->pluck('kwh')->toArray();
-            $timestamps = $this->formatTimestamps($statisticModules->pluck('created_at')->toArray());
+            $groupedData = $statisticModules->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->format('D');
+            });
 
-            $data[] = [
+            $dailyData = [
                 'moduleId' => $module->id,
                 'moduleTitle' => 'Module ' . $module->id,
-                'labels' => $timestamps,
-                'data' => $kwhValues,
+                'labels' => [],
+                'kwhData' => [],
+                'wattData' => [],
+                'ampeData' => [],
             ];
+
+            foreach ($groupedData as $day => $dayData) {
+                $dailyData['labels'][] = $day;
+                $dailyData['kwhData'][] = $dayData->sum('kwh');
+                $dailyData['wattData'][] = $dayData->sum('power');
+                $dailyData['ampeData'][] = $dayData->sum('arus');
+            }
+
+            $data[] = $dailyData;
         }
     }
 
     return response()->json($data);
 }
-
-private function formatTimestamps($timestamps)
-{
-    $formattedTimestamps = [];
-
-    // Check if $timestamps is an array before trying to loop over it
-    if (is_array($timestamps)) {
-        foreach ($timestamps as $ts) {
-            $formattedTimestamps[] = Carbon::parse($ts)->format('h:i A');
-        }
-    }
-
-    return $formattedTimestamps;
-}
-
+    // private function formatTimestamps($timestamps)
+    // {
+    //     return collect($timestamps)->map(function ($ts) {
+    //         return Carbon::parse($ts)->format('D');
+    //     })->toArray();
+    // }
 }

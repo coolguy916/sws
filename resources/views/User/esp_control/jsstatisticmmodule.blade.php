@@ -76,8 +76,8 @@
                     });
                     moduleContainer.append(canvas);
 
-                    // Create the chart for each module
-                    createChart(canvasId, chartData.labels, chartData.data);
+                    // Create the chart for each module with multiple datasets
+                    createChart(canvasId, chartData.labels, chartData.kwhData, chartData.wattData, chartData.ampeData);
                 });
             },
             error: function(error) {
@@ -86,8 +86,8 @@
         });
     }
 
-    // Function to create a new chart
-    function createChart(chartId, labels, data) {
+    // Function to create a new chart with multiple datasets
+    function createChart(chartId, labels, kwhData, wattData, ampeData) {
         const ctx = document.getElementById(chartId).getContext('2d');
 
         new Chart(ctx, {
@@ -97,11 +97,22 @@
                 datasets: [{
                     type: 'bar',
                     label: 'kWh',
-                    data: data,
-                    backgroundColor: 'rgb(198, 170, 237)',
-                    borderColor: 'rgb(0,38,230)',
+                    data: kwhData,
+                    backgroundColor: '#8ecae6',
                     borderWidth: 1
-                }]
+                }, {
+                    type: 'bar',
+                    label: 'Watt',
+                    data: wattData,
+                    backgroundColor: '#219ebc',
+                    borderWidth: 1
+                }, {
+                    type: 'bar',
+                    label: 'Ampe',
+                    data: ampeData,
+                    backgroundColor: '#03045e',
+                    borderWidth: 1
+                }],
             },
             options: {
                 scales: {
@@ -123,5 +134,5 @@
     createDynamicCharts();
 
     // Set an interval to refresh the charts every 5 minutes (adjust as needed)
-    setInterval(createDynamicCharts, 60000); // 5 minutes in milliseconds
+    setInterval(createDynamicCharts, 5000); // 5 minutes in milliseconds
 </script>
