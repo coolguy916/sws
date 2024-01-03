@@ -9,7 +9,7 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-8">
                         <div class="mb-5 mx-auto text-center">
-                            <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="300">
+                            <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="200">
                         </div>
                         <form method="POST" action="{{ route('login') }}" autocomplete="off">
                             @csrf
@@ -53,6 +53,9 @@
 
                             <input type="submit" value="Log In" class="btn btn-block btn-primary" />
                         </form>
+                        <div class="d-flex justify-content-center py-3">
+                            <span>Sudah punya akun? <a href="{{ route('register') }}">Log In</a></span>
+                        </div>
                     </div>
                 </div>
             </div>

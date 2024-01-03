@@ -7,13 +7,13 @@
         <div class="contents order-2 order-md-1">
             <div class="container bg-white">
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="mb-5 mx-auto text-center">
-                            <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="300">
+                            <img src="{{ asset('assets/images/logo_swis.png') }}" alt="logo Swis" width="200">
                         </div>
-                        <form method="POST" action="{{ route('register') }}" autocomplete="off">
+                        <form style="display: flex; flex-direction: column;" method="POST" action="{{ route('register') }}" autocomplete="off">
                             @csrf
-                            <div class="form-group first">
+                            <div class="py-1">
                                 <label for="name">Name</label>
                                 <input type="text" name="name"
                                     class="form-control @error('name') is-invalid @enderror"
@@ -24,7 +24,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group first">
+                            <div class="py-1">
                                 <label for="email">Email</label>
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror"
@@ -35,7 +35,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group last">
+                            <div class="py-1">
                                 <label for="phone">Phone</label>
                                 <input type="number" name="phone"
                                     class="form-control @error('phone') is-invalid @enderror" placeholder="************"
@@ -46,7 +46,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group last">
+                            <div class="py-1">
                                 <label for="password">Password</label>
                                 <input type="password" name="password"
                                     class="form-control @error('password') is-invalid @enderror" placeholder="Your Password"
@@ -57,7 +57,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group last">
+                            <div class="py-1 mb-3">
                                 <label for="password_confirmation">Confirm Password</label>
                                 <input type="password" name="password_confirmation"
                                     class="form-control @error('password') is-invalid @enderror" placeholder="Your Confirm Password"
