@@ -130,6 +130,7 @@
         });
     }
 
+
     // Call the function to create dynamic charts when the page loads
     createDynamicCharts();
 

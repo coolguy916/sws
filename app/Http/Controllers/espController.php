@@ -262,7 +262,7 @@ class EspController extends Controller
     }
     public function timeSched()
     {
-        $currentTime = array();
+        $currentTime    = array();
         $currentTime = date("Y-m-d H:i:s"); // Use "H" for 24-hour format
 
         return response()->json($currentTime)->header('Content-Type', 'application/json');

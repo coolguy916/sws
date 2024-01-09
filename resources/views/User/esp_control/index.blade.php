@@ -1,5 +1,6 @@
 @extends('layouts.layMain')
 @section('content')
+@include('User.esp_control.schedulemodal')
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
