@@ -44,14 +44,14 @@
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
         @include('layouts.navAdmin')
- 
+
         @yield('content')
 
     </div>
     </div>
 
     <!-- ============================================================== -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <!-- Include SweetAlert CSS and JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -77,7 +77,7 @@
     <script src="{{ asset('assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
-    
+
     <Script>
     $('.delete').click(function() {
         var moduleid = $(this).attr('data-id');
@@ -117,8 +117,8 @@
         $(document).on('click','.add_product',function(e){
             e.preventDefault();
             let lokasi = $('#lokasi').val();
-            let user_id = $('#user_id').val(); 
-            let status = 0; 
+            let user_id = $('#user_id').val();
+            let status = 0;
             //console.log(lokasi+user_id+status);
             $.ajax({
                 url:"{{ route('add.module') }}",
@@ -158,7 +158,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_product_form', function(){
             let id  = $(this).data('id');
@@ -175,8 +175,8 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_lokasi = $('#up_lokasi').val();
-            let up_user_id = $('#up_user_id').val(); 
-            //console.log(up_id+up_lokasi+up_user_id); 
+            let up_user_id = $('#up_user_id').val();
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.module') }}",
                 method:'POST',
@@ -215,13 +215,13 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
-    
+
     <script>
   $(document).on('click', '.delete_product', function (e) {
     e.preventDefault();
@@ -364,8 +364,8 @@
         $(document).on('click','.add_product',function(e){
             e.preventDefault();
             let lokasi = $('#lokasi').val();
-            let user_id = $('#user_id').val(); 
-            let status = 0; 
+            let user_id = $('#user_id').val();
+            let status = 0;
             //console.log(lokasi+user_id+status);
             $.ajax({
                 url:"",
@@ -405,7 +405,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -420,7 +420,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -459,10 +459,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
     <script>
@@ -490,7 +490,7 @@
                 }
             });
         });
-    }); 
+    });
 </script>
 
  <script>
@@ -501,7 +501,7 @@
             let sub = $('#sub').val();
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('body', body);
                 formData.append('sub', sub);
         formData.append('image', image);
@@ -547,7 +547,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -562,7 +562,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -601,10 +601,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
 
@@ -615,7 +615,7 @@
             let teks = $('#teks').val();
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('teks', teks);
         formData.append('image', image);
         formData.append('status', status);
@@ -660,7 +660,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -675,7 +675,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -714,10 +714,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
 
@@ -730,7 +730,7 @@
             let icon = $('#icon')[0].files[0];
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('judul', judul);
         formData.append('teks', teks);
         formData.append('icon', icon);
@@ -777,7 +777,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -792,7 +792,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -831,10 +831,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
    <script>
@@ -845,7 +845,7 @@
             let teks = $('#teks').val();
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('judul', judul);
         formData.append('teks', teks);
         formData.append('image', image);
@@ -891,7 +891,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -906,7 +906,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -945,10 +945,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
 
@@ -960,7 +960,7 @@
             let teks = $('#teks').val();
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('link', link);
         formData.append('teks', teks);
         formData.append('image', image);
@@ -1006,7 +1006,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -1021,7 +1021,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -1060,10 +1060,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
  <script>
@@ -1071,9 +1071,9 @@
         $(document).on('click','.add_testimoni',function(e){
             e.preventDefault();
             let judul = $('#judul').val();
-            let teks = $('#teks').val();  
-          
-             let formData = new FormData(); 
+            let teks = $('#teks').val();
+
+             let formData = new FormData();
         formData.append('judul', judul);
         formData.append('teks', teks);
             //console.log(lokasi+user_id+status);
@@ -1117,7 +1117,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -1135,7 +1135,7 @@
             let up_id = $('#up_id').val();
             let judul = $('#judul').val();
                         let teks = $('#teks').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.testimoni') }}",
                 method:'POST',
@@ -1174,10 +1174,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
 
@@ -1195,7 +1195,7 @@
             let status = $('#status').val();
             let image = $('#image')[0].files[0];
 
-             let formData = new FormData(); 
+             let formData = new FormData();
         formData.append('judul', judul);
         formData.append('deskripsi', deskripsi);
                 formData.append('alamat', alamat);
@@ -1246,7 +1246,7 @@
                 }
             });
         })
-        
+
         //show update value update form
         $(document).on('click','.update_user_form', function(){
              let id  = $(this).data('id');
@@ -1261,7 +1261,7 @@
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id); 
+            //console.log(up_id+up_lokasi+up_user_id);
             $.ajax({
                 url:"{{ route('update.user') }}",
                 method:'POST',
@@ -1300,10 +1300,10 @@
                 }
             });
         })
-           
-    
-        
-        
+
+
+
+
     });
     </script>
 

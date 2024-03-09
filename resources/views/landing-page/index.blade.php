@@ -16,7 +16,7 @@
 
   <!-- bootstrap core css -->
 
- 
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('landing\images\swis-logo.png') }}" />
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
@@ -159,7 +159,7 @@
           </div>
 
           <div class="social_box">
-          
+
             <a href="{{ $row->instagram }}">
               <img src="{{ asset ('landing/images/instagram.png') }}" alt="">
             </a>

@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -31,7 +31,7 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-          
+
             <div class="row">
                 <div class="card">
                     <div class="card-header">
@@ -73,7 +73,7 @@
                                     </td>
                             </tbody>
                             @endforeach()
-                            </table>    
+                            </table>
                     </div>
                 </div>
             </div>

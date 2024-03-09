@@ -13,53 +13,61 @@
                     <div class="">
 
                     </div>
- <div class="form-group row">
-        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul Singkat:</label>
-        <div class="col-sm-9">
-            <textarea name="body" id="body" class="form-control"></textarea>
-        </div>
-    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul
+                            Singkat:</label>
+                        <div class="col-sm-9">
+                            <textarea name="body" id="body" class="form-control"></textarea>
+                        </div>
+                    </div>
 
-    <div class="form-group row">
-        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul Singkat:</label>
-        <div class="col-sm-9">
-            <textarea name="sub" id="sub" class="form-control"></textarea>
-        </div>
-    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Judul
+                            Singkat:</label>
+                        <div class="col-sm-9">
+                            <textarea name="sub" id="sub" class="form-control"></textarea>
+                        </div>
+                    </div>
 
-     <div class="form-group row">
-      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Image Slider:</label>
-        <div class="col-sm-9">
-     <input type="file" name="image" id="image" class="form-control @error('image')
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Image
+                            Slider:</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="image" id="image"
+                                class="form-control @error('image')
                                     is-invalid
-                                @enderror" value="{{old('image')}}" aria-describedby="emailHelp">@error('image')
-                                    {{$message}}
-                                    @enderror
-                                    </div>
-                   </div>
-    
-      <div class="form-group row">
-      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Status Image</label>
-        <div class="col-sm-9">
-    <select name="status" id="status" aria-label="Default select example" class="form-control" >
-                                                        <option value="1">ONLINE</option>
-                                                        <option value="0">OFFLINE</option>
-                                                    </select>
-                                    </div>
-                   </div>
-    
-                 
-
-
-
-                       
-
+                                @enderror"
+                                value="{{ old('image') }}" aria-describedby="emailHelp">
+                            @error('image')
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_image">Save Image Slider</button>
+
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Status
+                            Image</label>
+                        <div class="col-sm-9">
+                            <select name="status" id="status" aria-label="Default select example"
+                                class="form-control">
+                                <option value="1">ONLINE</option>
+                                <option value="0">OFFLINE</option>
+                            </select>
+                        </div>
                     </div>
+
+
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary add_image">Save Image Slider</button>
                 </div>
             </div>
+        </div>
     </form>
 </div>
