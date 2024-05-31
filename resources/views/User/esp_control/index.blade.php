@@ -10,14 +10,14 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">Dashboard</h4>
                 <div class="ms-auto text-end">
-                    <nav aria-label="breadcrumb">
+                    {{-- <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Library
                             </li>
                         </ol>
-                    </nav>
+                    </nav> --}}
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="card-tools">
                         <button type="button" id="addSchedule" class="btn btn-outline-dark btn-md" data-bs-toggle="modal" data-bs-target="#AddScheduleModal">
-                            <i class="fas fa-plus"></i> Input Data
+                            <i class="fas fa-plus"></i> Tambah Jadwal
                         </button>
                     </div>
 
@@ -70,10 +70,6 @@
                 </div>
             </div>
         </div>
-        <footer class="footer text-center mt-4">
-            All Rights Reserved by Matrix-admin. Designed and Developed by
-            <a href="https://www.wrappixel.com">WrapPixel</a>.
-        </footer>
     </div>
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->

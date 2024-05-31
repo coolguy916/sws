@@ -64,8 +64,14 @@
                     $('#dynamicChartsContainer').append(moduleContainer);
 
                     // Add the title to the container
-                    const title = $('<h4>').addClass('page-title').text(moduleTitle);
+                    const title = $('<h3>').addClass('page-title').text(moduleTitle);
                     moduleContainer.append(title);
+
+                    const day30 = $('<h4>').addClass('page-day30').text(moduleTitle);
+                    moduleContainer.append(day30);
+
+                    const day7 = $('<h4>').addClass('page-day7').text(moduleTitle);
+                    moduleContainer.append(day7);
 
                     // Add a canvas for each module
                     const canvasId = 'myChart' + chartData.moduleId;
@@ -135,5 +141,5 @@
     createDynamicCharts();
 
     // Set an interval to refresh the charts every 5 minutes (adjust as needed)
-    setInterval(createDynamicCharts, 5000); // 5 minutes in milliseconds
+    setInterval(createDynamicCharts, 30000); // 5 minutes in milliseconds
 </script>

@@ -23,7 +23,7 @@ class StatisticModuleController extends Controller
 
         if ($statisticModules->isNotEmpty()) {
             $groupedData = $statisticModules->groupBy(function ($item) {
-                return Carbon::parse($item->created_at)->format('D');
+                return Carbon::parse($item->created_at)->format('D, d-m-Y');
             });
 
             $dailyData = [
