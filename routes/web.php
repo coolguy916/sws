@@ -99,4 +99,21 @@ Auth::routes();
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 
 
+// template Baru
+
+// admin
+Route::get('/dashboard', function () {
+    return view('template2.Admin.dashboard');
+});
+
+Route::get('/tables-new', function () {
+    return view('template2.Admin.tables');
+});
+
+Route::get('/form-new', function () {
+    return view('template2.Admin.form');
+});
+
+
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
