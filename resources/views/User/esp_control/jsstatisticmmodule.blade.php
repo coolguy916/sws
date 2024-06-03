@@ -1,49 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include the plugin for datalabels -->
 
-{{-- <script>
-    const ctx1 = document.getElementById('myChart1');
-
-    new Chart(ctx1, {
-        data: {
-            labels: ['00:00 AM', '01:00 AM', '02:00 AM', '03:00 AM', '04:00 AM', '05:00 AM', '06:00 AM',
-                '07:00 AM'
-            ],
-            datasets: [{
-                type: 'bar',
-                label: 'Bar Chart',
-                data: [40, 60, 30, 75, 50, 200, 500, 100],
-                backgroundColor: [
-                    'rgba(153, 102, 255, 0.2)',
-                ],
-                borderColor: [
-                    'rgb(153, 102, 255)',
-                ],
-                borderWidth: 1
-            }, {
-                type: 'line',
-                label: 'Line Chart',
-                data: [40, 60, 30, 75, 50, 200, 500, 100],
-                backgroundColor: [
-                    'rgba(153, 102, 255, 0.2)',
-                ],
-                borderColor: [
-                    'rgb(153, 102, 255)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script> --}}
-
 <script>
     // Function to fetch new data from the server and create dynamic charts
     function createDynamicCharts() {
@@ -67,11 +24,11 @@
                     const title = $('<h3>').addClass('page-title').text(moduleTitle);
                     moduleContainer.append(title);
 
-                    const day30 = $('<h4>').addClass('page-day30').text(moduleTitle);
-                    moduleContainer.append(day30);
+                    // const day30 = $('<h4>').addClass('page-day30').text(moduleTitle);
+                    // moduleContainer.append(day30);
 
-                    const day7 = $('<h4>').addClass('page-day7').text(moduleTitle);
-                    moduleContainer.append(day7);
+                    // const day7 = $('<h4>').addClass('page-day7').text(moduleTitle);
+                    // moduleContainer.append(day7);
 
                     // Add a canvas for each module
                     const canvasId = 'myChart' + chartData.moduleId;
@@ -140,6 +97,6 @@
     // Call the function to create dynamic charts when the page loads
     createDynamicCharts();
 
-    // Set an interval to refresh the charts every 5 minutes (adjust as needed)
-    setInterval(createDynamicCharts, 30000); // 5 minutes in milliseconds
+    // // Set an interval to refresh the charts every 5 minutes (adjust as needed)
+    // setInterval(createDynamicCharts, 3000); // 5 minutes in milliseconds
 </script>
