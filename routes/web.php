@@ -115,5 +115,20 @@ Route::get('/form-new', function () {
 });
 
 
+// user 
+
+Route::get('/dashboard-user', function () {
+    return view('template2.User.dashboard');
+});
+
+Route::get('/tables-user', function () {
+    return view('template2.User.tables');
+});
+
+Route::get('/form-user', function () {
+    return view('template2.User.form');
+});
+
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
