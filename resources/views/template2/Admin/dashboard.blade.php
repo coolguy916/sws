@@ -518,7 +518,7 @@
                       <i class="ni ni-mobile-button text-white opacity-10"></i>
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Devices</h6>
+                      <h6 class="mb-1 text-dark text-sm">Kwh</h6>
                       <span class="text-xs">250 in stock, <span class="font-weight-bold">346+ sold</span></span>
                     </div>
                   </div>
@@ -532,7 +532,7 @@
                       <i class="ni ni-tag text-white opacity-10"></i>
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Tickets</h6>
+                      <h6 class="mb-1 text-dark text-sm">Watts</h6>
                       <span class="text-xs">123 closed, <span class="font-weight-bold">15 open</span></span>
                     </div>
                   </div>
@@ -546,7 +546,7 @@
                       <i class="ni ni-box-2 text-white opacity-10"></i>
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Error logs</h6>
+                      <h6 class="mb-1 text-dark text-sm">Voltage</h6>
                       <span class="text-xs">1 is active, <span class="font-weight-bold">40 closed</span></span>
                     </div>
                   </div>
@@ -560,7 +560,7 @@
                       <i class="ni ni-satisfied text-white opacity-10"></i>
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Happy users</h6>
+                      <h6 class="mb-1 text-dark text-sm">Ampere</h6>
                       <span class="text-xs font-weight-bold">+ 430</span>
                     </div>
                   </div>
