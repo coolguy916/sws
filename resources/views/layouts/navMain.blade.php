@@ -74,10 +74,17 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('statistic.index') }}"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
                         aria-expanded="false">
                         <i class="mdi mdi-chart-bar"></i>
-                        <span class="hide-menu">Statistic</span>
+                        <span class="hide-menu">Realtime Activity</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('statistic.index') }}"
+                        aria-expanded="false">
+                        <i class="fa fa-history" aria-hidden="true"></i>
+                        <span class="hide-menu">Activity History</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">
