@@ -15,6 +15,7 @@ use App\Http\Controllers\KeunggulanController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\ChartDataController;
 use App\Models\Deskripsi;
 
 /*
@@ -28,7 +29,7 @@ use App\Models\Deskripsi;
 |
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::get('/', [App\Http\Controllers\ModuleController::class, 'index'])->name('admin');
     Route::get('/user', [App\Http\Controllers\AdminController::class, 'index'])->name('data.user');
     Route::get('/deskripsi', [App\Http\Controllers\DeskripsiController::class, 'index'])->name('data.deskripsi');
@@ -67,14 +68,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('/schedule', 'index')->name('schedule.index');
     Route::post('schedules', 'store')->name('schedule.store');
-     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
-     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
+    Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
+    Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
     // Route::get('/schedule/create', 'create')->name('schedule.create');
     Route::get('edit-schedule/{id}', 'edit')->name('schedule.edit');
     Route::put('update-schedule/{id}', 'update')->name('schedule.update');
     Route::delete('delete-schedule/{id}', 'destroy')->name('schedule.destroy');
 });
-Route::controller(espController::class)->group(function(){
+Route::controller(espController::class)->group(function () {
     Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::get('/api/valve/manual/{id}', 'manual');
     Route::get('/api/valve/auto/{id}', 'auto');
@@ -86,11 +87,11 @@ Route::controller(espController::class)->group(function(){
 
 });
 
-Route::controller(StatisticModuleController::class)->middleware(['auth', 'HakAkses:user'])->group(function(){
+Route::controller(StatisticModuleController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('/module-statistic', 'index')->name('statistic.index');
 });
 
-Route::controller(StatisticModuleController::class)->group(function(){
+Route::controller(StatisticModuleController::class)->group(function () {
     Route::get('/api/getDynamicChartData', 'getDynamicChartData')->name('statisticdata');
 });
 
@@ -113,7 +114,7 @@ Route::get('/tables-new', function () {
 Route::get('/form-new', function () {
     return view('template2.Admin.form');
 });
-
+Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
 
 // user 
 
