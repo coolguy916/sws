@@ -10580,7 +10580,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #5e72e4 !important;
+  background-color: #779C7E !important;
 }
 
 .bg-secondary {
@@ -21615,8 +21615,8 @@ fieldset:disabled .btn {
 }
 
 .form-switch .form-check-input:checked {
-  border-color: rgba(94, 114, 228, 0.95);
-  background-color: rgba(94, 114, 228, 0.95);
+  border-color: #779C7E;
+  background-color: #779C7E;
 }
 
 .form-switch .form-check-label {
