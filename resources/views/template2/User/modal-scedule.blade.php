@@ -1,5 +1,3 @@
-
-
 <!-- Modal -->
 <div class="modal fade" id="modal-scedule" tabindex="-1" role="dialog" aria-labelledby="modal-scedule" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
