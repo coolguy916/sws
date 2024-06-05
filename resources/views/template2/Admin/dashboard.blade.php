@@ -291,7 +291,7 @@
       </div>
       <!-- end Content Modul Card -->
 
-      
+
       <div class="row mt-4">
         <!-- table Content -->
         <div class="col-lg-7 mb-lg-0 mb-4">
@@ -433,7 +433,7 @@
             </div>
           </div>
         </div>
-        
+
 
         <!-- banner box Curousel -->
         <div class="col-lg-5">
@@ -484,7 +484,7 @@
         </div>
       </div>
 
-      
+
       <div class="row mt-4">
         <!-- statistic -->
         <div class="col-lg-7 mb-lg-0 mb-4">

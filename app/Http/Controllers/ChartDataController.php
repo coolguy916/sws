@@ -19,7 +19,11 @@ class ChartDataController extends Controller
             ->selectRaw('date, SUM(watts_consumption) as watts_consumption')
             ->groupBy('date')
             ->orderBy('date')
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->date = Carbon::parse($item->date)->format('D, d-M-Y');
+                return $item;
+            });
 
         return response()->json($data);
     }
