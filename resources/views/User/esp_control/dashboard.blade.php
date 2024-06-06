@@ -38,30 +38,7 @@
                         </thead>
                         <!-- isi tabel -->
                         <tbody>
-                            {{-- <tr>
-                                <td class="w-30">
-                                    <div class="">
-                                        <div class="ms-3">
-                                            <h6 class="text-sm mb-0">Modul 1</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="text-uppercase ">
-                                        <h6 class="text-sm mb-0">Taman depan</h6>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="text-start ms-3">
-                                        <h6 class="text-sm ">23/04/18</h6>
-                                    </div>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="col text-uppercase ">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </div>
-                                </td>
-                            </tr> --}}
+                          
                         </tbody>
 
                     </table>

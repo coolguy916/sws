@@ -295,5 +295,4 @@ class EspController extends Controller
         $users = User::all();
         return view('User.esp_control.dashboard', compact('espControls', 'modules', 'users'));
     }
-
 }
