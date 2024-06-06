@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('/schedule', 'index')->name('schedule.index');
+    Route::get('/dashboard', 'dashboard')->name('schedule.dashboard');
     Route::post('schedules', 'store')->name('schedule.store');
     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
@@ -103,9 +104,7 @@ Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 // template Baru
 
 // admin
-Route::get('/dashboard', function () {
-    return view('template2.Admin.dashboard');
-});
+
 
 Route::get('/tables-new', function () {
     return view('template2.Admin.tables');

@@ -1,5 +1,7 @@
 @extends('template2.layout.layout_user')
 @section('content')
+@include('User.esp_control.schedulemodal')
+
 <!-- Content Modul Card -->
 <div class="container-fluid py-4">
 
@@ -24,30 +26,34 @@
                     <table class="table align-items-center table-striped">
                         <thead>
                             <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Schedule</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Module Location</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Runtime</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+
                             </tr>
                         </thead>
                         <!-- isi tabel -->
                         <tbody>
-                            <tr>
+                            {{-- <tr>
                                 <td class="w-30">
                                     <div class="">
                                         <div class="ms-3">
-                                            <h6 class="text-sm mb-0"></h6>
+                                            <h6 class="text-sm mb-0">Modul 1</h6>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="text-uppercase ">
-                                        <h6 class="text-sm mb-0"></h6>
+                                        <h6 class="text-sm mb-0">Taman depan</h6>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="text-start ms-3">
-                                        <h6 class="text-sm "></h6>
+                                        <h6 class="text-sm ">23/04/18</h6>
                                     </div>
                                 </td>
                                 <td class="align-middle">
@@ -55,10 +61,7 @@
                                         <span class="badge badge-sm bg-gradient-success">Online</span>
                                     </div>
                                 </td>
-                            </tr>
-                           
-                            
-
+                            </tr> --}}
                         </tbody>
 
                     </table>

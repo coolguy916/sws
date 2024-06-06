@@ -11,16 +11,18 @@
                 if (response.modules) {
                     // Display Modules
                     $.each(response.modules, function (index, module) {
-                        var statusClass = module.status == 1 ? 'led-green' : 'led-black';
+                        var statusClass = module.status == 1 ? 'icon icon-shape bg-gradient-success shadow-success text-center rounded-circle' : 'icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle';
 
                     var moduleHtml =
-                        '<div class="card" style="width: 18rem; margin-right: 10px;">' +
-                        '<div class="card-body rounded-auto text-center">' +
-                        '<div class="' + statusClass + '"></div>' +
-                        '<h5 class="card-title mt-4">Modul ' + (index + 1) + '</h5>' +
-                        '<h6 class="card-subtitle text-muted">' + module.lokasi + '</h6>' +
-                        '<hr class="w-auto border-light">' +
-                        '<div class="form-check form-switch form-switch-xl" style="margin-left: 4.6rem">' +
+                    '<div class="col-lg-3 col-md-4 col-sm-6 mb-4 ps-3 py-2">' +
+                    '<div class="card shadow">' +
+                    '<div class="card-body p-3">' +
+                    '<div class="row">' +
+                  '<div class="col-8">' +
+                        '<div class="numbers">' +
+                            '<p class="text-sm mb-0 text-uppercase font-weight-bold">Modul ' + (index + 1) + '</p>' +
+                            '<h5 class="font-weight-bolder">' + module.lokasi + '</h5>' +
+                            '<div class="form-check form-switch form-switch-xl">' +
                         '<input data-id="' + module.id + '" class="form-check-input togglemodule-class" ' +
                         'data-onstyle="success" data-offstyle="danger" data-toggle="toggle" ' +
                         'data-on="Active" data-off="Inactive" type="checkbox" ' +
@@ -28,7 +30,14 @@
                             '>' +
                             '</div>' +
                             '</div>' +
-                            '</div>';
+                           '</div>' +
+                           '<div class="col-4 text-end">' +
+                        '<div class="' + statusClass + '"></div>' +
+                        '</div>'+
+              '</div>' +
+          '</div>' +
+      '</div>' +
+  '</div>';
 
                         $('#modules-container').append(moduleHtml);
                     });
@@ -114,8 +123,8 @@
 }
 
                     var statusBadge = item.status == 1 ?
-                        '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
-                        '<p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">OFFLINE</p>';
+                        '<p class="badge badge-sm bg-gradient-success">ONLINE</p>' :
+                        '<p class="badge badge-sm bg-gradient-secondary">OFFLINE</p>';
 
                     var actionButtons = '<td>\
                             <button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-sm">Edit</button>\
