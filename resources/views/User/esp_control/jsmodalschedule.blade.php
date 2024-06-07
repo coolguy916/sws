@@ -123,8 +123,8 @@
 }
 
                     var statusBadge = item.status == 1 ?
-                        '<p class="badge badge-sm bg-gradient-success">ONLINE</p>' :
-                        '<p class="badge badge-sm bg-gradient-secondary">OFFLINE</p>';
+                        '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
+                        '<p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">OFFLINE</p>';
 
                     var actionButtons = '<td>\
                             <button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-sm">Edit</button>\

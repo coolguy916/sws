@@ -11,30 +11,27 @@
 
                 <form method="POST" action="{{ route('schedule.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group row">
-                        <label for="schedule" class="col-sm-3 text-end control-label col-form-label">Set
-                            Schedule</label>
-                        <div class="col-sm-9">
-                            <input type="time" required class="schedule form-control"
-                                style="padding: 10px; border: 2px solid #ccc;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="schedule" class="form-control-label">Set Schedule</label>
+                          <input type="time" required class="schedule form-control">
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="runtime" class="col-sm-3 text-end control-label col-form-label">Runtime</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                <input type="number" class="runtime form-control" max="99"
-                                    placeholder="Enter Here" style="padding: 10px; border: 2px solid #ccc;">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Minutes</div>
-                                </div>
-                            </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="runtime" class="form-control-label" >Runtime</label>
+                          <div class="d-flex">
+                            <input type="number" class="runtime form-control" max="99"
+                            placeholder="Enter Here" style="padding: 10px; border: 2px solid #ccc;"><span class="text-center input-group-text">Minute</span>
+                          </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="id_module" class="col-sm-3 text-end control-label col-form-label">Module
-                            Location</label>
-                        <div class="col-sm-9">
+                      </div>
+                   
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="id_module" class="form-control-label" >Module Location</label>
+                          <div class="d-flex">
                             <select class="id_module form-control"
                                 style="width:100%; padding: 5px; border: 2px solid #ccc;">
                                 <option selected disabled>Select Location Module</option>
@@ -42,16 +39,17 @@
                                     <option value="{{ $module->id }}">{{ $module->lokasi }}</option>
                                 @endforeach
                             </select>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                   
                 </form>
             </div>
-            <div class="border-top">
-                <div class="card-body">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary add_schedule">Submit</button>
-                </div>
-            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary add_schedule">Save changes</button>
+              </div>
+           
         </div>
     </div>
 </div>
@@ -67,45 +65,46 @@
             <div class="modal-body">
                 <ul id="update_msgList"></ul>
                 <input type="hidden" id="up_schedule_id" />
-                <div class="form-group row">
-                    <label for="" class="col-sm-3 text-end control-label col-form-label">Set Schedule</label>
-                    <div class="col-sm-9">
-                        <input type="time" id="schedule" required class="form-control"
-                            style="padding: 10px; border: 2px solid #ccc;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="schedule" class="form-control-label">Set Schedule</label>
+                      <input type="time" id="schedule" required class="schedule form-control">
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-3 text-end control-label col-form-label">Runtime</label>
-                    <div class="col-sm-9">
-                        <div class="input-group">
-                            <input type="number" id="runtime" required class="form-control" max="99"
-                                placeholder="Enter Here" style="padding: 10px; border: 2px solid #ccc;">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Minutes</div>
-                            </div>
-                        </div>
+                  </div>
+               
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="runtime" class="form-control-label" >Runtime</label>
+                      <div class="d-flex">
+                        <input type="number" id="runtime" class="runtime form-control" max="99"
+                        placeholder="Enter Here" style="padding: 10px; border: 2px solid #ccc;"><span class="text-center input-group-text">Minute</span>
+                      </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-3 text-end control-label col-form-label">Module Location</label>
-                    <div class="col-sm-9">
-                        <select id="id_module" class="form-control"
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="id_module" class="form-control-label" >Module Location</label>
+                      <div class="d-flex">
+                        <select id="id_module" class="id_module form-control"
                             style="width:100%; padding: 5px; border: 2px solid #ccc;">
                             <option selected disabled>Select Location Module</option>
                             @foreach ($modules as $module)
-                                <option value="{{ $module->id }}"> {{ $module->lokasi }}</option>
+                                <option value="{{ $module->id }}">{{ $module->lokasi }}</option>
                             @endforeach
                         </select>
+                      </div>
                     </div>
-                </div>
+                  </div>
+
+                
 
             </div>
-            <div class="border-top">
-                <div class="card-body">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary update_schedule">Update</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary update_schedule">Save changes</button>
             </div>
+           
         </div>
     </div>
 </div>
