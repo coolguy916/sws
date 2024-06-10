@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 {{-- Template Chart --}}
 {{-- <script>
@@ -118,7 +116,7 @@
 </script> --}}
 
 
-{{-- Dynamic Chart --}}
+{{-- Dynamic Watts Consumption Chart --}}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         $.ajax({
@@ -126,7 +124,7 @@
             url: "/chart-data",
             dataType: 'json',
             success: function(data) {
-                var ctx1 = document.getElementById("chart-line").getContext("2d");
+                var ctx1 = document.getElementById("chart-watts").getContext("2d");
 
                 var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
@@ -239,4 +237,3 @@
         });
     });
 </script>
-

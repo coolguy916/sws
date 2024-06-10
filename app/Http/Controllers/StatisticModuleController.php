@@ -17,9 +17,12 @@ class StatisticModuleController extends Controller
 {
     $modules = Module::all();
     $data = [];
+    $userId = auth()->user()->id;
 
     foreach ($modules as $module) {
-        $statisticModules = kwh::where('id_module', $module->id)->get();
+        $statisticModules = kwh::where('id_module', $module->id)
+                           ->where('id_user', $userId)
+                           ->get();
 
         if ($statisticModules->isNotEmpty()) {
             $groupedData = $statisticModules->groupBy(function ($item) {

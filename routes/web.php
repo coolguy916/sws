@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesConsumptionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\espController;
 use App\Http\Controllers\AdminController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ChartDataController;
+use App\Models\CategoriesConsumption;
 use App\Models\Deskripsi;
 
 /*
@@ -67,7 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
 // Route::resource('/schedule', \App\Http\Controllers\espController::class);
 Route::controller(espController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
     Route::get('/schedule', 'index')->name('schedule.index');
+    // new dashboard
     Route::get('/dashboard', 'dashboard')->name('schedule.dashboard');
+
     Route::post('schedules', 'store')->name('schedule.store');
     Route::get('fetch-usermodules', 'fetchusermodule')->name('moduleuser.fetch');
     Route::get('fetch-schedules', 'fetchschedule')->name('schedule.fetch');
@@ -119,11 +123,7 @@ Route::get('/form-new', function () {
 });
 Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
 
-// user 
-
-Route::get('/dashboard-user', function () {
-    return view('template2.User.dashboard');
-});
+// user
 
 Route::get('/tables-user', function () {
     return view('template2.User.tables');
@@ -133,6 +133,9 @@ Route::get('/form-user', function () {
     return view('template2.User.form');
 });
 
+Route::controller(CategoriesConsumptionController::class)->group(function () {
+    Route::get('/categories-consumtion','consumption_data')->name('categories.data');
+});
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

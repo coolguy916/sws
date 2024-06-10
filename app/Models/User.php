@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Module::class);
     }
+
+    public function categories_consumption()
+    {
+        return $this->hasMany(CategoriesConsumption::class);
+    }
 }
