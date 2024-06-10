@@ -85,6 +85,10 @@ Route::controller(espController::class)->group(function () {
     Route::get('switch-statusmodule', [App\Http\Controllers\ModuleController::class, 'switchstatus'])->name('switchmodule.status');
     Route::POST('/update_status', 'updatestatus');
     Route::get('/api/counter/kwh/{kwh}/{power}/{arus}/{id_module}', 'dailyPZem');
+    Route::post('/api/counter/schedule/{kwh}/{power}/{id_module}', 'scheduledCounter');
+    Route::post('/api/counter/daily/{kwh}/{power}/{id_module}', 'dailyCounter');
+    Route::put('/api/counter/Realtime/{kwh}/{power}/{voltage}/{ampere}/{id_module}', 'realtimeCounter');
+
 
 });
 

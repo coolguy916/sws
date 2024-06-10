@@ -6,6 +6,9 @@ use App\Models\EspControl;
 use App\Models\Module;
 use App\Models\User;
 use App\Models\kwh;
+use App\Models\WattsConsumptionScheduled;
+use App\Models\WattsConsumptionDaily;
+use App\Models\WattsConsumptionRealtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -262,12 +265,14 @@ class EspController extends Controller
     }
     public function timeSched()
     {
-        $currentTime    = array();
+        $currentTime = array();
         $currentTime = date("Y-m-d H:i:s"); // Use "H" for 24-hour format
 
         return response()->json($currentTime)->header('Content-Type', 'application/json');
 
     }
+
+
     public function dailyPzem($kwh, $power, $arus, $id_module)
     {
 
@@ -283,6 +288,79 @@ class EspController extends Controller
 
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function scheduledCounter($kwh, $power, $id_module)
+    {
+        $alat = Module::find($id_module);
+
+        if (!$alat) {
+            return response()->json(['error' => 'Module not found'], 404);
+        }
+
+        WattsConsumptionScheduled::create([
+            'kwh' => $kwh,
+            'power' => $power,
+            'id_user' => $alat->id_user,
+            'id_module' => $id_module
+        ]);
+
+        return response()->json(['message' => 'Scheduled data saved successfully'], 200);
+    }
+
+    // Daily counter method
+    public function dailyCounter($kwh, $power, $id_module)
+    {
+        $alat = Module::find($id_module);
+
+        if (!$alat) {
+            return response()->json(['error' => 'Module not found'], 404);
+        }
+
+        WattsConsumptionDaily::create([
+            'kwh' => $kwh,
+            'power' => $power,
+            'id_user' => $alat->id_user,
+            'id_module' => $id_module
+        ]);
+        return response()->json(['message' => 'Daily data saved successfully'], 200);
+    }
+
+    public function realtimeCounter(Request $request, $kwh, $power, $voltage, $ampere, $id_module)
+    {
+        $alat = Module::find($id_module);
+
+        if (!$alat) {
+            return response()->json(['error' => 'Module not found'], 404);
+        }
+
+        // Find the latest record for the given module ID
+        $realtime = WattsConsumptionRealtime::where('id_module', $id_module)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        // If a record exists, update it. Otherwise, create a new one.
+        if ($realtime) {
+            $realtime->update([
+                'kwh' => $kwh,
+                'power' => $power,
+                'voltage' => $voltage,
+                'ampere' => $ampere,
+                'id_user' => $alat->id_user
+            ]);
+        } else {
+            WattsConsumptionRealtime::create([
+                'kwh' => $kwh,
+                'power' => $power,
+                'voltage' => $voltage,
+                'ampere' => $ampere,
+                'id_user' => $alat->id_user,
+                'id_module' => $id_module
+            ]);
+        }
+
+        return response()->json(['message' => 'Realtime data updated successfully'], 200);
+    }
+
 
     public function dashboard()
     {
