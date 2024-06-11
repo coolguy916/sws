@@ -15,9 +15,9 @@
                 console.log(moduleOn)
                 if (data !== null) {
                     $('#kwh-categories').text( data.kwh + ' kwh');
-                    $('#watt-categories').text( data.watt + ' watt');
-                    $('#volt-categories').text( data.volt + ' volt');
-                    $('#ampe-categories').text( data.ampe + ' ampe');
+                    $('#watt-categories').text( data.power + ' watt');
+                    $('#volt-categories').text( data.voltage + ' volt');
+                    $('#ampe-categories').text( data.ampere + ' ampe');
                 } else {
                     $('#kwh-categories').text('00 kwh');
                     $('#watt-categories').text('00 watt');

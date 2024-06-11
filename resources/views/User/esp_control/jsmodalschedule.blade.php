@@ -4,68 +4,77 @@
             type: "GET",
             url: "/fetch-usermodules",
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 $('#modules-container').html('');
 
                 // Check if response.modules is defined
                 if (response.modules) {
                     // Display Modules
-                    $.each(response.modules, function (index, module) {
-                        var statusClass = module.status == 1 ? 'icon icon-shape bg-gradient-success shadow-success text-center rounded-circle' : 'icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle';
+                    $.each(response.modules, function(index, module) {
+                        var statusClass = module.status == 1 ?
+                            'icon icon-shape bg-gradient-success shadow-success text-center rounded-circle' :
+                            'icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle';
 
-                    var moduleHtml =
-                    '<div class="col-lg-3 col-md-4 col-sm-6 mb-4 ps-3 py-2">' +
-                    '<div class="card shadow">' +
-                    '<div class="card-body p-3">' +
-                    '<div class="row">' +
-                  '<div class="col-8">' +
-                        '<div class="numbers">' +
-                            '<p class="text-sm mb-0 text-uppercase font-weight-bold">Modul ' + (index + 1) + '</p>' +
+                        var moduleHtml =
+                            '<div class="col-lg-3 col-md-4 col-sm-6 mb-4 ps-3 py-2">' +
+                            '<div class="card shadow">' +
+                            '<div class="card-body p-3">' +
+                            '<div class="row">' +
+                            '<div class="col-8">' +
+                            '<div class="numbers">' +
+                            '<p class="text-sm mb-0 text-uppercase font-weight-bold">Modul ' + (
+                                index + 1) + '</p>' +
                             '<h5 class="font-weight-bolder">' + module.lokasi + '</h5>' +
                             '<div class="form-check form-switch form-switch-xl">' +
-                        '<input data-id="' + module.id + '" class="form-check-input togglemodule-class" ' +
-                        'data-onstyle="success" data-offstyle="danger" data-toggle="toggle" ' +
-                        'data-on="Active" data-off="Inactive" type="checkbox" ' +
+                            '<input data-id="' + module.id +
+                            '" class="form-check-input togglemodule-class" ' +
+                            'data-onstyle="success" data-offstyle="danger" data-toggle="toggle" ' +
+                            'data-on="Active" data-off="Inactive" type="checkbox" ' +
                             (module.status == 1 ? 'checked' : '') +
                             '>' +
                             '</div>' +
                             '</div>' +
-                           '</div>' +
-                           '<div class="col-4 text-end">' +
-                        '<div class="' + statusClass + '"></div>' +
-                        '</div>'+
-              '</div>' +
-          '</div>' +
-      '</div>' +
-  '</div>';
+                            '</div>' +
+                            '<div class="col-4 text-end">' +
+                            '<div class="' + statusClass + '"></div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
 
                         $('#modules-container').append(moduleHtml);
                     });
                 }
 
                 // Add event delegation for the checkbox changes
-                $('#modules-container').off('change', '.togglemodule-class').on('change', '.togglemodule-class', function() {
-                    var status_module = $(this).prop('checked') == true ? 1 : 0;
-                    var module_id = $(this).data('id');
+                $('#modules-container').off('change', '.togglemodule-class').on('change',
+                    '.togglemodule-class',
+                    function() {
+                        var status_module = $(this).prop('checked') == true ? 1 : 0;
+                        var module_id = $(this).data('id');
 
-                    $.ajax({
-                        type: "GET",
-                        dataType: "json",
-                        url: "/switch-statusmodule",
-                        data: {'status' : status_module, 'module_id' : module_id},
-                        success: function(data){
-                            if (data.status == 1) {
-                                toastr.success('Module is now ON');
-                            } else if (data.status == 0) {
-                                toastr.success('Module is now OFF');
-                            } else {
-                                toastr.warning('Unknown status');
-                            }
-                        },
+                        $.ajax({
+                            type: "GET",
+                            dataType: "json",
+                            url: "/switch-statusmodule",
+                            data: {
+                                'status': status_module,
+                                'module_id': module_id
+                            },
+                            success: function(data) {
+                                if (data.status == 1) {
+                                    toastr.success('Module is now ON');
+                                } else if (data.status == 0) {
+                                    toastr.success('Module is now OFF');
+                                } else {
+                                    toastr.warning('Unknown status');
+                                }
+                            },
+                        });
                     });
-                });
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.error('Error fetching user modules:', status);
             }
         });
@@ -90,7 +99,7 @@
                     var timeParts = item.schedule.split(':');
                     var formattedTime = '';
                     if (timeParts.length === 3) {
-                         var hours = parseInt(timeParts[0]);
+                        var hours = parseInt(timeParts[0]);
                         var minutes = parseInt(timeParts[1]);
                         formattedTime = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
                             '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
@@ -100,44 +109,46 @@
                         var minutes = now.getMinutes();
                         var ampm = hours >= 12 ? 'PM' : 'AM';
                         hours = hours % 12 || 12;
-                        var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
+                        var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes +
+                            ' ' + ampm;
                     }
                     if (formattedTime === formattedTimenow) {
-    $.ajax({
-        url: '/update_status',
-        method: 'POST',
-        data: {
+                        $.ajax({
+                            url: '/update_status',
+                            method: 'POST',
+                            data: {
 
-            id: item.id,
-            status: 1
-        },
-        success: function(response) {
-            console.log('Status updated successfully:', response);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error updating status:', error);
-        }
-    });
-} else {
-    console.log('Requirements not met to update status.');
-}
+                                id: item.id,
+                                status: 1
+                            },
+                            success: function(response) {
+                                console.log('Status updated successfully:', response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error updating status:', error);
+                            }
+                        });
+                    } else {
+                        console.log('Requirements not met to update status.');
+                    }
 
                     var statusBadge = item.status == 1 ?
                         '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
                         '<p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">OFFLINE</p>';
 
-                    var actionButtons = '<td>\
+                    var actionButtons = '<td class="text-center text-sm">\
                             <button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-sm">Edit</button>\
                             <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button>\
                             </td>';
 
                     $('tbody').append('<tr>\
-                        <td>' + (key + 1) + '</td>\
-                        <td>' + formattedTime + '</td>\
-                        <td>' + item.lokasi + '</td>\
-                        <td>' + item.runtime + '</td>\
-                        <td>' + statusBadge + '</td>' + actionButtons + '\
-                </tr>');
+                        <td class="text-center text-sm">' + (key + 1) + '</td>\
+                        <td class="text-center text-sm">' + formattedTime + '</td>\
+                        <td class="text-center text-sm">' + item.lokasi + '</td>\
+                        <td class="text-center text-sm">' + item.runtime + ' Minutes</td>\
+                        <td class="text-center text-sm">' + statusBadge + '</td>' + actionButtons + '\
+                    </tr>');
+
                 });
 
                 // // Add pagination links
@@ -166,9 +177,9 @@
                 // }
 
             },
-            error: function (xhr, status, error) {
-            console.error('Error fetching schedule : ', status);
-        }
+            error: function(xhr, status, error) {
+                console.error('Error fetching schedule : ', status);
+            }
         });
     }
 
@@ -183,7 +194,7 @@
             // console.log(fetchcount++);
             fetchschedule();
             fetchusermodule();
-        }, 2500); // 60,000 milliseconds = 1 minute
+        }, 1000); // 60,000 milliseconds = 1 minute
 
         // CREATE FUNCTION
         $(document).on('click', '.add_schedule', function(e) {
