@@ -92,8 +92,6 @@ Route::controller(espController::class)->group(function () {
     Route::post('/api/counter/schedule/{kwh}/{power}/{id_module}', 'scheduledCounter');
     Route::post('/api/counter/daily/{kwh}/{power}/{id_module}', 'dailyCounter');
     Route::put('/api/counter/Realtime/{kwh}/{power}/{voltage}/{ampere}/{id_module}', 'realtimeCounter');
-
-
 });
 
 Route::controller(StatisticModuleController::class)->middleware(['auth', 'HakAkses:user'])->group(function () {
