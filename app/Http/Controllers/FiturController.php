@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fitur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; 
 
 class FiturController extends Controller
 {
@@ -61,5 +62,26 @@ class FiturController extends Controller
     
         return response()->json(['status' => 'success']);
     }
+
+    public function deletefitur(Request $request)
+{
+    try {
+        $request->validate([
+            'fitur_id' => 'required|exists:fiturs,id',
+        ]);
+
+        $slider = fitur::findOrFail($request->fitur_id);
+
+        if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
+            Storage::delete('public/fitur'.$slider->image);
+        }
+       
+        $slider->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+    }
+}
     
 }

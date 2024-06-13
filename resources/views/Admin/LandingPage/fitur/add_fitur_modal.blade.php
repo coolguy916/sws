@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="addimagefitur" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.fitur') }}" method="POST" id="addfitur">
+<div class="modal fade" id="fitur" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="addfitur" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="fitur_id" id="fitur_id">
         <div class="modal-dialog">

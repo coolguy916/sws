@@ -27,9 +27,9 @@
                         {{ __('Kontak ') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addkons">
-                            <i class="fas fa-plus"></i> Input Data
-                        </a>
+                        <button type="button" class="btn btn-outline-dark btn-sm open_kontak" data-bs-toggle="modal" data-bs-target="#kontak">
+                            <i class="fas fa-plus"></i> Add kontak
+                        </button>
 
                     </div>
                 </div>
@@ -51,6 +51,8 @@
                                     $no = 1;
                                     @endphp
                             @foreach ($kontak as $row )
+                            <tr class="kontak-row" data-id="{{ $row->id }}">
+
                             <td>{{ $row->id }}</td>
                               <td> <img src="{{ asset('storage/kontak/'.$row->image) }}" class="rounded" style="width: 150px"></td>
                             <td>{{ $row->teks}}</td>
@@ -67,10 +69,11 @@
                             </td>
                             <td>{{ $row->link}}</td>
                             <td>
-                                <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
-                                Edit
-                                </a>
-                                <a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+                                <button type="button" class="btn btn-primary edit_kontak" data-id="{{ $row->id }}" data-link="{{ $row->link }}" data-teks="{{ $row->teks }}" data-status="{{ $row->status }}">Edit</button>
+
+                                <button type="button" class="btn btn-danger delete_kontak" data-id="{{ $row->id }}">
+                                    Delete
+                                </button>                                  
                             </td>
 
                             </tr>

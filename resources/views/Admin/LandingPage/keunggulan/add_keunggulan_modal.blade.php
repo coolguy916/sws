@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="addform" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.keunggulan') }}" method="POST" id="addkeunggulan">
+<div class="modal fade" id="keunggulan" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="addkeunggulan" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="keunggulan_id" id="keunggulan_id"> <!-- Hidden field for slider ID -->
 

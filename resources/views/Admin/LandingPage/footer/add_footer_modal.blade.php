@@ -1,7 +1,8 @@
 <!-- Modal -->
-<div class="modal fade" id="addfoot" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.footer') }}" method="POST" id="addfooter">
+<div class="modal fade" id="footer" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="addfooter" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="footer_id" id="footer_id">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -126,7 +127,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_footer">Save Fitur</button>
+                        <button type="button" class="btn btn-primary save_footer">Save Fitur</button>
                     </div>
                 </div>
             </div>

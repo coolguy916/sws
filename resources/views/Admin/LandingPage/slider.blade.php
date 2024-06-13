@@ -27,10 +27,10 @@
                         {{ __('Image Slider ') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addimages">
-                            <i class="fas fa-plus"></i> Input Data
-                        </a>
-
+                        <button type="button" class="btn btn-outline-dark btn-sm open_slider" data-bs-toggle="modal" data-bs-target="#addimages">
+                            <i class="fas fa-plus"></i> Add Image Slider
+                        </button>
+                        
                     </div>
                 </div>
                 <div class="card-body overflow-auto">
@@ -65,7 +65,9 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary edit_image" data-id="{{ $row->id }}" data-body="{{ $row->body }}" data-sub="{{ $row->sub }}" data-status="{{ $row->status }}">Edit</button>
-                                    <a href="" class="btn btn-danger btn-sm delete_product" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+                                    <button type="button" class="btn btn-danger delete_slider" data-id="{{ $row->id }}">
+                                        Delete
+                                    </button>                                
                                 </td>
                             </tr>
                             @endforeach

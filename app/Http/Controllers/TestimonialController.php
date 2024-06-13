@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; 
 
 class TestimonialController extends Controller
 {
@@ -37,23 +38,39 @@ public function create(Request $request) {
     ]);
 }
 
-public function update(Request $request){
-    $request->validate (
-        [
-            'judul'=>'required',
-            'teks'=>'required',
-        ]);
-
-        $testimonial= Testimonial::find($request->up_id);
-        Testimonial::where('id',$request->up_id)->update([
-            'judul'=>$request->judul,
-            'teks' => $request->teks,
-        ]);
-
-    return response()->json([
-        'status'=>'success',
+public function update(Request $request)
+{
+    $request->validate([
+        'judul' => 'required',
+        'teks' => 'required',
+       
     ]);
 
+    $slider = Testimonial::find($request->testimoni_id);
+    $slider->teks = $request->teks;
+    $slider->judul = $request->judul;
+    $slider->save();
+
+    return response()->json(['status' => 'success']);
+}
+
+public function delete(Request $request)
+{
+    try {
+        $request->validate([
+            'testimoni_id' => 'required|exists:testimonials,id',
+        ]);
+
+        $slider = Testimonial::findOrFail($request->testimoni_id);
+
+
+       
+        $slider->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+    }
 }
 
 }

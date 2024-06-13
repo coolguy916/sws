@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="adddocs" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.dokumentasi') }}" method="POST" id="adddokumentasi">
+<div class="modal fade" id="dokumentasi" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="adddocs" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="docs_id" id="docs_id">
 

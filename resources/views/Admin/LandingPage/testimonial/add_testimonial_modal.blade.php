@@ -1,7 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="addtesti" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.testimoni') }}" method="POST" id="addtestimoni">
+<div class="modal fade" id="testimoni" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="addtestimoni" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="testimoni_id" id="testimoni_id">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,7 +46,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_testimoni  ">Save Kontak Website</button>
+                        <button type="button" class="btn btn-primary save_testimoni  ">Save Kontak Website</button>
                     </div>
                 </div>
             </div>

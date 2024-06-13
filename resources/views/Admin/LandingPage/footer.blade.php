@@ -27,9 +27,9 @@
                         {{ __('Fitur-fitur ') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addfoot">
-                            <i class="fas fa-plus"></i> Input Data
-                        </a>
+                        <button type="button" class="btn btn-outline-dark btn-sm open_footer" data-bs-toggle="modal" data-bs-target="#footer">
+                            <i class="fas fa-plus"></i> Add Footer
+                        </button>
 
                     </div>
                 </div>
@@ -77,10 +77,11 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
-                                Edit
-                                </a>
-                                <a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+                                <button type="button" class="btn btn-primary edit_footer" data-id="{{ $row->id }}" data-judul="{{ $row->judul }}" data-deskripsi="{{ $row->deskripsi }}" data-alamat="{{ $row->alamat }}" data-email="{{ $row->email }}" data-phone="{{ $row->phone }}" data-youtube="{{ $row->youtube }}" data-instagram="{{ $row->instagram }}" data-status="{{ $row->status }}">Edit</button>
+
+                                <button type="button" class="btn btn-danger delete_footer" data-id="{{ $row->id }}">
+                                    Delete
+                                </button>                                
                             </td>
 
                             </tr>

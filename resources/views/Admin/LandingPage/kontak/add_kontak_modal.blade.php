@@ -1,7 +1,8 @@
 <!-- Modal -->
-<div class="modal fade" id="addkons" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.kontak') }}" method="POST" id="addkontak">
+<div class="modal fade" id="kontak" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <form id="addkontak" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="kontak_id" id="kontak_id">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,7 +65,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_kontak">Save Kontak Website</button>
+                        <button type="button" class="btn btn-primary save_kontak">Save Kontak Website</button>
                     </div>
                 </div>
             </div>

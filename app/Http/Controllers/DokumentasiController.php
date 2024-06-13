@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokumentasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; 
 
 class DokumentasiController extends Controller
 {
@@ -64,4 +65,28 @@ class DokumentasiController extends Controller
     
         return response()->json(['status' => 'success']);
     }
+
+    public function deletedokumentasi(Request $request)
+{
+    try {
+        $request->validate([
+            'docs_id' => 'required|exists:dokumentasis,id',
+        ]);
+
+        $slider = Dokumentasi::findOrFail($request->docs_id);
+
+        if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
+            Storage::delete('public/fitur'.$slider->image);
+        }
+       
+        $slider->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+    }
 }
+}
+
+   
+

@@ -27,9 +27,9 @@
                         {{ __('Dokumentasi') }}
                     </h2>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#adddocs">
-                            <i class="fas fa-plus"></i> Input Data
-                        </a>
+                        <button type="button" class="btn btn-outline-dark btn-sm open_dokumentasi" data-bs-toggle="modal" data-bs-target="#dokumentasi">
+                            <i class="fas fa-plus"></i> Add Dokumentasi
+                        </button>
 
                     </div>
                 </div>
@@ -72,7 +72,9 @@
                                 
                                 <button type="button" class="btn btn-primary edit_dokumentasi" data-id="{{ $row->id }}" data-teks="{{ $row->teks }}" data-judul="{{ $row->judul }}"   data-status="{{ $row->status }}">Edit</button>
 
-                                <a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+                                <button type="button" class="btn btn-danger delete_dokumentasi" data-id="{{ $row->id }}">
+                                    Delete
+                                </button>                               
                             </td>
 
                             </tr>
