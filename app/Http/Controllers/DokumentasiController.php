@@ -39,4 +39,29 @@ class DokumentasiController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'teks' => 'required',
+            'judul' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required',
+        ]);
+    
+        $slider = Dokumentasi::find($request->docs_id);
+        $slider->teks = $request->teks;
+        $slider->judul = $request->judul;
+        $slider->status = $request->status;
+    
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->storeAs('public/dokumentasi', $imageName);
+            $slider->image = $imageName;
+        }
+    
+        $slider->save();
+    
+        return response()->json(['status' => 'success']);
+    }
 }

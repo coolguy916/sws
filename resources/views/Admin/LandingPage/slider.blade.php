@@ -8,19 +8,7 @@
     <!-- ============================================================== -->
     <div class="page-breadcrumb">
         <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Dashboard</h4>
-                <div class="ms-auto text-end">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                Library
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+           
         </div>
 
     </div>
@@ -63,28 +51,22 @@
                                     $no = 1;
                                     @endphp
                             @foreach ($slider as $row )
-                            <td>{{ $row->id }}</td>
-                            <td> <img src="{{ asset('storage/imageslider/'.$row->image) }}" class="rounded" style="width: 150px"></td>
-                            <td>{{ $row->body}}</td>
-                                                        <td>{{ $row->sub}}</td>
-                            <td>
-                                @if ($row->status == 1)
-                                <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
-                                    ONLINE
-                                </p>
-                                @else
-                                <p class="border border-dark d-inline-flex p-1 text-white bg-dark rounded">
-                                    OFFLINE
-                                </p>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="" class="btn btn-warning btn-sm update_product_form" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}"  data-user-id="{{ auth()->user()->id }}" >
-                                Edit
-                                </a>
-                                <a href="" class="btn btn-danger btn-sm delete_product " data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
-                            </td>
-
+                            <tr class="slider-row" data-id="{{ $row->id }}">
+                                <td>{{ $row->id }}</td>
+                                <td><img src="{{ asset('storage/imageslider/'.$row->image) }}" class="rounded" style="width: 150px"></td>
+                                <td>{{ $row->body }}</td>
+                                <td>{{ $row->sub }}</td>
+                                <td>
+                                    @if ($row->status == 1)
+                                    <p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>
+                                    @else
+                                    <p class="border border-dark d-inline-flex p-1 text-white bg-dark rounded">OFFLINE</p>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary edit_image" data-id="{{ $row->id }}" data-body="{{ $row->body }}" data-sub="{{ $row->sub }}" data-status="{{ $row->status }}">Edit</button>
+                                    <a href="" class="btn btn-danger btn-sm delete_product" data-id="{{ $row->id }}" data-lokasi="{{ $row->lokasi }}">Hapus</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -98,10 +80,7 @@
         </div>
 
        
-        <footer class="footer text-center mt-4">
-            All Rights Reserved by Matrix-admin. Designed and Developed by
-            <a href="https://www.wrappixel.com">WrapPixel</a>.
-        </footer>
+      
     </div>
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->

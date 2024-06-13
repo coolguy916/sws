@@ -1,11 +1,13 @@
 <!-- Modal -->
 <div class="modal fade" id="adddocs" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.fitur') }}" method="POST" id="adddokumentasi">
+    <form action="{{ route('add.dokumentasi') }}" method="POST" id="adddokumentasi">
         @csrf
+        <input type="hidden" name="docs_id" id="docs_id">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Dokumentasi Website</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan/Edit Dokumentasi Website</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -63,7 +65,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_dokumentasi">Save Dokumentasi Website</button>
+                        <button type="button" class="btn btn-primary save_dokumentasi">Save Dokumentasi Website</button>
                     </div>
                 </div>
             </div>

@@ -92,93 +92,65 @@
                 page: page
             },
             success: function(response) {
-                // console.log(response);
                 $('tbody').html("");
-                $.each(response.esp_controls, function(key, item) {
-                    // Assuming item.schedule is a string in 'hh:mm:ss' format
-                    var timeParts = item.schedule.split(':');
-                    var formattedTime = '';
-                    if (timeParts.length === 3) {
-                        var hours = parseInt(timeParts[0]);
-                        var minutes = parseInt(timeParts[1]);
-                        formattedTime = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' :
-                            '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
-                        var now = new Date();
+                if (response.esp_controls && response.esp_controls.length > 0) {
+                    $.each(response.esp_controls, function(key, item) {
+                        var timeParts = item.schedule.split(':');
+                        var formattedTime = '';
+                        if (timeParts.length === 3) {
+                            var hours = parseInt(timeParts[0]);
+                            var minutes = parseInt(timeParts[1]);
+                            formattedTime = (hours % 12 || 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+                            var now = new Date();
 
-                        var hours = now.getHours();
-                        var minutes = now.getMinutes();
-                        var ampm = hours >= 12 ? 'PM' : 'AM';
-                        hours = hours % 12 || 12;
-                        var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes +
-                            ' ' + ampm;
-                    }
-                    if (formattedTime === formattedTimenow) {
-                        $.ajax({
-                            url: '/update_status',
-                            method: 'POST',
-                            data: {
+                            var hours = now.getHours();
+                            var minutes = now.getMinutes();
+                            var ampm = hours >= 12 ? 'PM' : 'AM';
+                            hours = hours % 12 || 12;
+                            var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
+                        }
+                        if (formattedTime === formattedTimenow) {
+                            $.ajax({
+                                url: '/update_status',
+                                method: 'POST',
+                                data: {
+                                    id: item.id,
+                                    status: 1
+                                },
+                                success: function(response) {
+                                    console.log('Status updated successfully:', response);
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Error updating status:', error);
+                                }
+                            });
+                        } else {
+                            console.log('Requirements not met to update status.');
+                        }
 
-                                id: item.id,
-                                status: 1
-                            },
-                            success: function(response) {
-                                console.log('Status updated successfully:', response);
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('Error updating status:', error);
-                            }
-                        });
-                    } else {
-                        console.log('Requirements not met to update status.');
-                    }
+                        var statusBadge = item.status == 1 ?
+                            '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
+                            '<p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">OFFLINE</p>';
 
-                    var statusBadge = item.status == 1 ?
-                        '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
-                        '<p class="border border-primary d-inline-flex p-1 text-white bg-secondary rounded">OFFLINE</p>';
-
-                    var actionButtons = '<td class="text-center text-sm">\
+                        var actionButtons = '<td>\
                             <button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-sm">Edit</button>\
                             <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button>\
                             </td>';
 
-                    $('tbody').append('<tr>\
-                        <td class="text-center text-sm">' + (key + 1) + '</td>\
-                        <td class="text-center text-sm">' + formattedTime + '</td>\
-                        <td class="text-center text-sm">' + item.lokasi + '</td>\
-                        <td class="text-center text-sm">' + item.runtime + ' Minutes</td>\
-                        <td class="text-center text-sm">' + statusBadge + '</td>' + actionButtons + '\
-                    </tr>');
-
-                });
-
-                // // Add pagination links
-                // if (response.pagination) {
-                //     var paginationHtml = '<nav aria-label="Page navigation"><ul class="pagination">';
-
-                //     // Previous Page Link
-                //     paginationHtml += '<li class="page-item' + (response.pagination.current_page === 1 ? ' disabled' : '') + '">';
-                //     paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="fetchschedule(' + (response.pagination.current_page - 1) + ')">';
-                //     paginationHtml += '<span aria-hidden="true">&laquo;</span></a></li>';
-
-                //     // Page Links
-                //     for (var i = 1; i <= response.pagination.last_page; i++) {
-                //         paginationHtml += '<li class="page-item' + (i === response.pagination.current_page ? ' active' : '') + '">';
-                //         paginationHtml += '<a class="page-link" href="#" onclick="fetchschedule(' + i + ')">' + i + '</a></li>';
-                //     }
-
-                //     // Next Page Link
-                //     paginationHtml += '<li class="page-item' + (response.pagination.current_page === response.pagination.last_page ? ' disabled' : '') + '">';
-                //     paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="fetchschedule(' + (response.pagination.current_page + 1) + ')">';
-                //     paginationHtml += '<span aria-hidden="true">&raquo;</span></a></li>';
-
-                //     paginationHtml += '</ul></nav>';
-
-                //     $('.pagination-container').html(paginationHtml);
-                // }
-
+                        $('tbody').append('<tr>\
+                        <td>' + (key + 1) + '</td>\
+                        <td>' + formattedTime + '</td>\
+                        <td>' + item.lokasi + '</td>\
+                        <td>' + item.runtime + '</td>\
+                        <td>' + statusBadge + '</td>' + actionButtons + '\
+                </tr>');
+                    });
+                } else {
+                    $('tbody').html('<tr><td colspan="6" class="text-center p-5">Silakan isi data.</td></tr>');
+                }
             },
             error: function(xhr, status, error) {
-                console.error('Error fetching schedule : ', status);
+                console.error('Error fetching schedule:', status);
             }
         });
     }
