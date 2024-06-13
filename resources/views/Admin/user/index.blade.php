@@ -8,19 +8,7 @@
         <!-- ============================================================== -->
         <div class="page-breadcrumb">
             <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Data User</h4>
-                    <div class="ms-auto text-end">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    Library
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+               
             </div>
 
         </div>
@@ -36,7 +24,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">
-                            {{ __('Schedule') }}
+                            {{ __('Data User') }}
                         </h2>
                         <div class="card-tools">
                             <!-- <a href="#" class="btn btn-outline-dark btn-sm">
@@ -77,10 +65,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer text-center mt-4">
-                All Rights Reserved by Matrix-admin. Designed and Developed by
-                <a href="https://www.wrappixel.com">WrapPixel</a>.
-            </footer>
+          
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->

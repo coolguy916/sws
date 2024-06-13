@@ -493,264 +493,314 @@
     });
 </script>
 
- <script>
-    $(document).ready(function(){
-        $(document).on('click','.add_image',function(e){
-            e.preventDefault();
-            let body = $('#body').val();
-            let sub = $('#sub').val();
-            let image = $('#image')[0].files[0];
-            let status = $('#status').val();
-             let formData = new FormData();
+<script>
+   $(document).ready(function(){
+    // Add Image
+    $(document).on('click', '.add_image', function(e){
+        e.preventDefault();
+        
+        let body = $('#body').val();
+        let sub = $('#sub').val();
+        let image = $('#image')[0].files[0];
+        let status = $('#status').val();
+        
+        let formData = new FormData();
         formData.append('body', body);
-                formData.append('sub', sub);
+        formData.append('sub', sub);
         formData.append('image', image);
         formData.append('status', status);
-            //console.log(lokasi+user_id+status);
-            $.ajax({
-                url:"{{ route('add.slider') }}",
-                method:'POST',
-                 data: formData,
+        
+        $.ajax({
+            url: "{{ route('add.slider') }}",
+            method: 'POST',
+            data: formData,
             contentType: false,
             processData: false,
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#addimages').modal('hide');
-                        $('#addslider')[0].reset();
-                        $('.table').load(location.href+' .table');
-                    Command: toastr["success"]("Image Slider Telah berhasil", "Success")
+            success: function(res){
+                if(res.status == 'success'){
+                    $('#addimages').modal('hide');
+                    $('#addslider')[0].reset();
+                    $('.table').load(location.href + ' .table');
+                    Command: toastr["success"]("Image Slider has been successfully added", "Success");
 
-                            toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                    }
-                },error:function(err){
-                    let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-                    });
-
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
                 }
-            });
-        })
-
-        //show update value update form
-        $(document).on('click','.update_user_form', function(){
-             let id  = $(this).data('id');
-            let role  = $(this).data('role');
-            $('#up_id').val(id);
-            $('#up_role').val(role);
-
+            },
+            error: function(err){
+                let error = err.responseJSON;
+                $('.errMsgContainer').html('');
+                $.each(error.errors, function(index, value){
+                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
+                });
+            }
         });
-
-        //update proses system
-          $(document).on('click','.update_user',function(e){
-            e.preventDefault();
-            let up_id = $('#up_id').val();
-            let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id);
-            $.ajax({
-                url:"{{ route('update.user') }}",
-                method:'POST',
-                data:{up_id:up_id,up_role:up_role},
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#updateModal').modal('hide');
-                        $('#updateproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
-
-                            toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                    }
-                },error:function(err){
-                    let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-                    });
-
-                }
-            });
-        })
-
-
-
-
     });
-    </script>
 
-     <script>
-    $(document).ready(function(){
-        $(document).on('click','.add_fitur',function(e){
-            e.preventDefault();
-            let teks = $('#teks').val();
-            let image = $('#image')[0].files[0];
-            let status = $('#status').val();
-             let formData = new FormData();
+    $(document).on('click', '.edit_image', function(e) {
+        e.preventDefault();
+        
+        let id = $(this).data('id');
+        let body = $(this).data('body');
+        let sub = $(this).data('sub');
+        let status = $(this).data('status');
+
+        $('#slider_id').val(id);
+        $('#body').val(body);
+        $('#sub').val(sub);
+        $('#status').val(status);
+
+        $('#addimages').modal('show');
+        $('.save_image').text('Update Image Slider'); 
+    });
+
+    $(document).on('click', '.save_image', function(e) {
+        e.preventDefault();
+
+        let id = $('#slider_id').val();
+        let body = $('#body').val();
+        let sub = $('#sub').val();
+        let image = $('#image')[0].files[0];
+        let status = $('#status').val();
+
+        let formData = new FormData();
+        formData.append('body', body);
+        formData.append('sub', sub);
+        formData.append('status', status);
+        if (image) {
+            formData.append('image', image); 
+        }
+        if (id) {
+            formData.append('slider_id', id); 
+        }
+
+        let url = id ? "{{ route('update.slider') }}" : "{{ route('add.slider') }}";
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                if(res.status == 'success') {
+                    $('#addimages').modal('hide');
+                    $('#addslider')[0].reset();
+                    $('.table').load(location.href + ' .table');
+                    Command: toastr["success"](id ? "Image Slider has been successfully updated" : "Image Slider has been successfully added", "Success");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                }
+            },
+            error: function(err) {
+                let error = err.responseJSON;
+                $('.errMsgContainer').html('');
+                $.each(error.errors, function(index, value) {
+                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
+                });
+            }
+        });
+    });
+});
+</script>
+
+
+        <script>
+$(document).ready(function(){
+    $(document).on('click', '.add_fitur', function(e){
+        e.preventDefault();
+        
+        let teks = $('#teks').val();
+        let image = $('#image')[0].files[0];
+        let status = $('#status').val();
+        
+        let formData = new FormData();
         formData.append('teks', teks);
         formData.append('image', image);
         formData.append('status', status);
-            //console.log(lokasi+user_id+status);
-            $.ajax({
-                url:"{{ route('add.fitur') }}",
-                method:'POST',
-                 data: formData,
+        
+        $.ajax({
+            url: "{{ route('add.fitur') }}",
+            method: 'POST',
+            data: formData,
             contentType: false,
             processData: false,
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#addimagefitur').modal('hide');
-                        $('#addfitur')[0].reset();
-                        $('.table').load(location.href+' .table');
-                    Command: toastr["success"]("Image Slider Telah berhasil", "Success")
+            success: function(res){
+                if(res.status == 'success'){
+                    $('#addimagefitur').modal('hide');
+                    $('#addfitur')[0].reset();
+                    $('.table').load(location.href + ' .table');
+                    Command: toastr["success"]("Image Slider has been successfully added", "Success");
 
-                            toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                    }
-                },error:function(err){
-                    let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-                    });
-
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
                 }
-            });
-        })
-
-        //show update value update form
-        $(document).on('click','.update_user_form', function(){
-             let id  = $(this).data('id');
-            let role  = $(this).data('role');
-            $('#up_id').val(id);
-            $('#up_role').val(role);
-
+            },
+            error: function(err){
+                let error = err.responseJSON;
+                $('.errMsgContainer').html('');
+                $.each(error.errors, function(index, value){
+                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
+                });
+            }
         });
-
-        //update proses system
-          $(document).on('click','.update_user',function(e){
-            e.preventDefault();
-            let up_id = $('#up_id').val();
-            let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id);
-            $.ajax({
-                url:"{{ route('update.user') }}",
-                method:'POST',
-                data:{up_id:up_id,up_role:up_role},
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#updateModal').modal('hide');
-                        $('#updateproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
-
-                            toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                    }
-                },error:function(err){
-                    let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-                    });
-
-                }
-            });
-        })
-
-
-
-
     });
+
+    $(document).on('click', '.edit_fitur', function(e) {
+        e.preventDefault();
+        
+        let id = $(this).data('id');
+        let teks = $(this).data('teks');
+        let status = $(this).data('status');
+
+        $('#fitur_id').val(id);
+        $('#teks').val(teks);
+        $('#status').val(status);
+
+        $('#addimagefitur').modal('show');
+        $('.save_fitur').text('Update Image Slider'); 
+    });
+
+    $(document).on('click', '.save_fitur', function(e) {
+        e.preventDefault();
+
+        let id = $('#fitur_id').val();
+        let teks = $('#teks').val();
+        let image = $('#image')[0].files[0];
+        let status = $('#status').val();
+
+        let formData = new FormData();
+        formData.append('teks', teks);
+        formData.append('status', status);
+        if (image) {
+            formData.append('image', image); 
+        }
+        if (id) {
+            formData.append('fitur_id', id); 
+        }
+
+        let url = id ? "{{ route('update.fitur') }}" : "{{ route('add.fitur') }}";
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                if(res.status == 'success') {
+                    $('#addimagefitur').modal('hide');
+                    $('#addfitur')[0].reset();
+                    $('.table').load(location.href + ' .table');
+                    Command: toastr["success"](id ? "Image Slider has been successfully updated" : "Image Slider has been successfully added", "Success");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                }
+            },
+            error: function(err) {
+                let error = err.responseJSON;
+                $('.errMsgContainer').html('');
+                $.each(error.errors, function(index, value) {
+                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
+                });
+            }
+        });
+    });
+});
     </script>
 
-       <script>
+    
+<script>
     $(document).ready(function(){
-        $(document).on('click','.add_keunggulan',function(e){
+        $(document).on('click', '.add_keunggulan', function(e){
             e.preventDefault();
             let judul = $('#judul').val();
             let teks = $('#teks').val();
-            let icon = $('#icon')[0].files[0];
             let image = $('#image')[0].files[0];
+            let icon = $('#icon')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData();
-        formData.append('judul', judul);
-        formData.append('teks', teks);
-        formData.append('icon', icon);
-        formData.append('image', image);
-        formData.append('status', status);
-            //console.log(lokasi+user_id+status);
+            
+            let formData = new FormData();
+            formData.append('teks', teks);
+            formData.append('judul', judul);
+            formData.append('icon', icon);
+            formData.append('image', image);
+            formData.append('status', status);
+            
             $.ajax({
-                url:"{{ route('add.keunggulan') }}",
-                method:'POST',
-                 data: formData,
-            contentType: false,
-            processData: false,
-                success:function(res){
-                    if(res.status=='success'){
+                url: "{{ route('add.keunggulan') }}",
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    if(res.status == 'success'){
                         $('#addform').modal('hide');
                         $('#addkeunggulan')[0].reset();
-                        $('.table').load(location.href+' .table');
-                    Command: toastr["success"]("Image Slider Telah berhasil", "Success")
-
-                            toastr.options = {
+                        $('.table').load(location.href + ' .table');
+                        Command: toastr["success"]("Image Slider has been successfully added", "Success");
+    
+                        toastr.options = {
                             "closeButton": true,
                             "debug": false,
                             "newestOnTop": false,
@@ -766,45 +816,75 @@
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                            }
+                        };
                     }
-                },error:function(err){
+                },
+                error: function(err){
                     let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    $('.errMsgContainer').html('');
+                    $.each(error.errors, function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
                     });
-
                 }
             });
-        })
-
-        //show update value update form
-        $(document).on('click','.update_user_form', function(){
-             let id  = $(this).data('id');
-            let role  = $(this).data('role');
-            $('#up_id').val(id);
-            $('#up_role').val(role);
-
         });
-
-        //update proses system
-          $(document).on('click','.update_user',function(e){
+    
+        $(document).on('click', '.edit_keunggulan', function(e) {
             e.preventDefault();
-            let up_id = $('#up_id').val();
-            let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id);
+            
+            let id = $(this).data('id');
+            let teks = $(this).data('teks');
+            let judul = $(this).data('judul');
+            let status = $(this).data('status');
+    
+            $('#keunggulan_id').val(id);
+            $('#teks').val(teks);
+            $('#judul').val(judul);
+            $('#status').val(status);
+    
+            $('#addform').modal('show');
+            $('.save_keunggulan').text('Update Keunggulan'); 
+        });
+    
+        $(document).on('click', '.save_keunggulan', function(e) {
+            e.preventDefault();
+    
+            let id = $('#keunggulan_id').val();
+            let teks = $('#teks').val();
+            let judul = $('#judul').val();
+            let image = $('#image')[0].files[0];
+            let icon = $('#icon')[0].files[0];
+            let status = $('#status').val();
+    
+            let formData = new FormData();
+            formData.append('teks', teks);
+            formData.append('status', status);
+            formData.append('judul', judul);
+            if (image) {
+                formData.append('image', image); 
+            }
+            if (icon) {
+                formData.append('icon', icon); 
+            }
+            if (id) {
+                formData.append('keunggulan_id', id); 
+            }
+    
+            let url = id ? "{{ route('update.keunggulan') }}" : "{{ route('add.keunggulan') }}";
             $.ajax({
-                url:"{{ route('update.user') }}",
-                method:'POST',
-                data:{up_id:up_id,up_role:up_role},
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#updateModal').modal('hide');
-                        $('#updateproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
-
-                            toastr.options = {
+                url: url,
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    if(res.status == 'success') {
+                        $('#addform').modal('hide');
+                        $('#addkeunggulan')[0].reset();
+                        $('.table').load(location.href + ' .table');
+                        Command: toastr["success"](id ? "Image Slider has been successfully updated" : "Image Slider has been successfully added", "Success");
+    
+                        toastr.options = {
                             "closeButton": true,
                             "debug": false,
                             "newestOnTop": false,
@@ -820,51 +900,50 @@
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                            }
+                        };
                     }
-                },error:function(err){
+                },
+                error: function(err) {
                     let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    $('.errMsgContainer').html('');
+                    $.each(error.errors, function(index, value) {
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
                     });
-
                 }
             });
-        })
-
-
-
-
+        });
     });
-    </script>
-   <script>
+</script>
+
+<script>
     $(document).ready(function(){
-        $(document).on('click','.add_dokumentasi',function(e){
+        $(document).on('click', '.add_dokumentasi', function(e){
             e.preventDefault();
             let judul = $('#judul').val();
             let teks = $('#teks').val();
             let image = $('#image')[0].files[0];
             let status = $('#status').val();
-             let formData = new FormData();
-        formData.append('judul', judul);
-        formData.append('teks', teks);
-        formData.append('image', image);
-        formData.append('status', status);
-            //console.log(lokasi+user_id+status);
+            
+            let formData = new FormData();
+            formData.append('teks', teks);
+            formData.append('judul', judul);
+            formData.append('image', image);
+            formData.append('status', status);
+            
             $.ajax({
-                url:"{{ route('add.dokumentasi') }}",
-                method:'POST',
-                 data: formData,
-            contentType: false,
-            processData: false,
-                success:function(res){
-                    if(res.status=='success'){
+                url: "{{ route('add.dokumentasi') }}",
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    if(res.status == 'success'){
                         $('#adddocs').modal('hide');
                         $('#adddokumentasi')[0].reset();
-                        $('.table').load(location.href+' .table');
-                    Command: toastr["success"]("Dokumentasi Website Telah berhasil", "Success")
-
-                            toastr.options = {
+                        $('.table').load(location.href + ' .table');
+                        Command: toastr["success"]("Dokumentasi has been successfully added", "Success");
+    
+                        toastr.options = {
                             "closeButton": true,
                             "debug": false,
                             "newestOnTop": false,
@@ -880,45 +959,72 @@
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                            }
+                        };
                     }
-                },error:function(err){
+                },
+                error: function(err){
                     let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    $('.errMsgContainer').html('');
+                    $.each(error.errors, function(index, value){
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
                     });
-
                 }
             });
-        })
-
-        //show update value update form
-        $(document).on('click','.update_user_form', function(){
-             let id  = $(this).data('id');
-            let role  = $(this).data('role');
-            $('#up_id').val(id);
-            $('#up_role').val(role);
-
         });
-
-        //update proses system
-          $(document).on('click','.update_user',function(e){
+    
+        $(document).on('click', '.edit_dokumentasi', function(e) {
             e.preventDefault();
-            let up_id = $('#up_id').val();
-            let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id);
+            
+            let id = $(this).data('id');
+            let teks = $(this).data('teks');
+            let judul = $(this).data('judul');
+            let status = $(this).data('status');
+    
+            $('#docs_id').val(id);
+            $('#teks').val(teks);
+            $('#judul').val(judul);
+            $('#status').val(status);
+    
+            $('#adddocs').modal('show');
+            $('.save_dokumentasi').text('Update Dokumentasi'); 
+        });
+    
+        $(document).on('click', '.save_dokumentasi', function(e) {
+            e.preventDefault();
+    
+            let id = $('#docs_id').val();
+            let teks = $('#teks').val();
+            let judul = $('#judul').val();
+            let image = $('#image')[0].files[0];
+            let status = $('#status').val();
+    
+            let formData = new FormData();
+            formData.append('teks', teks);
+            formData.append('status', status);
+            formData.append('judul', judul);
+            if (image) {
+                formData.append('image', image); 
+            }
+           
+            if (id) {
+                formData.append('docs_id', id); 
+            }
+    
+            let url = id ? "{{ route('update.dokumentasi') }}" : "{{ route('add.dokumentasi') }}";
             $.ajax({
-                url:"{{ route('update.user') }}",
-                method:'POST',
-                data:{up_id:up_id,up_role:up_role},
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#updateModal').modal('hide');
-                        $('#updateproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
-
-                            toastr.options = {
+                url: url,
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    if(res.status == 'success') {
+                        $('#adddocs').modal('hide');
+                        $('#adddokumentasi')[0].reset();
+                        $('.table').load(location.href + ' .table');
+                        Command: toastr["success"](id ? "Dokumentasi has been successfully updated" : "Dokumentasi has been successfully added", "Success");
+    
+                        toastr.options = {
                             "closeButton": true,
                             "debug": false,
                             "newestOnTop": false,
@@ -934,23 +1040,21 @@
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                            }
+                        };
                     }
-                },error:function(err){
+                },
+                error: function(err) {
                     let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    $('.errMsgContainer').html('');
+                    $.each(error.errors, function(index, value) {
+                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
                     });
-
                 }
             });
-        })
-
-
-
-
+        });
     });
-    </script>
+</script>
+    
 
     <script>
     $(document).ready(function(){
@@ -1060,10 +1164,6 @@
                 }
             });
         })
-
-
-
-
     });
     </script>
  <script>

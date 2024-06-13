@@ -48,5 +48,34 @@ class KeunggulanController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'teks' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required',
+        ]);
+    
+        $slider = Keunggulan::find($request->keunggulan_id);
+        $slider->teks = $request->teks;
+        $slider->status = $request->status;
+    
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->storeAs('public/keunggulan', $imageName);
+            $slider->image = $imageName;
+        }
+        if ($request->hasFile('icon')) {
+            $iconimage = time().'.'.$request->icon->extension();  
+            $request->icon->storeAs('public/icon', $iconimage);
+            $slider->icon = $iconimage;
+        }
+    
+        $slider->save();
+    
+        return response()->json(['status' => 'success']);
+    }
     
 }

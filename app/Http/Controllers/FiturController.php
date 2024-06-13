@@ -38,5 +38,28 @@ class FiturController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'teks' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required',
+        ]);
+    
+        $slider = Fitur::find($request->fitur_id);
+        $slider->teks = $request->teks;
+        $slider->status = $request->status;
+    
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->storeAs('public/fitur', $imageName);
+            $slider->image = $imageName;
+        }
+    
+        $slider->save();
+    
+        return response()->json(['status' => 'success']);
+    }
     
 }

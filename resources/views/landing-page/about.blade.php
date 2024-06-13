@@ -9,7 +9,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 80%;
     }
   </style>
 <section class="about_section layout_padding" id="about">

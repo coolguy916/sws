@@ -1,11 +1,13 @@
 <!-- Modal -->
 <div class="modal fade" id="addform" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <form action="{{ route('add.fitur') }}" method="POST" id="addkeunggulan">
+    <form action="{{ route('add.keunggulan') }}" method="POST" id="addkeunggulan">
         @csrf
+        <input type="hidden" name="keunggulan_id" id="keunggulan_id"> <!-- Hidden field for slider ID -->
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Keunggulan Website</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan/Edit Keunggulan Website</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -73,7 +75,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary add_keunggulan">Save Keunggulan Website</button>
+                        <button type="button" class="btn btn-primary save_keunggulan">Save Keunggulan Website</button>
                     </div>
                 </div>
             </div>
