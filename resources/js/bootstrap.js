@@ -1,3 +1,20 @@
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+
+window.Pusher = Pusher;
+// klo mau di host diganti dulu force tls sama encryptednya
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: false,
+    forceTLS: false,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    wssPort: 6001,
+    enabledTransports: ['ws', 'wss'],
+});
+
 window._ = require('lodash');
 
 try {
