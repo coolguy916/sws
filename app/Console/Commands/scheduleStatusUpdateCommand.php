@@ -40,7 +40,7 @@ class scheduleStatusUpdateCommand extends Command
      */
     public function handle()
     {
-        $now = Carbon::now()->format('H:i:s');
+        $now = Carbon::now()->format('H:i');
 
         $tasks = EspControl::where('schedule', $now)
             ->where('status', 0)
