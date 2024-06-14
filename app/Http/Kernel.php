@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Console\Scheduling\Schedule; // Ensure this import is correct
+
 
 class Kernel extends HttpKernel
 {
@@ -65,4 +67,9 @@ class Kernel extends HttpKernel
         'HakAkses' => \App\Http\Middleware\HakAkses::class,
 
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('espcontrol:update-status')->everyMinute();
+    }
 }
