@@ -115,11 +115,9 @@ Auth::routes();
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 
 
-// template Baru
+// TEMPLATE BARU
 
-// admin
-
-
+// ADMIN
 Route::get('/tables-new', function () {
     return view('template2.Admin.tables');
 });
@@ -127,10 +125,10 @@ Route::get('/tables-new', function () {
 Route::get('/form-new', function () {
     return view('template2.Admin.form');
 });
-Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
 
-// user
 
+
+// USER
 Route::get('/tables-user', function () {
     return view('template2.User.tables');
 });
@@ -141,6 +139,11 @@ Route::get('/form-user', function () {
 
 Route::controller(CategoriesConsumptionController::class)->group(function () {
     Route::get('/categories-consumtion','consumption_data')->name('categories.data');
+});
+
+Route::controller(ChartDataController::class)->group(function () {
+    Route::get('/chart-power','getPowerData');
+    Route::get('/chart-kwh','getKwhData');
 });
 
 

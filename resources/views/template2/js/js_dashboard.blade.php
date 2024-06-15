@@ -12,7 +12,6 @@
 
                 var moduleOn = module.some(module => module.status === 1)
 
-                console.log(moduleOn)
                 if (data !== null) {
                     $('#kwh-categories').text( data.kwh + ' kwh');
                     $('#watt-categories').text( data.power + ' watt');

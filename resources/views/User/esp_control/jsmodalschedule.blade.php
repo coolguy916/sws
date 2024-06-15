@@ -138,11 +138,11 @@
                             </td>';
 
                         $('tbody').append('<tr>\
-                        <td>' + (key + 1) + '</td>\
-                        <td>' + formattedTime + '</td>\
-                        <td>' + item.lokasi + '</td>\
-                        <td>' + item.runtime + '</td>\
-                        <td>' + statusBadge + '</td>' + actionButtons + '\
+                        <td class="text-center">' + (key + 1) + '</td>\
+                        <td class="text-center">' + formattedTime + '</td>\
+                        <td class="text-center">' + item.lokasi + '</td>\
+                        <td class="text-center">' + item.runtime + '</td>\
+                        <td class="text-center">' + statusBadge + '</td>' + actionButtons + '\
                 </tr>');
                     });
                 } else {

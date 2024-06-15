@@ -17,6 +17,8 @@ class CreateWattsConsumptionsRealtimeTable extends Migration
             $table->id(); // Primary key
             $table->float('kwh'); // Kilowatt-hours
             $table->float('power'); // Power in watts
+            $table->float('voltage'); // Voltage in volts
+            $table->float('ampere'); // Current in amperes
             $table->unsignedBigInteger('id_user'); // Foreign key to the users table
             $table->unsignedBigInteger('id_module'); // Foreign key to the modules table
             $table->timestamps();

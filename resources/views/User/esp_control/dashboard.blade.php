@@ -52,22 +52,22 @@
 
                         <!-- pagination -->
                         <!-- <nav aria-label="Page navigation example">
-                                    <ul class="pagination d-flex justify-content-center">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav> -->
+                                        <ul class="pagination d-flex justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav> -->
 
                     </div>
                 </div>
@@ -133,14 +133,16 @@
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
                         <h6 class="text-capitalize">Volt Meter</h6>
-                        <p class="text-sm mb-0">
+                        {{-- <p class="text-sm mb-0">
                             <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
-                        </p>
+                            <span id="percentagePower-change" class="font-weight-bold"></span> than last week
+                            <span id="percentageKwh-change" class="font-weight-bold"></span> than last week
+                        </p> --}}
                     </div>
                     <div class="card-body p-3">
                         <div class="chart">
-                            <canvas id="chart-watts" class="chart-canvas" height="300"></canvas>
+                            <canvas id="chart-power" class="chart-canvas" height="300" style="display: block;"></canvas>
+                            <canvas id="chart-kwh" class="chart-canvas" height="300" style="display: none;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -169,7 +171,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex">
-                                    <button
+                                    <button id="kwh-toggle"
                                         class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
                                             class="ni ni-bold-right" aria-hidden="true"></i></button>
                                 </div>
@@ -188,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex">
-                                    <button
+                                    <button id="power-toggle"
                                         class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i
                                             class="ni ni-bold-right" aria-hidden="true"></i></button>
                                 </div>
