@@ -19,19 +19,34 @@ class ChartDataController extends Controller
             $datesPower[] = Carbon::now()->subWeek()->startOfWeek()->addDays($i)->format('D');
         }
 
-        $startDate = Carbon::now()->subWeek()->startOfDay();
+        $startDate = Carbon::now()->subDays(7)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
+
 
         // Fetch data for the past week
         $dataPower = WattsConsumptionDaily::whereBetween('created_at', [$startDate, $endDate])
-            ->where('id_user', $userId)
-            ->selectRaw('DATE(created_at) as date, SUM(power) as power')
-            ->groupBy('date')
-            ->orderBy('date')
-            ->get()
-            ->map(function ($item) {
-                $item->date = Carbon::parse($item->date)->format('D');
-                return $item;
+        ->where('id_user', $userId)
+        ->selectRaw('DATE(created_at) as date, MAX(created_at) as max_created_at, power')
+        ->groupBy('date', 'power')
+        ->orderBy('max_created_at', 'desc')
+        ->get();
+
+        // dd($dataPower);
+
+        $dataPower = $dataPower->map(function ($item) use ($dataPower) {
+            $previousDayItem = $dataPower->first(function ($previousItem) use ($item) {
+                return Carbon::parse($previousItem->date)->addDay()->format('Y-m-d') === $item->date;
+            });
+
+            // dd($previousDayItem->power);
+            if ($previousDayItem) {
+                $item->power = $item->power - $previousDayItem->power;
+            } else {
+                $item->power = $item->power;
+            }
+            $item->date = Carbon::parse($item->date)->format('D');
+
+            return $item;
             });
 
         // Jika $dataPower kosong, ganti dengan array dummy
@@ -74,14 +89,27 @@ class ChartDataController extends Controller
     // Fetch data for the past week
     $dataKwh = WattsConsumptionDaily::whereBetween('created_at', [$startDate, $endDate])
         ->where('id_user', $userId)
-        ->selectRaw('DATE(created_at) as date, SUM(kwh) as kwh')
-        ->groupBy('date')
-        ->orderBy('date')
-        ->get()
-        ->map(function ($item) {
-            $item->date = Carbon::parse($item->date)->format('D');
-            return $item;
+        ->selectRaw('DATE(created_at) as date, MAX(created_at) as max_created_at, kwh')
+        ->groupBy('date', 'kwh')
+        ->orderBy('max_created_at', 'desc')
+        ->get();
+
+    // dd($dataKwh);
+
+    $dataKwh = $dataKwh->map(function ($item, $key) use ($dataKwh) {
+        $previousDayItem = $dataKwh->first(function ($previousItem) use ($item) {
+            return Carbon::parse($previousItem->date)->addDay()->format('Y-m-d') === $item->date;
         });
+
+        if ($previousDayItem) {
+            $item->kwh = $item->kwh - $previousDayItem->kwh;
+        } else {
+            $item->kwh;
+        }
+        $item->date = Carbon::parse($item->date)->format('D');
+
+        return $item;
+    });
 
     // Jika $dataKwh kosong, ganti dengan array dummy
     if ($dataKwh->isEmpty()) {
