@@ -24,7 +24,7 @@
                             '<div class="numbers">' +
                             '<p class="text-sm mb-0 text-uppercase font-weight-bold">Modul ' + (
                                 index + 1) + '</p>' +
-                            '<h5 class="font-weight-bolder">' + module.lokasi + '</h5>' +
+                            '<h6 class="font-weight-bolder">' + module.lokasi + '</h6>' +
                             '<div class="form-check form-switch form-switch-xl">' +
                             '<input data-id="' + module.id +
                             '" class="form-check-input togglemodule-class" ' +
