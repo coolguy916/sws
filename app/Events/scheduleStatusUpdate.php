@@ -34,7 +34,11 @@ class scheduleStatusUpdate
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('espcontrol.status');
+        return new Channel('espcontrol.status');
+    }
+    public function broadcastAs()
+    {
+        return 'schedule-status-update';
     }
 
     public function broadcastWith()

@@ -15,11 +15,17 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
+window.Echo.private('espcontrol.status')
+    .listen('ScheduleStatusUpdated', (e) => {
+        console.log('Task status updated:', e.task);
+    });
+
+
 window._ = require('lodash');
 
 try {
     require('bootstrap');
-} catch (e) {}
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

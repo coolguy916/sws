@@ -6,9 +6,19 @@ use Illuminate\Console\Command;
 use App\Models\EspControl;
 use Carbon\Carbon;
 use App\Events\scheduleStatusUpdate;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+
 
 class scheduleStatusUpdateCommand extends Command
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * The name and signature of the console command.
      *
@@ -42,18 +52,25 @@ class scheduleStatusUpdateCommand extends Command
     {
         $now = Carbon::now()->format('H:i');
 
-        $tasks = EspControl::where('schedule', $now)
-            ->where('status', 0)
-            ->get();
+        try {
+            EspControl::where('schedule', $now)
+                ->where('status', 0)
+                ->chunk(100, function ($tasks) {
+                    foreach ($tasks as $task) {
+                        $task->status = 1;
+                        $task->save();
 
-        foreach ($tasks as $task) {
-            $task->status = 1;
-            $task->save();
+                        event(new ScheduleStatusUpdate($task));
+                    }
+                });
 
-            event(new scheduleStatusUpdate($task));
+            Log::info('ESP Control statuses updated successfully at ' . $now);
+        } catch (\Exception $e) {
+            Log::error('Error updating ESP Control statuses: ' . $e->getMessage());
+            $this->error('Error: ' . $e->getMessage());
+            return SymfonyCommand::FAILURE;
         }
-
-        $this->info('ESP Control statuses updated successfully.');
+        return SymfonyCommand::SUCCESS;
 
     }
 }
