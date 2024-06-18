@@ -175,26 +175,15 @@
                                     },
                                     ticks: {
                                         display: true,
-                                        padding: 10,
-                                        color: '#fbfbfb',
+                                        color: '#ccc',
+                                        padding: 20,
                                         font: {
-                                            size: 11,
+                                            size: 13,
                                             family: "Open Sans",
                                             style: 'normal',
                                             lineHeight: 2
                                         },
                                     },
-                                    title: {
-                                        display: true,
-                                        text: 'Watts Consumption',
-                                        color: '#fbfbfb',
-                                        font: {
-                                            size: 14,
-                                            family: "Open Sans",
-                                            style: 'normal',
-                                            lineHeight: 2
-                                        }
-                                    }
                                 },
                                 x: {
                                     grid: {
