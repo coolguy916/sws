@@ -1174,6 +1174,158 @@
 </script>
 
 <script>
+    $(document).ready(function(){
+    $(document).on('click', '.open_news', function(e){
+        e.preventDefault();
+        $('#addnews')[0].reset(); 
+        $('#news_id').val(''); 
+        $('.save_news').text('Add News'); 
+        $('.save_news').data('action', 'add'); 
+    });
+
+    $(document).on('click', '.edit_news', function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        let judul = $(this).data('judul');
+        let teks = $(this).data('teks');
+        let status = $(this).data('status');
+
+        $('#news_id').val(id);
+        $('#judul').val(judul);
+        $('#teks').val(teks);
+        $('#status').val(status);
+
+        $('#news').modal('show');
+        $('.save_news').text('Update News '); 
+        $('.save_news').data('action', 'edit'); 
+    });
+
+    $(document).on('click', '.save_news', function(e) {
+        e.preventDefault();
+
+        let action = $(this).data('action');
+        let id = $('#news_id').val();
+        let judul = $('#judul').val();
+        let teks = $('#teks').val();
+        let image = $('#image')[0].files[0];
+        let icon = $('#icon')[0].files[0];
+        let status = $('#status').val();
+
+        let formData = new FormData();
+        formData.append('judul', judul);
+        formData.append('teks', teks);
+        formData.append('status', status);
+        if (image) {
+            formData.append('image', image);
+        }
+        if (icon) {
+            formData.append('icon', icon);
+        }
+
+        let url = action === 'edit' ? "{{ route('update.news') }}" : "{{ route('add.news') }}";
+        if (action === 'edit') {
+            formData.append('news_id', id);
+        }
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                if(res.status == 'success') {
+                    $('#news').modal('hide');
+                    $('#addnews')[0].reset();
+                    $('.table').load(location.href + ' .table');
+                    Command: toastr["success"](action === 'edit' ? "news has been successfully updated" : "news has been successfully added", "Success");
+
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                }
+            },
+            error: function(err) {
+                let error = err.responseJSON;
+                $('.errMsgContainer').html('');
+                $.each(error.errors, function(index, value) {
+                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
+                });
+            }
+        });
+    });
+    });
+</script>
+
+<script>
+    $(document).on('click', '.delete_news', function (e) {
+        e.preventDefault();
+        let news_id = $(this).data('id');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to delete this News!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{{ route('delete.news') }}", 
+                    method: 'POST',
+                    data: {
+                        news_id: news_id,
+                        _token: '{{ csrf_token() }}' 
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status === 'success') {
+                            $('.table').load(location.href + ' .table');
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'News has been deleted.',
+                                icon: 'success',
+                                timer: 2000,
+                                timerProgressBar: true,
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to delete the News.',
+                            icon: 'error',
+                            timer: 2000,
+                            timerProgressBar: true,
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script>
     $(document).on('click', '.delete_slider', function (e) {
         e.preventDefault();
         let slider_id = $(this).data('id');
@@ -1502,6 +1654,8 @@
         });
     });
 </script>
+
+
 
 <script>
     $(document).on('click', '.delete_footer', function (e) {

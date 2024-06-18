@@ -17,6 +17,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ChartDataController;
+use App\Http\Controllers\NewsController;
 use App\Models\CategoriesConsumption;
 use App\Models\Deskripsi;
 
@@ -64,6 +65,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
     Route::post('/add-footer', [FooterController::class, 'create'])->name('add.footer');
     Route::post('/update-footer', [FooterController::class, 'update'])->name('update.footer');
     Route::post('/footer/delete', [FooterController::class, 'delete'])->name('delete.footer');
+    Route::get('/news', [NewsController::class, 'index'])->name('data.news');
+    Route::post('/add-news', [NewsController::class, 'create'])->name('add.news');
+    Route::post('/update-news', [NewsController::class, 'update'])->name('update.news');
+    Route::post('/news/delete', [NewsController::class, 'delete'])->name('delete.news');
 
     Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
     Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');

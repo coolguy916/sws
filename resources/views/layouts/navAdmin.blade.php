@@ -420,6 +420,17 @@
               ><span class="hide-menu">Footer</span></a
             >
           </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('data.news') }}"
+              aria-expanded="false"
+              ><i class="mdi mdi-newspaper"></i>
+
+              <span class="hide-menu">News Dashboard</span></a
+            >
+          </li>
          
 
         </ul>

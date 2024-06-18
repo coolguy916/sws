@@ -33,6 +33,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($espControls->isEmpty())
+    <tr>
+        <td colspan="6" class="text-center p-5">Silahkan Isi data.</td>
+    </tr>
+@else
                                 @foreach($espControls as $index => $control)
                                 <tr>                
                                     <td class="text-center text-secondary text-xs font-weight-bold">{{ $index + 1 }}</td>
@@ -47,6 +52,8 @@
 
                                 </tr>
                             @endforeach
+                            @endif
+
                             </tbody>
                             
                             <!-- isi tabel -->
@@ -81,39 +88,18 @@
                 <div class="card card-carousel overflow-hidden h-100 p-0">
                     <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
                         <div class="carousel-inner border-radius-lg h-100">
-                            <div class="carousel-item h-100 active"
-                                style="background-image: url('{{ asset('template2/assets/img/carousel-1.jpg') }}');background-size: cover;">
+                            @foreach($news as $index => $carousel)
+                            <div class="carousel-item h-100 {{ $index == 0 ? 'active' : '' }}"
+                                style="background-image: url('{{ asset('storage/news/'.$carousel->image) }}'); background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-camera-compact text-dark opacity-10"></i>
+                                        <i class="{{ $carousel->icon_class }} text-dark opacity-10"></i>
                                     </div>
-                                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good
-                                        at.</p>
+                                    <h5 class="text-white mb-1">{{ $carousel->judul }}</h5>
+                                    <p>{{ $carousel->teks }}</p>
                                 </div>
                             </div>
-                            <div class="carousel-item h-100"
-                                style="background-image: url('{{ asset('template2/assets/img/carousel-2.jpg') }}');background-size: cover;">
-                                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                                    <p>That’s my skill. I’m not really specifically talented at anything except for
-                                        the ability to learn.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item h-100"
-                                style="background-image: url('{{ asset('template2/assets/img/carousel-3.jpg') }}'); background-size: cover;">
-                                <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-trophy text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                                    <p>Don’t be afraid to be wrong because you can’t learn anything from a
-                                        compliment.</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <button class="carousel-control-prev w-5 me-3" type="button"
                             data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -128,6 +114,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
         <div class="row mt-4">
             <!-- statistic -->

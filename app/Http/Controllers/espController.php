@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EspControl;
 use App\Models\Module;
 use App\Models\User;
+use App\Models\News;
 use App\Models\kwh;
 use App\Models\WattsConsumptionScheduled;
 use App\Models\WattsConsumptionDaily;
@@ -374,7 +375,8 @@ class EspController extends Controller
     
         $modules = Module::where('user_id', Auth::id())->get();
         $users = User::all();
-        return view('User.esp_control.dashboard', compact('espControls', 'modules', 'users'));
+        $news = News::all();
+        return view('User.esp_control.dashboard', compact('espControls', 'modules', 'users','news'));
     }
     
 }
