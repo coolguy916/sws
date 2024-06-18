@@ -187,7 +187,7 @@
 
     @include('template2.js.js_chartdashboard')
     @include('template2.js.js_dashboard')
-    @include('User.esp_control.jsmodalschedule')
+    @include('User.esp_control.jsdashboard')
     @include('User.esp_control.jsstatisticmmodule')
 
     <script>

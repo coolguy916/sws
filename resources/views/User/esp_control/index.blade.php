@@ -1,4 +1,4 @@
-@extends('template2.layout.layout_user')
+@extends('template2.layout.schedule')
 @section('tables')
     @include('User.esp_control.schedulemodal')
 
