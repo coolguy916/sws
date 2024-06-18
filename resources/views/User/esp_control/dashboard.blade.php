@@ -93,8 +93,10 @@
                                 style="background-image: url('{{ asset('storage/news/'.$carousel->image) }}'); background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="{{ $carousel->icon_class }} text-dark opacity-10"></i>
+                                            <img src="{{ asset('storage/icon/'.$carousel->icon) }}" class="icon-img" />
+                                       
                                     </div>
+
                                     <h5 class="text-white mb-1">{{ $carousel->judul }}</h5>
                                     <p>{{ $carousel->teks }}</p>
                                 </div>
@@ -271,4 +273,13 @@
                 </div>
             </footer>
         </div>
+        <style>
+            .icon-img {
+                width: 30px; /* Ubah ukuran ini sesuai dengan ukuran ikon */
+                height: 30px; /* Ubah ukuran ini sesuai dengan ukuran ikon */
+                object-fit: cover; /* Menjaga aspek gambar tetap sesuai proporsi */
+                margin: auto; /* Posisikan gambar di tengah ikon */
+                display: block; /* Agar gambar tetap berada dalam blok */
+            }
+        </style>
     @endsection
