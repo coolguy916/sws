@@ -25,6 +25,7 @@
                         <table class="table align-items-center table-striped">
                             <thead>
                                 <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Schedule</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Runtime</th>
@@ -33,7 +34,9 @@
                             </thead>
                             <tbody>
                                 @foreach($espControls as $index => $control)
-                                <tr>
+                                <tr>                
+                                    <td class="text-center text-secondary text-xs font-weight-bold">{{ $index + 1 }}</td>
+
                                     <td class="text-center text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($control->schedule)->format('h:i A') }}</td>
 
                                     <td class="text-center text-secondary text-xs font-weight-bold">{{ $control->lokasi }}</td>
