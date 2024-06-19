@@ -123,6 +123,7 @@
                                 <li>
                                     <a class="dropdown-item" href="/profile">My Profile</a>
                                 </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
