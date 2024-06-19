@@ -151,5 +151,10 @@ Route::controller(ChartDataController::class)->group(function () {
     Route::get('/chart-kwh','getKwhData');
 });
 
+// user profile
+Route::get('/profile', function () {
+    return view('template2.user.profile');
+});
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
