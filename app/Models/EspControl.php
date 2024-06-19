@@ -22,6 +22,6 @@ class EspControl extends Model
     }
 
     public function module(){
-        return $this->belongsto(Module::class,'id');
+        return $this->belongsTo(Module::class,'id');
     }
 }

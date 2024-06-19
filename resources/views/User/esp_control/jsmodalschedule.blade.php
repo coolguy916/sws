@@ -109,24 +109,24 @@
                             hours = hours % 12 || 12;
                             var formattedTimenow = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
                         }
-                        // if (formattedTime === formattedTimenow) {
-                        //     $.ajax({
-                        //         url: '/update_status',
-                        //         method: 'POST',
-                        //         data: {
-                        //             id: item.id,
-                        //             status: 1
-                        //         },
-                        //         success: function(response) {
-                        //             console.log('Status updated successfully:', response);
-                        //         },
-                        //         error: function(xhr, status, error) {
-                        //             console.error('Error updating status:', error);
-                        //         }
-                        //     });
-                        // } else {
-                        //     console.log('Requirements not met to update status.');
-                        // }
+                        if (formattedTime === formattedTimenow) {
+                            $.ajax({
+                                url: '/update_status',
+                                method: 'POST',
+                                data: {
+                                    id: item.id,
+                                    status: 1
+                                },
+                                // success: function(response) {
+                                //     console.log('Status updated successfully:', response);
+                                // },
+                                // error: function(xhr, status, error) {
+                                //     console.error('Error updating status:', error);
+                                // }
+                            });
+                        } else {
+                            // console.log('Requirements not met to update status.');
+                        }
 
                         var statusBadge = item.status == 1 ?
                             '<p class="border border-primary d-inline-flex p-1 text-white bg-success rounded">ONLINE</p>' :
