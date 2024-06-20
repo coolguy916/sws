@@ -63,6 +63,8 @@
   @include('landing-page/document')
 
 
+  <!-- Promotion Info -->
+  @include('landing-page/promosi')
 
   <!-- end freelance section -->
 

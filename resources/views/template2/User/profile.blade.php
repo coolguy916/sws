@@ -28,8 +28,8 @@
           <ul class="nav nav-pills nav-fill p-1" role="tablist">
             <li class="nav-item">
               <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                <i class="ni ni-settings-gear-65"></i>
-                <span class="ms-2">Edit Profile</span>
+
+                <span class="">MY PROFILE</span>
               </a>
             </li>
 
@@ -98,7 +98,7 @@
               <i class="ni location_pin mr-2"></i>Bucharest, Romania
             </div>
             <div>
-            <button class="btn btn-primary ms-auto mt-2">Upgrade Pro</button>
+              <button class="btn btn-primary ms-auto mt-2">Upgrade Pro</button>
             </div>
             <div class="h6 mt-4">
               <i class="ni business_briefcase-24 mr-2"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus id placeat iure, obcaecati eligendi excepturi enim dolore! Placeat, dolores voluptate nostrum corporis quia, eos quaerat quidem fugiat hic magnam nihil!
@@ -116,13 +116,19 @@
       <div class="card">
         <div class="card-header pb-0">
           <div class="d-flex align-items-center">
-            <p class="mb-0">CONTACT</p>
-            <button class="btn btn-primary btn-sm ms-auto">Contact</button>
+            <p class="mb-0">My Profile</p>
+            <!-- <button class="btn btn-primary btn-sm ms-auto">Save</button> -->
           </div>
         </div>
         <div class="card-body">
           <p class="text-uppercase text-sm">User Information</p>
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Names</label>
+                <input class="form-control" type="text" value="lucky">
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="example-text-input" class="form-control-label">Username</label>
@@ -135,17 +141,46 @@
                 <input class="form-control" type="email" value="jesse@example.com">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Phone</label>
+                <input class="form-control" type="email" value="08121293211">
+              </div>
+            </div>
+
+            <!-- password -->
+            <p class="text-uppercase text-sm">Changes Password</p>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Password</label>
+                <input class="form-control" type="password" value="........">
+              </div>
+            </div>
+            <!-- Confirm -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Confirm Password</label>
+                <input class="form-control" type="password" value=".........">
+              </div>
+            </div>
+            <div class="col-6">
+
+              <button class="btn btn-primary btn-sm ms-auto">Save Changes</button>
+            </div>
+
           </div>
 
+          <hr>
+
           <div class="row">
-            <hr class="">
+            <h6>
+              Rules User
+            </h6>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore obcaecati, officia corrupti alias mollitia exercitationem deleniti dolores voluptates? Autem vero amet perferendis quos praesentium perspiciatis provident alias rem voluptatem dolores?
             </p>
             <hr>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum deserunt cupiditate laudantium, maxime architecto magni perferendis, culpa quis, fuga a amet doloremque labore modi sapiente! Perferendis consequatur laborum impedit quas.
-            </p>
+            
           </div>
         </div>
       </div>
