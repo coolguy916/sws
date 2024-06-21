@@ -52,19 +52,20 @@
   @include('landing-page/about')
 
   <!-- end about section -->
-
+  
+  <!-- Promotion Info -->
+  @include('landing-page/promosi')
+  
   <!-- fitur -->
   @include('landing-page/fitur')
-
+  
   <!-- Keunggulan -->
   @include('landing-page/keungulan')
-
+  
   <!-- Document -->
   @include('landing-page/document')
 
 
-  <!-- Promotion Info -->
-  @include('landing-page/promosi')
 
   <!-- end freelance section -->
 
