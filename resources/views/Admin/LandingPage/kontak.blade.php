@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h2 class="card-title mb-2">{{ __('Kontak') }}</h2>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#createKontakModal">
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="addkontakButton" data-bs-toggle="modal" data-bs-target="#createKontakModal">
                             <i class="fas fa-plus"></i> Add kontak
                         </button>
                     </div>
@@ -203,5 +203,26 @@
         $(container).append(html);
     }
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addFooterButton = document.getElementById('addkontakButton');
+        
+        var footersExist = @json($kontaks->isNotEmpty());
+
+        if (footersExist) {
+            addFooterButton.disabled = true;
+            addFooterButton.classList.add('disabled'); 
+        }
+    });
+</script>
+
+<style>
+    .btn.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+</style>
+
 
 @endsection

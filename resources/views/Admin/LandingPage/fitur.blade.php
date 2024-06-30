@@ -27,7 +27,7 @@
                         {{ __('Fitur-fitur ') }}
                     </h2>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#createFiturModal">
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="addfiturButton" data-bs-toggle="modal" data-bs-target="#createFiturModal">
                             <i class="fas fa-plus"></i> Add Fitur
                         </button>
                         
@@ -206,5 +206,26 @@
         $(container).append(html);
     }
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addFooterButton = document.getElementById('addfiturButton');
+        
+        var footersExist = @json($fitur->isNotEmpty());
+
+        if (footersExist) {
+            addFooterButton.disabled = true;
+            addFooterButton.classList.add('disabled'); 
+        }
+    });
+</script>
+
+<style>
+    .btn.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+</style>
+
 
 @endsection

@@ -87,16 +87,24 @@
                         <a href="#kontak" class="nav-item nav-link">kontak kita</a>
                         <a href="#pricing" class="nav-item nav-link">Harga</a>
                         <a href="#developer" class="nav-item nav-link">Developer</a>
+                        @if (Auth::check())
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dashboard</a>
                             <div class="dropdown-menu m-0">
-                                <a href="feature.html" class="dropdown-item">login</a>
-                                <a href="quote.html" class="dropdown-item">Login</a>
-                                <a href="team.html" class="dropdown-item">Login</a>
-                                <a href="testimonial.html" class="dropdown-item">Login</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                                <a href="dashboard" class="dropdown-item">Halaman Dashboard</a>
+
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                             </div>
                         </div>
+                    @else
+                        <a href="/login" class="nav-item nav-link">Login</a>
+                    @endif
+                        
+                        
                     </div>
                     <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5 btn-disabled">Manual Book</a>
                 </div>

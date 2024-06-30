@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h2 class="card-title mb-2">{{ __('Footer') }}</h2>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#createFooterModal">
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="addFooterButton" data-bs-toggle="modal" data-bs-target="#createFooterModal">
                             <i class="fas fa-plus"></i> Add Footer
                         </button>
                     </div>
@@ -253,5 +253,25 @@
         $(container).append(html);
     }
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addFooterButton = document.getElementById('addFooterButton');
+        
+        var footersExist = @json($footers->isNotEmpty());
+
+        if (footersExist) {
+            addFooterButton.disabled = true;
+            addFooterButton.classList.add('disabled'); 
+        }
+    });
+</script>
+
+<style>
+    .btn.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+</style>
 
 @endsection
