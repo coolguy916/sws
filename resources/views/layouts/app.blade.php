@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/authentication/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/authentication/bootstrap.min.css') }}">
+    
 </head>
 
 <body>

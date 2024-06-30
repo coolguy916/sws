@@ -18,6 +18,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TermsController;
 use App\Models\CategoriesConsumption;
 use App\Models\Deskripsi;
 
@@ -60,7 +61,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
     Route::post('/add-news', [NewsController::class, 'create'])->name('add.news');
     Route::post('/update-news', [NewsController::class, 'update'])->name('update.news');
     Route::post('/news/delete', [NewsController::class, 'delete'])->name('delete.news');
-
+    Route::get('/terms-and-conditions', [TermsController::class,'index'])->name('syarat-dan-ketentuan');
+    Route::post('/terms-and-conditions', [TermsController::class,'update'])->name('syarat-dan-ketentuan.update');
     Route::post('/update-user', [AdminController::class, 'update'])->name('update.user');
     Route::post('/delete-user', [AdminController::class, 'delete'])->name('delete.user');
     Route::post('/add-module', [App\Http\Controllers\ModuleController::class, 'create'])->name('add.module');
@@ -105,8 +107,9 @@ Route::controller(StatisticModuleController::class)->middleware(['auth', 'HakAks
 Route::controller(StatisticModuleController::class)->group(function () {
     Route::get('/api/getDynamicChartData', 'getDynamicChartData')->name('statisticdata');
 });
-
-Auth::routes();
+Route::middleware(['web', 'addTermsAndConditions'])->group(function () {
+    Auth::routes();
+});
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 

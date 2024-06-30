@@ -431,6 +431,18 @@
               <span class="hide-menu">News Dashboard</span></a
             >
           </li>
+
+          <li class="sidebar-item">
+            <a
+              class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('syarat-dan-ketentuan') }}"
+              aria-expanded="false"
+              ><i class="fas fa-file-alt"></i>
+
+
+              <span class="hide-menu"> Syarat & ketentuan</span></a
+            >
+          </li>
          
 
         </ul>

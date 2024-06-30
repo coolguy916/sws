@@ -21,6 +21,7 @@
     <link href="{{ asset('assets/css-inp/style-ind.scss') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,7 +78,22 @@
     <script src="{{ asset('assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300, // Set the height as needed
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+        });
+    </script>
     <Script>
     $('.delete').click(function() {
         var moduleid = $(this).attr('data-id');
@@ -359,80 +375,34 @@
 
 </script>
 
-  <script>
-    $(document).ready(function(){
-        $(document).on('click','.add_product',function(e){
-            e.preventDefault();
-            let lokasi = $('#lokasi').val();
-            let user_id = $('#user_id').val();
-            let status = 0;
-            //console.log(lokasi+user_id+status);
-            $.ajax({
-                url:"",
-                method:'POST',
-                data:{lokasi:lokasi,user_id:user_id,status: status},
-                success:function(res){
-                    if(res.status=='success'){
-                        $('#addModal').modal('hide');
-                        $('#addproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                    Command: toastr["success"]("Module Telah berhasil", "Success")
-
-                            toastr.options = {
-                            "closeButton": true,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                            }
-                    }
-                },error:function(err){
-                    let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-                    });
-
-                }
-            });
-        })
-
-        //show update value update form
-        $(document).on('click','.update_user_form', function(){
-             let id  = $(this).data('id');
-            let role  = $(this).data('role');
+<script>
+    $(document).ready(function() {
+        // Show update form
+        $(document).on('click', '.update_user_form', function() {
+            let id = $(this).data('id');
+            let role = $(this).data('role');
             $('#up_id').val(id);
             $('#up_role').val(role);
-
         });
 
-        //update proses system
-          $(document).on('click','.update_user',function(e){
+        // Update process
+        $(document).on('click', '.update_user', function(e) {
             e.preventDefault();
             let up_id = $('#up_id').val();
             let up_role = $('#up_role').val();
-            //console.log(up_id+up_lokasi+up_user_id);
+
             $.ajax({
-                url:"{{ route('update.user') }}",
-                method:'POST',
-                data:{up_id:up_id,up_role:up_role},
-                success:function(res){
-                    if(res.status=='success'){
+                url: "{{ route('update.user') }}",
+                method: 'POST',
+                data: { up_id: up_id, up_role: up_role },
+                success: function(res) {
+                    if (res.status == 'success') {
                         $('#updateModal').modal('hide');
                         $('#updateproductform')[0].reset();
-                        $('.table').load(location.href+' .table');
-                          Command: toastr["success"]("Module Telah berhasil di Update", "Success")
+                        $('.table').load(location.href + ' .table');
+                        Command: toastr["success"]("Module Telah berhasil di Update", "Success");
 
-                            toastr.options = {
+                        toastr.options = {
                             "closeButton": true,
                             "debug": false,
                             "newestOnTop": false,
@@ -448,23 +418,19 @@
                             "hideEasing": "linear",
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
-                            }
+                        };
                     }
-                },error:function(err){
+                },
+                error: function(err) {
                     let error = err.responseJSON;
-                    $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                    $.each(error.errors, function(index, value) {
+                        $('.errMsgContainer').append('<span class="text-danger">' + value + '</span>' + '<br>');
                     });
-
                 }
             });
-        })
-
-
-
-
+        });
     });
-    </script>
+</script>
     <script>
     $(document).ready(function() {
         $('#submitButton').click(function(e) {

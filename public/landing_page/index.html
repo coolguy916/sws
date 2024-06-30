@@ -57,6 +57,43 @@
     }
 </style>
 
+<style>
+    .gallery-item {
+        cursor: pointer;
+    }
+    .gallery-item img {
+        width: 100%;
+        height: 100px; /* Set a smaller fixed height */
+        object-fit: cover; /* Ensure the image covers the area without distorting */
+    }
+    #image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+    }
+    #image-modal img {
+        margin-top: 60px;
+        max-width: 90%;
+        max-height: 80%;
+    }
+    #image-modal .close {
+        position: absolute;
+        top: 30px;
+        right: 35px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
 <body>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -142,7 +179,70 @@
             </div>
         </div>
         <!-- About End -->
-
+        <section id="portfolio-section" class="section-padding">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="section-title-header text-center">
+                    <h2 class="section-title">Our Gallery</h2>
+                    <p>Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <!-- Portfolio Controller/Buttons -->
+                  <div class="controls text-center">
+                    <a class="filter active btn btn-common" data-filter="all">
+                      All 
+                    </a>
+                    <a class="filter btn btn-common" data-filter=".design">
+                      Living Room 
+                    </a>
+                    <a class="filter btn btn-common" data-filter=".development">
+                      Bedroom
+                    </a>
+                    <a class="filter btn btn-common" data-filter=".print">
+                      Kitchen 
+                    </a>
+                  </div>
+                  <!-- Portfolio Controller/Buttons Ends-->
+                </div>
+              </div>
+          
+            </div>
+          </section>
+        <div class="container-xxl py-6" id="keunggulan">
+            <div class="container">
+                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Keunggulan Kami</div>
+                    <h2 class="mb-5">Dirancang khusus untuk memberikan solusi terbaik bagi kebutuhan Anda</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.1s">
+                        <img src="img/yazid.jpg" alt="Business Research" class="service-item rounded h-100">
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.3s">
+                        <img src="img/yazid.jpg" alt="Strategic Planning" class="service-item rounded h-100">
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.6s">
+                        <img src="img/yazid.jpg" alt="Market Analysis" class="service-item rounded h-100">
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.1s">
+                        <img src="img/yazid.jpg" alt="Financial Analysis" class="service-item rounded h-100">
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.3s">
+                        <img src="img/yazid.jpg" alt="Legal Advisory" class="service-item rounded h-100">
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp gallery-item" data-wow-delay="0.6s">
+                        <img src="img/alat_swis.png" alt="Tax & Insurance" class="service-item rounded h-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="image-modal">
+            <span class="close">&times;</span>
+            <img id="modal-content">
+        </div>
 
         <!-- Service Start -->
         <div class="container-xxl py-6" id="keunggulan">
@@ -683,7 +783,30 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-
+    <script>
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-content');
+        const closeBtn = document.getElementsByClassName('close')[0];
+    
+        galleryItems.forEach(item => {
+            item.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+    
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
