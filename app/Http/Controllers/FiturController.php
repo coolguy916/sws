@@ -9,79 +9,72 @@ use Illuminate\Support\Facades\Storage;
 class FiturController extends Controller
 {
     public function index() {
-    $fitur=Fitur::paginate(5);
+        $fitur = Fitur::all();
 
     return view('Admin.LandingPage.fitur' , compact('fitur'));
     }
 
-    public function create(Request $request) {
-        $request->validate([
-            'teks' => 'required',
-            'status' => 'required',
-            'image' => 'required|image', 
-        ], [
-            'teks.required' => 'Keterangan Image harus di isi',
-            'image.required' => 'Gambar harus diunggah',
-            'image.image' => 'File harus berupa gambar',
-        ]);
-
-        $image = $request->file('image');
-        $imageName = $image->hashName();
-        $image->storeAs('public/fitur', $imageName);
-
-        $slider = new Fitur();
-        $slider->image = $imageName;
-        $slider->teks = $request->teks;
-        $slider->status = $request->status;
-        $slider->save();  
     
-        return response()->json([
-            'status' => 'success',
-        ]);
+   
+    public function create()
+    {
+        return view('fitur.create');
     }
 
-    public function update(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'teks' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'judul.*' => 'nullable|string|max:255',
+            'deskripsi.*' => 'nullable|string|max:255',
+            'icon.*' => 'nullable|string|max:255',
         ]);
-    
-        $slider = Fitur::find($request->fitur_id);
-        $slider->teks = $request->teks;
-        $slider->status = $request->status;
-    
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->storeAs('public/fitur', $imageName);
-            $slider->image = $imageName;
-        }
-    
-        $slider->save();
-    
-        return response()->json(['status' => 'success']);
+
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $fitur = new Fitur();
+        $fitur->image = $imagePath;
+        $fitur->judul = json_encode(array_slice($request->judul, 0, 6));
+        $fitur->deskripsi = json_encode(array_slice($request->deskripsi, 0, 6));
+        $fitur->icon = json_encode(array_slice($request->icon, 0, 6));
+        $fitur->save();
+
+        return redirect()->route('fitur.index')->with('success', 'Fitur created successfully.');
     }
 
-    public function deletefitur(Request $request)
-{
-    try {
+    public function edit(Fitur $fitur)
+    {
+        return view('fitur.edit', compact('fitur'));
+    }
+
+    public function update(Request $request, Fitur $fitur)
+    {
         $request->validate([
-            'fitur_id' => 'required|exists:fiturs,id',
+            'judul.*' => 'nullable|string|max:255',
+            'deskripsi.*' => 'nullable|string|max:255',
+            'icon.*' => 'nullable|string|max:255',
         ]);
 
-        $slider = fitur::findOrFail($request->fitur_id);
-
-        if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
-            Storage::delete('public/fitur'.$slider->image);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $fitur->image = $imagePath;
         }
-       
-        $slider->delete();
 
-        return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
-    } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+        
+        $fitur->judul = json_encode(array_slice($request->judul, 0, 6));
+        $fitur->deskripsi = json_encode(array_slice($request->deskripsi, 0, 6));
+        $fitur->icon = json_encode(array_slice($request->icon, 0, 6));
+        $fitur->save();
+
+        return redirect()->route('fitur.index')->with('success', 'Fitur updated successfully.');
     }
-}
+
+    public function destroy(Fitur $fitur)
+    {
+        $fitur->delete();
+        return redirect()->route('fitur.index')->with('success', 'Fitur deleted successfully.');
+    }
+
+
     
 }

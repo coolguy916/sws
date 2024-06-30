@@ -445,6 +445,8 @@ features {
 .hero-header {
     margin-bottom: 6rem;
     padding: 12rem 0 9rem 0;
+        background: url(../img/wis.png) center bottom no-repeat;
+
 }
 
 .page-header {

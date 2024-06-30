@@ -1,39 +1,22 @@
-  <section class="client_section layout_padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9 col-md-10 mx-auto">
-          <div class="heading_container">
-            <h2>
-              Testimonial
-            </h2>
-          </div>
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                        @foreach($testimoni as $key => $testimonial)
-
-              <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}">
-                <div class="detail-box">
-                  <h4>
-                    {{ $testimonial->judul }}
-                  </h4>
-                  <p>
-                    {{ $testimonial->teks }}
-                  </p>
-                  <img src="landing/images/quote.png" alt="">
-                </div>
-              </div>
-             
-            @endforeach
-
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
+<div class="container-xxl py-6">
+  <div class="container">
+      <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+          <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Testimonial</div>
+          <h2 class="mb-5">Apa Kata Pelanggan!</h2>
       </div>
-    </div>
-  </section>
+      <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+        @foreach ($testimoni as $row )
+        <div class="testimonial-item rounded p-4">
+          <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+          <p>{{ $row->teks }}</p>
+          <div class="d-flex align-items-center">
+              <!-- <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg"> -->
+              <div class="ps-3">
+                  <h6 class="mb-1">{{ $row->judul }}</h6>
+              </div>
+          </div>
+      </div>
+        @endforeach
+      </div>
+  </div>
+</div>

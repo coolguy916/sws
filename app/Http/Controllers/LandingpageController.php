@@ -17,13 +17,13 @@ class LandingpageController extends Controller
     public function index() {
     $slider = Slider::where('status', 1)->get();
     $deskripsi= Deskripsi::all();
-    $fitur = Fitur::where('status', 1)->get();
+    $fitur = Fitur::all();
     $keunggulan = Keunggulan::where('status', 1)->get();
     $dokumentasi = Dokumentasi::where('status', 1)->get();
-    $kontak = Kontak::where('status', 1)->get();
-    $footer = Footer::where('status', 1)->get();
+    $kontak = Kontak::first();    
+    $footers = Footer::all();    
     $testimoni= Testimonial::all();
 
-    return view('landing-page.index', compact('slider','deskripsi','dokumentasi','fitur','keunggulan','kontak','footer','testimoni'));
+    return view('landing-page.landing', compact('slider','deskripsi','dokumentasi','fitur','keunggulan','kontak','footers','testimoni'));
     }
 }

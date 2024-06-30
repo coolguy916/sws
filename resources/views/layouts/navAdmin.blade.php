@@ -367,7 +367,7 @@
            <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('data.fitur') }}"
+              href="/admin/fitur"
               aria-expanded="false"
               ><i class="mdi mdi-deskphone"></i
               ><span class="hide-menu">Fitur-fitur</span></a
@@ -394,7 +394,7 @@
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('data.kontak') }}"
+              href="/admin/kontak"
               aria-expanded="false"
               ><i class="mdi mdi-contact-mail"></i
               ><span class="hide-menu">Kontak Kita</span></a
@@ -414,7 +414,7 @@
            <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('data.footer') }}"
+              href="/admin/footer"
               aria-expanded="false"
               ><i class="mdi mdi-page-layout-footer"></i
               ><span class="hide-menu">Footer</span></a

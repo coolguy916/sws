@@ -44,7 +44,6 @@
                                 <th>Judul</th>
                                 <th>Deskripsi</th>
                                 <th>Status</th>
-                                <th>Gambar</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -56,7 +55,7 @@
                             <tr class="keunggulan-row" data-id="{{ $row->id }}">
 
                             <td>{{ $row->id }}</td>
-                              <td> <img src="{{ asset('storage/icon/'.$row->icon) }}" class="rounded" style="width: 150px"></td>
+                            <td>{{ $row->icon }}</td>
                             <td>{{ $row->judul}}</td>
                             <td>{{ $row->teks}}</td>
                             <td>
@@ -70,10 +69,9 @@
                                 </p>
                                 @endif
                             </td>
-                                                        <td> <img src="{{ asset('storage/keunggulan/'.$row->image) }}" class="rounded" style="width: 150px"></td>
                             <td>
                                
-                                <button type="button" class="btn btn-primary edit_keunggulan" data-id="{{ $row->id }}" data-judul="{{ $row->judul }}" data-teks="{{ $row->teks }}" data-status="{{ $row->status }}">Edit</button>
+                                <button type="button" class="btn btn-primary edit_keunggulan" data-id="{{ $row->id }}" data-judul="{{ $row->judul }}" data-teks="{{ $row->teks }}" data-status="{{ $row->status }}" data-icon="{{ $row->icon }}">Edit</button>
 
                                 <button type="button" class="btn btn-danger delete_keunggulan" data-id="{{ $row->id }}">
                                     Delete

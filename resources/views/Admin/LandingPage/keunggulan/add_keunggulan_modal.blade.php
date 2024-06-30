@@ -34,27 +34,19 @@
         </div>
     </div>
 
-     <div class="form-group row">
-      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Icon:</label>
+    <div class="form-group row">
+        <label for="text" class="col-sm-3 text-right control-label col-form-label">Icon:</label>
         <div class="col-sm-9">
-     <input type="file" name="icon" id="icon" class="form-control @error('icon')
-                                    is-invalid
-                                @enderror" value="{{old('icon')}}" aria-describedby="emailHelp">@error('icon')
-                                    {{$message}}
-                                    @enderror
-                                    </div>
-                   </div>
-
-     <div class="form-group row">
-      <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Imge Fitur:</label>
-        <div class="col-sm-9">
-     <input type="file" name="image" id="image" class="form-control @error('image')
-                                    is-invalid
-                                @enderror" value="{{old('image')}}" aria-describedby="emailHelp">@error('image')
-                                    {{$message}}
-                                    @enderror
-                                    </div>
-                   </div>
+            <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" placeholder="Tuliskan icon Deskripsi" required>
+            <!-- error message untuk title -->
+            @error('icon')
+                <div class="alert alert-danger mt-2">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+     
     
       <div class="form-group row">
       <label for="cono1" class="col-sm-3 text-right control-label col-form-label"> Status Image</label>

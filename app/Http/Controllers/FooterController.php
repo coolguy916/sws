@@ -9,118 +9,90 @@ use Illuminate\Support\Facades\Storage;
 class FooterController extends Controller
 {
     public function index() {
-        $footer=Footer::paginate(5);
-        return view('Admin.LandingPage.footer', compact('footer'));
+        $footers = Footer::paginate(5);
+        return view('Admin.LandingPage.footer', compact('footers'));
     }
 
-    public function create(Request $request) {
-        $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'youtube' => 'required',
-            'instagram' => 'required',
-            'status' => 'required',
-            'image' => 'required|image', 
-        ], [
-            'judul.required' => 'Keterangan Image harus di isi',
-            'deskripsi.required' => 'Keterangan Image harus di isi',
-            'alamat.required' => 'Keterangan Image harus di isi',
-            'email.required' => 'Keterangan Image harus di isi',
-            'phone.required' => 'Keterangan Image harus di isi',
-            'youtube.required' => 'Keterangan Image harus di isi',
-            'instagram.required' => 'Keterangan Image harus di isi',
-            'image.required' => 'Gambar harus diunggah',
-            'image.image' => 'File harus berupa gambar',
-        ]);
-
-        $image = $request->file('image');
-        $imageName = $image->hashName();
-        $image->storeAs('public/logo', $imageName);
-
-        $slider = new Footer();
-        $slider->image = $imageName;
-        $slider->judul = $request->judul;
-        $slider->deskripsi = $request->deskripsi;
-        $slider->alamat = $request->alamat;
-        $slider->email = $request->email;
-        $slider->phone = $request->phone;
-        $slider->youtube = $request->youtube;
-        $slider->instagram = $request->instagram;
-        $slider->status = $request->status;
-        $slider->save();  
-    
-        return response()->json([
-            'status' => 'success',
-        ]);
+    public function create()
+    {
+        return view('footer.create');
     }
 
-    public function update(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'youtube' => 'required',
-            'instagram' => 'required',
-            'status' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ], [
-            'judul.required' => 'Keterangan Image harus di isi',
-            'deskripsi.required' => 'Keterangan Image harus di isi',
-            'alamat.required' => 'Keterangan Image harus di isi',
-            'email.required' => 'Keterangan Image harus di isi',
-            'phone.required' => 'Keterangan Image harus di isi',
-            'youtube.required' => 'Keterangan Image harus di isi',
-            'instagram.required' => 'Keterangan Image harus di isi',
-            'image.required' => 'Gambar harus diunggah',
-            'image.image' => 'File harus berupa gambar',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon_tulisan' => 'nullable|array|max:6',
+            'keterangan' => 'nullable|array|max:6',
+            'icon_link' => 'nullable|array|max:6',
+            'link' => 'nullable|array|max:6',
+            'nama_link_website' => 'nullable|array|max:6',
+            'link_website' => 'nullable|array|max:6',
         ]);
-    
-        $slider = Footer::find($request->footer_id);
-        $slider->judul = $request->judul;
-        $slider->deskripsi = $request->deskripsi;
-        $slider->alamat = $request->alamat;
-        $slider->email = $request->email;
-        $slider->phone = $request->phone;
-        $slider->youtube = $request->youtube;
-        $slider->instagram = $request->instagram;
-        $slider->status = $request->status;
-        $slider->save();  
+
+        $footer = new Footer();
 
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->storeAs('public/logo', $imageName);
-            $slider->image = $imageName;
+            $imagePath = $request->file('image')->store('footer_images', 'public');
+            $footer->image = $imagePath;
         }
-    
-        $slider->save();
-    
-        return response()->json(['status' => 'success']);
+
+        $footer->icon_tulisan = json_encode($request->icon_tulisan);
+        $footer->keterangan = json_encode($request->keterangan);
+        $footer->icon_link = json_encode($request->icon_link);
+        $footer->link = json_encode($request->link);
+        $footer->nama_link_website = json_encode($request->nama_link_website);
+        $footer->link_website = json_encode($request->link_website);
+        $footer->save();
+
+        return redirect()->route('footer.index')->with('success', 'Footer created successfully.');
     }
 
-    public function delete(Request $request)
+    public function edit(Footer $footer)
     {
-        try {
-            $request->validate([
-                'footer_id' => 'required|exists:footers,id',
-            ]);
-    
-            $slider = footer::findOrFail($request->footer_id);
-    
-            if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
-                Storage::delete('public/fitur'.$slider->image);
+        return view('footer.edit', compact('footer'));
+    }
+
+    public function update(Request $request, Footer $footer)
+    {
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon_tulisan' => 'nullable|array|max:6',
+            'keterangan' => 'nullable|array|max:6',
+            'icon_link' => 'nullable|array|max:6',
+            'link' => 'nullable|array|max:6',
+            'nama_link_website' => 'nullable|array|max:6',
+            'link_website' => 'nullable|array|max:6',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($footer->image) {
+                Storage::disk('public')->delete($footer->image);
             }
-           
-            $slider->delete();
-    
-            return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
-        } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+
+            $imagePath = $request->file('image')->store('footer_images', 'public');
+            $footer->image = $imagePath;
         }
+
+        $footer->icon_tulisan = json_encode($request->icon_tulisan);
+        $footer->keterangan = json_encode($request->keterangan);
+        $footer->icon_link = json_encode($request->icon_link);
+        $footer->link = json_encode($request->link);
+        $footer->nama_link_website = json_encode($request->nama_link_website);
+        $footer->link_website = json_encode($request->link_website);
+        $footer->save();
+
+        return redirect()->route('footer.index')->with('success', 'Footer updated successfully.');
+    }
+
+    public function destroy(Footer $footer)
+    {
+        if ($footer->image) {
+            Storage::disk('public')->delete($footer->image);
+        }
+
+        $footer->delete();
+        return redirect()->route('footer.index')->with('success', 'Footer deleted successfully.');
     }
 }

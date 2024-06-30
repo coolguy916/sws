@@ -15,8 +15,7 @@ class CreateKeunggulansTable extends Migration
     {
         Schema::create('keunggulans', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
-            $table->text('icon')->nullable();
+            $table->char('icon')->nullable();
             $table->text('judul')->nullable();
             $table->text('teks')->nullable();
             $table->boolean('status');

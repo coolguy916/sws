@@ -15,10 +15,16 @@ class CreateKontaksTable extends Migration
     {
         Schema::create('kontaks', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
-            $table->text('teks')->nullable();
+
+            $table->text('text')->nullable();
+            $table->text('keterangan')->nullable();
             $table->text('link')->nullable();
-            $table->boolean('status');
+
+            $table->json('icon')->nullable();
+            $table->json('judul')->nullable();
+            $table->json('deskripsi')->nullable();
+
+
             $table->timestamps();
         });
     }

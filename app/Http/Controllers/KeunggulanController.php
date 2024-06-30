@@ -18,28 +18,18 @@ class KeunggulanController extends Controller
             'judul' => 'required',
             'teks' => 'required',
             'status' => 'required',
-            'icon' => 'required|image', 
-            'image' => 'required|image', 
+            'icon' => 'required', 
         ], [
             'judul.required' => 'Keterangan Image harus di isi',
             'teks.required' => 'Keterangan Image harus di isi',
             'image.required' => 'Gambar harus diunggah',
-            'icon.required' => 'Gambar harus diunggah',
-            'icon.image' => 'File harus berupa gambar',
-            'image.image' => 'File harus berupa gambar',
+            'icon.required' => 'icon harus diunggah',
         ]);
 
-        $image = $request->file('image');
-        $imageName = $image->hashName();
-        $image->storeAs('public/keunggulan', $imageName);
-
-        $icon = $request->file('icon');
-        $iconimage = $image->hashName();
-        $icon->storeAs('public/icon', $iconimage);
+       
 
         $slider = new Keunggulan();
-        $slider->image = $imageName;
-        $slider->icon = $iconimage;
+        $slider->icon = $request->icon;
         $slider->judul = $request->judul;
         $slider->teks = $request->teks;
         $slider->status = $request->status;
@@ -55,27 +45,15 @@ class KeunggulanController extends Controller
         $request->validate([
             'judul' => 'required',
             'teks' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'icon' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => 'required',
             'status' => 'required',
         ]);
     
         $slider = Keunggulan::find($request->keunggulan_id);
         $slider->judul = $request->judul;
         $slider->teks = $request->teks;
+        $slider->icon = $request->icon;
         $slider->status = $request->status;
-    
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->storeAs('public/keunggulan', $imageName);
-            $slider->image = $imageName;
-        }
-        if ($request->hasFile('icon')) {
-            $iconimage = time().'.'.$request->icon->extension();  
-            $request->icon->storeAs('public/icon', $iconimage);
-            $slider->icon = $iconimage;
-        }
-    
         $slider->save();
     
         return response()->json(['status' => 'success']);
@@ -89,10 +67,6 @@ class KeunggulanController extends Controller
             ]);
     
             $slider = Keunggulan::findOrFail($request->keunggulan_id);
-    
-            if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
-                Storage::delete('public/fitur'.$slider->image);
-            }
            
             $slider->delete();
     

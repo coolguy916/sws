@@ -16,14 +16,12 @@ class CreateFootersTable extends Migration
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
             $table->text('image')->nullable();
-            $table->text('judul')->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->text('alamat')->nullable();
-            $table->text('email')->nullable();
-            $table->text('phone')->nullable();
-            $table->text('youtube')->nullable();
-            $table->text('instagram')->nullable();
-            $table->boolean('status');
+            $table->json('icon_tulisan')->nullable();
+            $table->json('keterangan')->nullable();
+            $table->json('icon_link')->nullable();
+            $table->json('link')->nullable();
+            $table->json('nama_link_website')->nullable();
+            $table->json('link_website')->nullable();
             $table->timestamps();
         });
     }

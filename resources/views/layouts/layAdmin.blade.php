@@ -590,95 +590,7 @@
 </script>
 
 
-<script>
-    $(document).ready(function(){
-    $(document).on('click', '.open_fitur', function(e){
-        e.preventDefault();
-        $('#addfitur')[0].reset(); 
-        $('#fitur_id').val(''); 
-        $('.save_fitur').text('Add Fitur'); 
-        $('.save_fitur').data('action', 'add'); 
-    });
 
-    $(document).on('click', '.edit_fitur', function(e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        let teks = $(this).data('teks');
-        let status = $(this).data('status');
-
-        $('#fitur_id').val(id);
-        $('#teks').val(teks);
-        $('#status').val(status);
-
-        $('#fitur').modal('show');
-        $('.save_fitur').text('Update fitur '); 
-        $('.save_fitur').data('action', 'edit'); 
-    });
-
-    $(document).on('click', '.save_fitur', function(e) {
-        e.preventDefault();
-
-        let action = $(this).data('action');
-        let id = $('#fitur_id').val();
-        let teks = $('#teks').val();
-        let image = $('#image')[0].files[0];
-        let status = $('#status').val();
-
-        let formData = new FormData();
-        formData.append('teks', teks);
-        formData.append('status', status);
-        if (image) {
-            formData.append('image', image);
-        }
-
-        let url = action === 'edit' ? "{{ route('update.fitur') }}" : "{{ route('add.fitur') }}";
-        if (action === 'edit') {
-            formData.append('fitur_id', id);
-        }
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                if(res.status == 'success') {
-                    $('#fitur').modal('hide');
-                    $('#addfitur')[0].reset();
-                    $('.table').load(location.href + ' .table');
-                    Command: toastr["success"](action === 'edit' ? "fitur has been successfully updated" : "fitur has been successfully added", "Success");
-
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-                }
-            },
-            error: function(err) {
-                let error = err.responseJSON;
-                $('.errMsgContainer').html('');
-                $.each(error.errors, function(index, value) {
-                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
-                });
-            }
-        });
-    });
-    });
-</script>
 
     
 <script>
@@ -696,11 +608,13 @@
         let id = $(this).data('id');
         let judul = $(this).data('judul');
         let teks = $(this).data('teks');
+        let icon = $(this).data('icon');
         let status = $(this).data('status');
 
         $('#keunggulan_id').val(id);
         $('#judul').val(judul);
         $('#teks').val(teks);
+        $('#icon').val(icon);
         $('#status').val(status);
 
         $('#keunggulan').modal('show');
@@ -715,20 +629,14 @@
         let id = $('#keunggulan_id').val();
         let judul = $('#judul').val();
         let teks = $('#teks').val();
-        let image = $('#image')[0].files[0];
-        let icon = $('#icon')[0].files[0];
+        let icon = $('#icon').val();
         let status = $('#status').val();
 
         let formData = new FormData();
         formData.append('judul', judul);
         formData.append('teks', teks);
         formData.append('status', status);
-        if (image) {
-            formData.append('image', image);
-        }
-        if (icon) {
-            formData.append('icon', icon);
-        }
+        formData.append('icon', icon);
 
         let url = action === 'edit' ? "{{ route('update.keunggulan') }}" : "{{ route('add.keunggulan') }}";
         if (action === 'edit') {
@@ -874,99 +782,7 @@
 </script>
 
 
-<script>
-    $(document).ready(function(){
-    $(document).on('click', '.open_kontak', function(e){
-        e.preventDefault();
-        $('#addkontak')[0].reset(); 
-        $('#kontak_id').val(''); 
-        $('.save_kontak').text('Add Kontak'); 
-        $('.save_kontak').data('action', 'add'); 
-    });
 
-    $(document).on('click', '.edit_kontak', function(e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        let link = $(this).data('link');
-        let teks = $(this).data('teks');
-        let status = $(this).data('status');
-
-        $('#kontak_id').val(id);
-        $('#link').val(link);
-        $('#teks').val(teks);
-        $('#status').val(status);
-
-        $('#kontak').modal('show');
-        $('.save_kontak').text('Update Kontak '); 
-        $('.save_kontak').data('action', 'edit'); 
-    });
-
-    $(document).on('click', '.save_kontak', function(e) {
-        e.preventDefault();
-
-        let action = $(this).data('action');
-        let id = $('#kontak_id').val();
-        let link = $('#link').val();
-        let teks = $('#teks').val();
-        let image = $('#image')[0].files[0];
-        let status = $('#status').val();
-
-        let formData = new FormData();
-        formData.append('link', link);
-        formData.append('teks', teks);
-        formData.append('status', status);
-        if (image) {
-            formData.append('image', image);
-        }
-
-        let url = action === 'edit' ? "{{ route('update.kontak') }}" : "{{ route('add.kontak') }}";
-        if (action === 'edit') {
-            formData.append('kontak_id', id);
-        }
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                if(res.status == 'success') {
-                    $('#kontak').modal('hide');
-                    $('#addkontak')[0].reset();
-                    $('.table').load(location.href + ' .table');
-                    Command: toastr["success"](action === 'edit' ? "Dokumentasi has been successfully updated" : "Dokumentasi has been successfully added", "Success");
-
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-                }
-            },
-            error: function(err) {
-                let error = err.responseJSON;
-                $('.errMsgContainer').html('');
-                $.each(error.errors, function(index, value) {
-                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
-                });
-            }
-        });
-    });
-    });
-</script>
     
 <script>
     $(document).ready(function(){
@@ -1059,119 +875,7 @@
     });
 </script>
 
-<script>
-    $(document).ready(function(){
-    $(document).on('click', '.open_footer', function(e){
-        e.preventDefault();
-        $('#addfooter')[0].reset(); 
-        $('#footer_id').val(''); 
-        $('.save_footer').text('Add Footer'); 
-        $('.save_footer').data('action', 'add'); 
-    });
 
-    $(document).on('click', '.edit_footer', function(e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        let judul = $(this).data('judul');
-        let deskripsi = $(this).data('deskripsi');
-        let alamat = $(this).data('alamat');
-        let email = $(this).data('email');
-        let phone = $(this).data('phone');
-        let youtube = $(this).data('youtube');
-        let instagram = $(this).data('instagram');
-        let status = $(this).data('status');
-
-        $('#footer_id').val(id);
-        $('#judul').val(judul);
-        $('#deskripsi').val(deskripsi);
-        $('#alamat').val(alamat);
-        $('#email').val(email);
-        $('#phone').val(phone);
-        $('#youtube').val(youtube);
-        $('#instagram').val(instagram);
-        $('#status').val(status);
-
-        $('#footer').modal('show');
-        $('.save_footer').text('Update Footer '); 
-        $('.save_footer').data('action', 'edit'); 
-    });
-
-    $(document).on('click', '.save_footer', function(e) {
-        e.preventDefault();
-
-        let action = $(this).data('action');
-        let id = $('#footer_id').val();
-        let judul = $('#judul').val();
-        let deskripsi = $('#deskripsi').val();
-        let alamat = $('#alamat').val();
-        let email = $('#email').val();
-        let phone = $('#phone').val();
-        let youtube = $('#youtube').val();
-        let instagram = $('#instagram').val();
-        let image = $('#image')[0].files[0];
-        let status = $('#status').val();
-
-        let formData = new FormData();
-        formData.append('judul', judul);
-        formData.append('deskripsi', deskripsi);
-        formData.append('alamat', alamat);
-        formData.append('email', email);
-        formData.append('phone', phone);
-        formData.append('youtube', youtube);
-        formData.append('instagram', instagram);
-        formData.append('status', status);
-        if (image) {
-            formData.append('image', image);
-        }
-
-        let url = action === 'edit' ? "{{ route('update.footer') }}" : "{{ route('add.footer') }}";
-        if (action === 'edit') {
-            formData.append('footer_id', id);
-        }
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                if(res.status == 'success') {
-                    $('#footer').modal('hide');
-                    $('#addfooter')[0].reset();
-                    $('.table').load(location.href + ' .table');
-                    Command: toastr["success"](action === 'edit' ? "Footer has been successfully updated" : "Footer has been successfully added", "Success");
-
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-                }
-            },
-            error: function(err) {
-                let error = err.responseJSON;
-                $('.errMsgContainer').html('');
-                $.each(error.errors, function(index, value) {
-                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span><br>');
-                });
-            }
-        });
-    });
-    });
-</script>
 
 <script>
     $(document).ready(function(){
@@ -1385,59 +1089,7 @@
     });
 </script>
 
-<script>
-    $(document).on('click', '.delete_fitur', function (e) {
-        e.preventDefault();
-        let fitur_id = $(this).data('id');
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to delete this fitur!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "{{ route('delete.fitur') }}", 
-                    method: 'POST',
-                    data: {
-                        fitur_id: fitur_id,
-                        _token: '{{ csrf_token() }}' 
-                    },
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.status === 'success') {
-                            $('.table').load(location.href + ' .table');
-
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Slider has been deleted.',
-                                icon: 'success',
-                                timer: 2000,
-                                timerProgressBar: true,
-                            });
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Failed to delete the slider.',
-                            icon: 'error',
-                            timer: 2000,
-                            timerProgressBar: true,
-                        });
-                    }
-                });
-            }
-        });
-    });
-</script>
 
 <script>
     $(document).on('click', '.delete_keunggulan', function (e) {
@@ -1547,59 +1199,7 @@
     });
 </script>
 
-<script>
-    $(document).on('click', '.delete_kontak', function (e) {
-        e.preventDefault();
-        let kontak_id = $(this).data('id');
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to delete this dokumentasi!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "{{ route('delete.kontak') }}", 
-                    method: 'POST',
-                    data: {
-                        kontak_id: kontak_id,
-                        _token: '{{ csrf_token() }}' 
-                    },
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.status === 'success') {
-                            $('.table').load(location.href + ' .table');
-
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Slider has been deleted.',
-                                icon: 'success',
-                                timer: 2000,
-                                timerProgressBar: true,
-                            });
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Failed to delete the slider.',
-                            icon: 'error',
-                            timer: 2000,
-                            timerProgressBar: true,
-                        });
-                    }
-                });
-            }
-        });
-    });
-</script>
 
 <script>
     $(document).on('click', '.delete_testimoni', function (e) {
@@ -1657,59 +1257,7 @@
 
 
 
-<script>
-    $(document).on('click', '.delete_footer', function (e) {
-        e.preventDefault();
-        let footer_id = $(this).data('id');
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You are about to delete this footer!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "{{ route('delete.footer') }}", 
-                    method: 'POST',
-                    data: {
-                        footer_id: footer_id,
-                        _token: '{{ csrf_token() }}' 
-                    },
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.status === 'success') {
-                            $('.table').load(location.href + ' .table');
-
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Slider has been deleted.',
-                                icon: 'success',
-                                timer: 2000,
-                                timerProgressBar: true,
-                            });
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Failed to delete the slider.',
-                            icon: 'error',
-                            timer: 2000,
-                            timerProgressBar: true,
-                        });
-                    }
-                });
-            }
-        });
-    });
-</script>
 </body>
 
 </html>

@@ -9,84 +9,68 @@ use Illuminate\Support\Facades\Storage;
 class KontakController extends Controller
 {
     public function index() {
-        $kontak=Kontak::paginate(5);
-        return view('Admin.LandingPage.kontak', compact('kontak'));
+        $kontaks=Kontak::paginate(5);
+        return view('Admin.LandingPage.kontak', compact('kontaks'));
     }
 
-    public function create(Request $request) {
-        $request->validate([
-            'teks' => 'required',
-            'status' => 'required',
-            'link' => 'required', 
-            'image' => 'required|image', 
-        ], [
-            'link.required' => 'Keterangan link harus harus di isi',
-            'teks.required' => 'Keterangan Image harus di isi',
-            'image.required' => 'Gambar harus diunggah',
-            'image.image' => 'File harus berupa gambar',
-        ]);
-
-        $image = $request->file('image');
-        $imageName = $image->hashName();
-        $image->storeAs('public/kontak', $imageName);
-
-       
-        $slider = new Kontak();
-        $slider->image = $imageName;
-        $slider->link = $request->link;
-        $slider->teks = $request->teks;
-        $slider->status = $request->status;
-        $slider->save();  
-    
-        return response()->json([
-            'status' => 'success',
-        ]);
+       public function create()
+    {
+        return view('kontak.create');
     }
 
-    public function update(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'link' => 'required',
-            'teks' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required',
+            'text' => 'nullable|string',
+            'keterangan' => 'nullable|string',
+            'link' => 'nullable|string',
+            'icon' => 'nullable|array|max:6',
+            'judul' => 'nullable|array|max:6',
+            'deskripsi' => 'nullable|array|max:6',
         ]);
-    
-        $slider = Kontak::find($request->kontak_id);
-        $slider->teks = $request->teks;
-        $slider->link = $request->link;
-        $slider->status = $request->status;
-    
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();  
-            $request->image->storeAs('public/kontak', $imageName);
-            $slider->image = $imageName;
-        }
-    
-        $slider->save();
-    
-        return response()->json(['status' => 'success']);
+
+        $kontak = new Kontak();
+        $kontak->text = $request->text;
+        $kontak->keterangan = $request->keterangan;
+        $kontak->link = $request->link;
+        $kontak->icon = json_encode($request->icon);
+        $kontak->judul = json_encode($request->judul);
+        $kontak->deskripsi = json_encode($request->deskripsi);
+        $kontak->save();
+
+        return redirect()->route('kontak.index')->with('success', 'Kontak created successfully.');
     }
 
-    public function deletekontak(Request $request)
-{
-    try {
+    public function edit(Kontak $kontak)
+    {
+        return view('kontak.edit', compact('kontak'));
+    }
+
+    public function update(Request $request, Kontak $kontak)
+    {
         $request->validate([
-            'kontak_id' => 'required|exists:kontaks,id',
+            'text' => 'nullable|string',
+            'keterangan' => 'nullable|string',
+            'link' => 'nullable|string',
+            'icon' => 'nullable|array|max:6',
+            'judul' => 'nullable|array|max:6',
+            'deskripsi' => 'nullable|array|max:6',
         ]);
 
-        $slider = kontak::findOrFail($request->kontak_id);
+        $kontak->text = $request->text;
+        $kontak->keterangan = $request->keterangan;
+        $kontak->link = $request->link;
+        $kontak->icon = json_encode($request->icon);
+        $kontak->judul = json_encode($request->judul);
+        $kontak->deskripsi = json_encode($request->deskripsi);
+        $kontak->save();
 
-        if ($slider->image && Storage::exists('public/fitur'.$slider->image)) {
-            Storage::delete('public/fitur'.$slider->image);
-        }
-       
-        $slider->delete();
-
-        return response()->json(['status' => 'success', 'message' => 'Slider has been deleted.']);
-    } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => 'Failed to delete the slider.', 'error' => $e->getMessage()]);
+        return redirect()->route('kontak.index')->with('success', 'Kontak updated successfully.');
     }
-}
-    
+
+    public function destroy(Kontak $kontak)
+    {
+        $kontak->delete();
+        return redirect()->route('kontak.index')->with('success', 'Kontak deleted successfully.');
+    }
 }

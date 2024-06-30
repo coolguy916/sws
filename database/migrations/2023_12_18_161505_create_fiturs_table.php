@@ -16,9 +16,9 @@ class CreateFitursTable extends Migration
         Schema::create('fiturs', function (Blueprint $table) {
             $table->id();
             $table->text('image')->nullable();
-            $table->text('teks')->nullable();
-            $table->boolean('status');
-
+            $table->json('icon')->nullable();
+            $table->json('judul')->nullable();
+            $table->json('deskripsi')->nullable();
             $table->timestamps();
         });
     }
