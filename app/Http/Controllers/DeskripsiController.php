@@ -10,7 +10,7 @@ class DeskripsiController extends Controller
     public function index()
     {
         $deskripsi = Deskripsi::firstOrCreate([]);
-        return view('Admin.landingpage.deskripsi', compact('deskripsi'));
+        return view('Admin.landingpage.deskripsi', ['deskripsi' => $deskripsi]);
     }
     
       public function update(Request $request)
