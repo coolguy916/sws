@@ -382,15 +382,19 @@
               ><span class="hide-menu">Keunggulan</span></a
             >
           </li>
+          
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('data.dokumentasi') }}"
+              href="{{ route('pages.index') }}"
               aria-expanded="false"
-              ><i class="mdi mdi-table-edit"></i
-              ><span class="hide-menu">Dokumentasi</span></a
+              ><i class="mdi mdi-hard-hat"></i>
+
+
+              <span class="hide-menu"> Developer</span></a
             >
           </li>
+
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -443,6 +447,8 @@
               <span class="hide-menu"> Syarat & ketentuan</span></a
             >
           </li>
+
+         
          
 
         </ul>

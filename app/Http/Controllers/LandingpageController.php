@@ -8,6 +8,7 @@ use App\Models\Fitur;
 use App\Models\Footer;
 use App\Models\Keunggulan;
 use App\Models\Kontak;
+use App\Models\page;
 use App\Models\slider;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -23,7 +24,9 @@ class LandingpageController extends Controller
     $kontak = Kontak::first();    
     $footers = Footer::all();    
     $testimoni= Testimonial::all();
+    $pages= page::all();
 
-    return view('landing-page.landing', compact('slider','deskripsi','dokumentasi','fitur','keunggulan','kontak','footers','testimoni'));
+
+    return view('landing-page.landing', compact('slider','deskripsi','dokumentasi','fitur','keunggulan','kontak','footers','testimoni','pages'));
     }
 }

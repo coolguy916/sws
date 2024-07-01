@@ -19,6 +19,8 @@
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css-inp/style-inp.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css-inp/style-ind.scss') }}" rel="stylesheet" />
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet">
@@ -79,6 +81,74 @@
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+    <script src="https://unpkg.com/grapesjs"></script>
+<script src="https://unpkg.com/grapesjs-plugin-forms"></script>
+<script src="https://unpkg.com/grapesjs-blocks-basic"></script>
+<script src="https://unpkg.com/grapesjs-preset-newsletter"></script>
+<script type="text/javascript">
+    var editor = grapesjs.init({
+        container: '#gjs',
+        fromElement: true,
+        height: '400px',
+        width: 'auto',
+        storageManager: { type: null },
+        plugins: [
+            'gjs-blocks-basic',
+            'grapesjs-plugin-forms',
+            'grapesjs-preset-newsletter'
+        ],
+        pluginsOpts: {
+            'gjs-blocks-basic': {},
+            'grapesjs-plugin-forms': {},
+            'grapesjs-preset-newsletter': {}
+        },
+        blockManager: {
+            appendTo: '#gjs'
+        },
+        panels: {
+            defaults: [
+                {
+                    id: 'panel-top',
+                    el: '.panel__top',
+                },
+                {
+                    id: 'panel-basic-actions',
+                    el: '.panel__basic-actions',
+                    buttons: [
+                        {
+                            id: 'visibility',
+                            active: true, // active by default
+                            label: '<u>Visibility</u>',
+                            command: 'sw-visibility', // Built-in command
+                        }, {
+                            id: 'export',
+                            className: 'btn-open-export',
+                            label: 'Export',
+                            command: 'export-template',
+                            context: 'export-template', // For grouping context of buttons from the same panel
+                        }, {
+                            id: 'show-json',
+                            className: 'btn-show-json',
+                            label: 'Show JSON',
+                            context: 'show-json',
+                            command(editor) {
+                                editor.Modal.setTitle('Components JSON')
+                                    .setContent(`<textarea style="width:100%; height: 250px;">
+                                    ${JSON.stringify(editor.getComponents())}</textarea>`)
+                                    .open();
+                            },
+                        }
+                    ],
+                }
+            ]
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function() {
+        var content = editor.getHtml();
+        document.getElementById('content').value = content;
+    });
+</script>
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({

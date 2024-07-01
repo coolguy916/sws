@@ -18,6 +18,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TermsController;
 use App\Models\CategoriesConsumption;
 use App\Models\Deskripsi;
@@ -69,6 +70,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'HakAkses:admin']], 
     Route::post('/post-module', [App\Http\Controllers\ModuleController::class, 'store'])->name('store.module');
     Route::post('/update-module', [ModuleController::class, 'update'])->name('update.module');
     Route::post('/delete-module', [App\Http\Controllers\ModuleController::class, 'deleted'])->name('delete.module');
+    Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+    Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
+    Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
+    Route::get('/pages/{page}', [PageController::class, 'show'])->name('pages.show');
+    Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
+    Route::put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
+    Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 });
 
 

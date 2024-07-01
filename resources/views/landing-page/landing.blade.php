@@ -231,84 +231,19 @@
                     <h2 class="mb-5">Kenali lebih dekat dengan para developer</h2>
                 </div>
                 <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item">
-                            <h5>farhan</h5>
-                            <p class="mb-4">support</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('landing_page/img/farhan.jpeg') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($pages as $page)
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item">
-                            <h5>Adji</h5>
-                            <p class="mb-4">tank</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('landing_page/img/adji.jpeg') }}" alt="">
+                            <h5>{{ $page->nama }}</h5>
+                            <p class="mb-4">{{ $page->role }}</p>
+                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('storage/' . $page->image) }}" alt="">
                             <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
+                                <a class="btn btn-square text-primary bg-white m-1" href="{{ $page->instagram }}"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square text-primary bg-white m-1" href="{{ route('pages.show', $page->id) }}"><i class="fas fa-newspaper"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item">
-                            <h5>Fajar</h5>
-                            <p class="mb-4">jungler</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="{{ asset('landing_page/img/fajar.png') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item">
-                            <h5>Lasta</h5>
-                            <p class="mb-4">mage</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src=" {{ asset('landing_page/img/lasta.jpeg') }}" alt="">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item">
-                            <h5>RJ</h5>
-                            <p class="mb-4">Butuh Foto</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="" alt="Foto Developer">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item">
-                            <h5>Bintang</h5>
-                            <p class="mb-4">Butuh Foto</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="" alt="Foto Developer">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item">
-                            <h5>Yazid</h5>
-                            <p class="mb-4">Butuh Foto</p>
-                            <img class="img-fluid rounded-circle w-100 mb-4" src="" alt="Foto Developer">
-                            <div class="d-flex justify-content-center">
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fas fa-newspaper"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    @endforeach
                 </div>
             </div>
         </div>
