@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Page</title>
+    <title>Edit Page</title>
     <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
@@ -77,8 +77,21 @@
                 'gjs-blocks-basic': {},
                 'grapesjs-plugin-forms': {},
                 'grapesjs-preset-newsletter': {}
+            },
+            canvas: {
+                styles: [
+                    'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+                ],
+                scripts: [
+                    'https://code.jquery.com/jquery-3.5.1.slim.min.js',
+                    'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js',
+                    'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'
+                ]
             }
         });
+
+        editor.setComponents(@json($page->content));
+        editor.setStyle(@json($page->styles));
 
         document.querySelector('form').addEventListener('submit', function() {
             var content = editor.getHtml();

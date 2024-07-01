@@ -70,7 +70,7 @@ class PageController extends Controller
             'content' => $request->content 
         ]);
 
-        return redirect()->route('data.pages')->with('success', 'Developer updated successfully.'); 
+        return redirect()->route('pages.index')->with('success', 'Developer updated successfully.'); 
     }
 
     public function destroy(Page $page)
