@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->nama }}</td>
-                                    <td>{{ $row->role }}</td>
+                                    <td>{{ $row->Role }}</td>
                                     <td>
                                         <a href="{{ route('pages.show', $row->id) }}" class="btn btn-info">Preview</a>
                                         <a href="{{ route('pages.edit', $row->id) }}" class="btn btn-primary">Edit</a>
