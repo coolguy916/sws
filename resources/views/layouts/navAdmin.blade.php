@@ -358,10 +358,10 @@
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('data.slider') }}"
+              href="/admin/prices"
               aria-expanded="false"
-              ><i class="mdi mdi-image"></i
-              ><span class="hide-menu">Image slider</span></a
+              ><i class="mdi mdi-star"></i
+              ><span class="hide-menu">Pricing</span></a
             >
           </li>
            <li class="sidebar-item">

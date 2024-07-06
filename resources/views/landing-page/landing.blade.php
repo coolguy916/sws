@@ -148,76 +148,63 @@
 
 
 
+      
         <div class="container-xxl py-6" id="pricing">
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Harga Produk</div>
                     <h2 class="mb-5">Dapatkan harga terbaik dengan kualitas unggul</h2>
                 </div>
-        <section id="pricing" class="section-padding">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-4 col-md-6 col-xs-12">
-                  <div class="table wow fadeInLeft" data-wow-delay="1.2s">
-                    <div class="icon-box">
-                      <i class="fas fa-star-half"></i>
+                <section id="pricing" class="section-padding">
+                    <div class="container">
+                        <div class="row">
+                            @if($prices->isEmpty())
+                            <div class="container-xxl py-6" id="pricing"> 
+                                <div class="container"> 
+                                    <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;"> 
+                                        <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Harga Produk</div> 
+                                        <h2 class="mb-5">Dapatkan harga terbaik dengan kualitas unggul</h2> 
+                                    </div> 
+                                    <section id="pricing" class="section-padding"> 
+                                        <div class="container"> 
+                                            <div class="row"> 
+                                                <div class="col-lg-4 col-md-6 col-xs-12"> 
+                                                    <div class="table wow fadeInLeft" data-wow-delay="1.2s"> 
+                                                        <div class="icon-box"> <i class="fas fa-star-half"></i> 
+                                                        </div> 
+                                                        <div class="pricing-header"> <p class="price-value">Rp.0<span> /mo</span></p> 
+                                                        </div> <div class="title"> <h3>judul</h3> 
+                                                        </div> <ul class="description"> <li>list</li> </ul> <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a> </div> </div> <div class="col-lg-4 col-md-6 col-xs-12"> <div class="table wow fadeInUp" data-wow-delay="1.2s"> <div class="icon-box"> <i class="fa fa-star"></i> </div> <div class="pricing-header"> <p class="price-value">Rp.0<span> /mo</span></p> </div> <div class="title"> <h3>judul</h3> </div> <ul class="description"> <li> List</li>  </ul> <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a> </div> </div> <div class="col-lg-4 col-md-6 col-xs-12"> <div class="table wow fadeInRight" data-wow-delay="1.2s"> <div class="icon-box"> <i class="far fa-star"></i> </div> <div class="pricing-header"> <p class="price-value">Rp.0<span> /mo</span></p> </div> <div class="title"> <h3>judul</h3> </div> <ul class="description"> <li>Lsit </li> <li></li> </ul> <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a> </div> </div> </div> </div> </section> </div> </div>
+                            @else
+                                @foreach($prices as $price)
+                                    <div class="col-lg-4 col-md-6 col-xs-12">
+                                        <div class="table wow fadeInUp" data-wow-delay="{{ 0.1 + ($loop->iteration * 0.1) }}s">
+                                            <div class="icon-box">
+                                                <i class="{{ $price->icon }}"></i>
+                                            </div>
+                                            <div class="pricing-header">
+                                                <p class="price-value">Rp.{{ number_format($price->harga) }}<span> /mo</span></p>
+                                            </div>
+                                            <div class="title">
+                                                <h3>{{ $price->judul }}</h3>
+                                            </div>
+                                            <ul class="description">
+                                                @foreach(json_decode($price->list) as $list_item)
+                                                    <li>{{ $list_item }}</li>
+                                                @endforeach
+                                            </ul>
+                                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="#">Beli Sekarang</a>
+                                        </div> 
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
-                    <div class="pricing-header">
-                      <p class="price-value">Rp.1000<span> /mo</span></p>
-                    </div>
-                    <div class="title">
-                      <h3>Reguler</h3>
-                    </div>
-                    <ul class="description">
-                      <li>free source code</li>
-                    </ul>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a>
-                </div> 
-                </div>
-                <div class="col-lg-4 col-md-6 col-xs-12">
-                    <div class="table wow fadeInUp" data-wow-delay="1.2s">
-                      <div class="icon-box">
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="pricing-header">
-                        <p class="price-value">Rp.5000<span> /mo</span></p>
-                      </div>
-                      <div class="title">
-                        <h3>Premium</h3>
-                      </div>
-                      <ul class="description">
-                        <li> Cuman dapet casing</li>
-                        <li> Rakit Sendiri Alatnya</li>
-
-                      </ul>
-                      <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a>
-                  </div> 
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-xs-12">
-                    <div class="table wow fadeInRight" data-wow-delay="1.2s">
-                      <div class="icon-box">
-                        <i class="far fa-star"></i>                    
-                    </div>
-                      <div class="pricing-header">
-                        <p class="price-value">Rp.8.000.000<span> /mo</span></p>
-                      </div>
-                      <div class="title">
-                        <h3>Ekonomis</h3>
-                      </div>
-                      <ul class="description">
-                        <li>dapet hikmahnya aja bang :( </li>
-                        <li>Iuran Pengembangan Developer (IPD) #Butuh Uang</li>
-                      </ul>
-                      <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Beli Sekarang</a>
-                  </div> 
-                  </div>
-              
-              </div>
+                </section>
             </div>
-          </section>
-          </div>
-          </div>
-
+        </div>
+        
+        
         <!-- Testimonial Start -->
        @include('landing-page.testimonial')
         <!-- Testimonial End -->

@@ -33,7 +33,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $no = 1; @endphp
+                            @php $no = 1; 
+                            @endphp
                             @foreach ($kontaks as $kontak)
                                 <tr class="kontak-row" data-id="{{ $kontak->id }}">
                                     <td>{{ $no++ }}</td>
