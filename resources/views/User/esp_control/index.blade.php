@@ -45,7 +45,50 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($espControls->isEmpty())
+                                        <tr>
+                                            <td colspan="6" class="text-center p-5">Silahkan Isi data.</td>
+                                        </tr>
+                                    @else
+                                        @foreach ($espControls as $index => $control)
+                                            <tr>
+                                                <td class="text-center text-secondary text-xs font-weight-bold">
+                                                    {{ $index + 1 }}</td>
 
+                                                <td class="text-center text-secondary text-xs font-weight-bold">
+                                                    {{ \Carbon\Carbon::parse($control->schedule)->format('h:i A') }}</td>
+
+                                                <td class="text-center text-secondary text-xs font-weight-bold">
+                                                    {{ $control->lokasi }}</td>
+                                                <td class="text-center text-secondary text-xs font-weight-bold">
+                                                    {{ $control->runtime }}</td>
+
+                                                @if ($control->status == 1)
+                                                    <td class="text-center text-secondary text-xs font-weight-bold">
+                                                        <p
+                                                            class="border border-primary d-inline-flex p-1 text-white bg-success rounded">
+                                                            ONLINE</p>
+                                                    </td>
+                                                @else
+                                                    <td class="text-center text-secondary text-xs font-weight-bold">
+                                                        <p
+                                                            class="border border-primary d-inline-flex p-1 text-white bg-danger rounded">
+                                                            OFFLINE</p>
+                                                    </td>
+                                                @endif
+                                                <td class="text-center text-secondary text-xs font-weight-bold">
+                                                    <form action="{{ route('schedule.destroy', $control->id) }}"
+                                                        onsubmit="return confirm('Are you sure?')" method="POST">
+                                                        <a href="{{ route('schedule.edit', $control->id) }}"
+                                                            class="btn btn-warning btn-sm">EDIT</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
 

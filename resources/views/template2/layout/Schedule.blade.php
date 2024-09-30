@@ -124,17 +124,18 @@
                         <li class="nav-item dropdown justify-content-end">
                             <a class="nav-link text-white font-weight-bold px-0 dropdown-toggle"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user me-sm-1"></i><span class="d-sm-inline d-none">{{Auth::user()->name}}</span>
+                                <i class="fa fa-user me-sm-1"></i><span
+                                    class="d-sm-inline d-none">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                      <i class="fa fa-power-off me-1 ms-1"></i>{{ __('Logout') }}</a>
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                              @csrf
-                                                          </form>
+                                    <i class="fa fa-power-off me-1 ms-1"></i>{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </ul>
                         </li>
 
@@ -194,11 +195,11 @@
         function updateClock() {
             const clockElement = document.querySelector('.clock');
             const now = new Date();
-        
+
             let hours = now.getHours();
             let minutes = now.getMinutes();
             let period = 'AM';
-        
+
             if (hours >= 12) {
                 period = 'PM';
                 if (hours > 12) {
@@ -207,18 +208,18 @@
             } else if (hours === 0) {
                 hours = 12;
             }
-        
+
             if (minutes < 10) {
                 minutes = '0' + minutes;
             }
-        
+
             const timeString = `${hours}:${minutes} ${period}`;
             clockElement.textContent = timeString;
         }
-        
+
         setInterval(updateClock, 1000);
-        updateClock();  
-        </script>
+        updateClock();
+    </script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

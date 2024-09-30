@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Events\scheduleStatusUpdate;
 
-class EspController extends Controller
+class espController extends Controller
 {
     // public function index()
     // {
@@ -90,8 +90,8 @@ class EspController extends Controller
         $espControls = EspControl::where('id_user', Auth::id())
             ->join('modules', 'esp_controls.id_module', '=', 'modules.id')
             ->join('users', 'esp_controls.id_user', '=', 'users.id')
-            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi', 'esp_controls.id_module', 'esp_controls.created_at');
-        // ->paginate(10);
+            ->select('esp_controls.id', 'esp_controls.runtime', 'esp_controls.schedule', 'modules.status', 'modules.lokasi', 'esp_controls.id_module', 'esp_controls.created_at')
+            ->paginate(10);
         $modules = Module::where('user_id', Auth::id())->get();
         $users = User::all();
         return view('User.esp_control.index', compact('espControls', 'modules', 'users'));
@@ -377,7 +377,7 @@ class EspController extends Controller
         $modules = Module::where('user_id', Auth::id())->get();
         $users = User::all();
         $news = News::all();
-        return view('User.esp_control.dashboard', compact('espControls', 'modules', 'users','news'));
+        return view('User.esp_control.dashboard', compact('espControls', 'modules', 'users', 'news'));
     }
 
 }

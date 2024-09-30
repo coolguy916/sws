@@ -1,3 +1,4 @@
+
 @component('mail::layout')
 {{-- Header --}}
 @slot('header')
